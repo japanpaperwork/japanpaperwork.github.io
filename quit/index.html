@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Quitting a Job in Japan: Deadline Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Quitting a job in Japan: deadline checker</h1>
+  <p class="lead">Enter your last working day and a few answers. You get a dated checklist for health insurance, pension, immigration, unemployment benefits and residence tax. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your last day</h2>
+    <label class="f" for="last">Last working day<span class="hint">The last day you are employed (not your last day in the office, if you use paid leave after it)</span></label>
+    <input type="date" id="last">
+  </div>
+
+  <div class="card">
+    <h2>2. Your situation</h2>
+    <label class="f" for="ins">Health insurance after leaving</label>
+    <select id="ins">
+      <option value="undecided">Not decided yet</option>
+      <option value="cont">Continue my company plan (nin'i keizoku)</option>
+      <option value="nhi">National Health Insurance (city office)</option>
+      <option value="spouse">Dependent on my spouse's insurance</option>
+      <option value="newjob">New job starts the next day</option>
+    </select>
+    <label class="f" for="status">Status of residence</label>
+    <select id="status">
+      <option value="work">Work status (e.g. Engineer/Humanities/Intl. Services, Skilled Labor, Specified Skilled Worker)</option>
+      <option value="family">Permanent Resident, Spouse, or Long-Term Resident</option>
+      <option value="other">Other / not sure</option>
+    </select>
+    <label class="f" for="search">Will you look for a new job?</label>
+    <select id="search">
+      <option value="yes">Yes</option>
+      <option value="no">No, not for now</option>
+    </select>
+  </div>
+  <button id="make" type="button">Make my checklist</button>
+  <p class="err" id="err" hidden>Please enter your last working day.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your checklist</h2>
+    <h3>Before your last day</h3>
+    <div id="before"></div>
+    <h3>Within about 2 weeks after</h3>
+    <div id="soon"></div>
+    <h3>Unemployment benefits</h3>
+    <div id="hw"></div>
+    <h3>Residence tax</h3>
+    <div id="tax"></div>
+    <h3>Immigration</h3>
+    <div id="imm"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy checklist as text</button>
+  </div>
+
+  <p class="note">Dates are a guide based on general rules published by the offices in charge. Your case may differ. If a deadline falls on a weekend or holiday, ask the office how it is handled. Always confirm with the office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addMonths(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function wkday(d) { var x = d; while (x.getDay() === 0 || x.getDay() === 6) x = add(x, 1); return x; }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value;
+    if (!v) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["before","soon","hw","tax","imm"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), ins = $("ins").value, st = $("status").value, js = $("search").value;
+    var loss = add(L, 1);
+
+    put("before", "1-2 months before " + fmt(L), "Tell your manager, then submit your resignation", "Check the notice period in your work rules.");
+    put("before", "By " + fmt(L), "Ask HR for your documents", js === "yes" ? "Rishokuhyo (say clearly you want it), gensen choshuhyo, employment insurance card, pension number document, proof your health insurance ended." : "Gensen choshuhyo, employment insurance card, pension number document, proof your health insurance ended. Rishokuhyo too, in case you apply later.");
+    put("before", "On " + fmt(L), "Return company items", "ID card, keys, health insurance card if you still have one.");
+
+    if (ins === "newjob") {
+      put("soon", "From " + fmt(loss), "Health insurance and pension: done by your new employer", "Give them your pension number and gensen choshuhyo.");
+    } else {
+      if (ins === "cont" || ins === "undecided") {
+        var c = add(loss, 19), cw = wkday(c);
+        put("soon", "Must arrive by " + fmt(cw), "Continue company plan: send the form", "20 days from the loss date (" + fmt(loss) + ")" + (cw.getTime() !== c.getTime() ? "; day 20 is a weekend, so the next business day" : "") + ". Needs 2+ months insured in a row. Holidays also move it; confirm with your insurer.");
+      }
+      if (ins === "nhi" || ins === "undecided") {
+        put("soon", "By " + fmt(add(L, 14)), "Join National Health Insurance at the city office", "14 days from the loss date (" + fmt(loss) + "). Bring proof your insurance ended and ID.");
+      }
+      if (ins === "spouse") {
+        put("soon", "Soon after " + fmt(L), "Apply as a dependent through your spouse's employer", "Income conditions apply. Ask your spouse's HR for the deadline.");
+        put("soon", "Soon after " + fmt(L), "Pension: Category 3, through your spouse's employer", "Filed together with the dependent application in many cases.");
+      } else {
+        put("soon", "By " + fmt(add(L, 14)), "Pension: join National Pension (Category 1) at the city office", "14 days from the day after your last day. Bring your pension number document or My Number Card. Ask about exemptions if paying is hard.");
+      }
+      if (ins === "undecided") {
+        put("soon", "Decide early", "Choose ONE health insurance path", "Continuation and NHI deadlines are close together. You only need one.");
+      }
+    }
+
+    if (ins === "newjob") {
+      put("hw", "", "Not needed if your new job starts right away", "Unemployment benefits are for people between jobs. Ask Hello Work if your plans change.");
+    } else if (js === "yes") {
+      put("hw", "When the rishokuhyo arrives", "Apply at Hello Work", "Bring rishokuhyo 1 and 2, My Number proof, ID, 2 photos, bank book/cash card, residence card.");
+      put("hw", "After you apply", "7-day waiting period, then (if you quit for your own reasons) a 1-month restriction", "3 months if you quit for your own reasons without good cause 2+ times in 5 years. Hello Work decides the reason.");
+      put("hw", "Ends on " + fmt(addMonths(L, 12)), "End of the 1-year receiving period", "1 year from the day after your last day. Unused days after this are not paid.");
+    } else {
+      put("hw", "", "Not looking for work now", "Benefits are for people looking for a job. If you may look later (illness, childcare, etc.), ask Hello Work about extending the receiving period.");
+    }
+
+    var mo = L.getMonth() + 1;
+    if (ins === "newjob") {
+      put("tax", "", "Ask HR how the rest will be handled", "It may be moved to your new employer's payroll.");
+    } else if (mo >= 1 && mo <= 4) {
+      put("tax", "Final pay", "Remaining residence tax is usually taken in one go", "For January to April leavers, the rest of the tax year (to May) is collected from the final pay by law, in most cases.");
+    } else if (mo === 5) {
+      put("tax", "Final pay", "The last monthly deduction is taken as usual", "A new bill for the next tax year arrives from the city around June.");
+    } else {
+      put("tax", "After you leave", "A residence tax bill comes from your city", "You pay the rest in installments. Or ask HR to take it all from your final pay. The bill comes from the city you lived in on Jan 1.");
+    }
+
+    if (st === "work") {
+      put("imm", "Between " + fmt(add(L, 1)) + " and " + fmt(add(L, 13)), "Notify Immigration that your contract ended", "Within 14 days. Online e-notification is easiest. You cannot file before your last day. (Target date counted conservatively.)");
+      if (js === "yes") put("imm", "Within 14 days of signing", "Notify Immigration again when you sign a new contract", "");
+      put("imm", "Around " + fmt(addMonths(loss, 3)), "3 months without the activity of your status", js === "yes" ? "Active job hunting can count as a justifiable reason (judged case by case). Keep records of applications and interviews." : "Without a justifiable reason, your status can be revoked. Talk to Immigration before this date.");
+    } else if (st === "family") {
+      put("imm", "", "Employer notification generally does not apply", "Your status is not tied to a job. Spouse statuses have their own rules about spousal life.");
+    } else {
+      put("imm", "", "Check with the Immigration Services Agency", "Students, dependents and other statuses have different rules. Ask the information center.");
+    }
+
+    $("warn").textContent = "- Nothing is switched automatically. If you do nothing, you can end up with no health insurance.\n- Do health insurance and pension on the same visit to the city office.\n- A residence tax bill after you stop working is normal: it is for last year's income.";
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Quitting a job in Japan: my checklist\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("last").value = "2026-12-25"; $("ins").value = "undecided"; $("status").value = "work"; $("search").value = "yes"; make(); }
+})();
+</script>
+</body>
+</html>
