@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>National Pension After Quitting: Deadline &amp; Exemption Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>National Pension after quitting: deadline &amp; exemption checker</h1>
+  <p class="lead">Enter your last working day and a few answers. You get the date you leave the company pension, the deadline to switch to National Pension, the first premium month and its due date, and how the exemption for people who left a job fits your dates. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your last day</h2>
+    <label class="f" for="last">Last working day<span class="hint">The last day you are employed (as written on your rishokuhyo or resignation papers)</span></label>
+    <input type="date" id="last">
+    <label class="f" for="age">Your age on your last day</label>
+    <select id="age">
+      <option value="mid">20 to 49</option>
+      <option value="fifty">50 to 59</option>
+      <option value="o60">60 or older</option>
+      <option value="u20">Under 20</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your situation</h2>
+    <label class="f" for="next">What comes next?<span class="hint">If a new job with company insurance starts right away, the new company handles the pension</span></label>
+    <select id="next">
+      <option value="none">No new job yet / self-employed</option>
+      <option value="dep">I will be a dependent of my spouse (a company employee)</option>
+    </select>
+    <label class="f" for="sp">Was your spouse your dependent in the pension (Category 3)?<span class="hint">A spouse with little or no income, registered through your company</span></label>
+    <select id="sp">
+      <option value="no">No / no spouse</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="pay">Can you pay the premium?</label>
+    <select id="pay">
+      <option value="hard">It will be hard after losing my job</option>
+      <option value="yes">Yes, I can pay</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my dates</button>
+  <p class="err" id="err" hidden>Please enter your last working day.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your dates</h2>
+    <h3>When the company pension ends</h3>
+    <div id="end"></div>
+    <h3>Deadlines</h3>
+    <div id="dead"></div>
+    <h3>Premiums</h3>
+    <div id="prem"></div>
+    <h3>Exemption for people who left a job</h3>
+    <div id="ex"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy dates as text</button>
+  </div>
+
+  <p class="note">Dates are a guide based on general rules published by the Japan Pension Service and city offices. Premium amounts change every April. Holidays are not counted for the 14-day deadline; a due date on a weekend or holiday moves to the next business day (only weekends are moved here). Whether an exemption is approved is decided by the Japan Pension Service after you apply. Always confirm with your city office or a pension office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var MF = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function wkday(d) { var x = d; while (x.getDay() === 0 || x.getDay() === 6) x = add(x, 1); return x; }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function mon(d) { return MF[d.getMonth()] + " " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value;
+    if (!v) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["end","dead","prem","ex"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), loss = add(L, 1);
+    var age = $("age").value, nx = $("next").value, sp = $("sp").value, pay = $("pay").value;
+    var dl = fmt(add(L, 14));
+    var warn = [];
+    var inAge = (age === "mid" || age === "fifty");
+    var selfPay = inAge && nx !== "dep";
+    var spPay = sp === "yes";
+
+    put("end", "From " + fmt(loss), "You leave the company pension (Employees' Pension)", "The day after your last day. From this day, if you live in Japan and are 20 to 59, you are in National Pension: Category 1, or Category 3 as a dependent spouse.");
+    put("end", "Ask before or on your last day", "Ask the company for a paper showing your last day", "For example the rishokuhyo (離職票) or proof of insurance loss. The city office may ask for it if you go right after leaving.");
+
+    if (!inAge) {
+      put("dead", "", age === "o60" ? "Joining is not required at 60 or older" : "Joining starts at 20", age === "o60" ? "National Pension is for people 20 to 59. People 60 to 64 can join voluntarily to add months; ask the city office if interested." : "National Pension is for people 20 to 59.");
+    } else if (nx === "dep") {
+      put("dead", "By " + dl, "Become Category 3 through your spouse's company", "Your spouse's employer files it. No premium for you as Category 3. If there is a gap before you become a dependent, ask the city office whether you need Category 1 for that gap.");
+    } else {
+      put("dead", "By " + dl, "Switch to National Pension (Category 1) at your city office", "Within 14 days from the day after your last day. Bring your basic pension number or My Number, ID (residence card), and the paper showing your last day. A pension office, mail, or Mynaportal (with a My Number Card) also works.");
+    }
+    if (spPay) {
+      put("dead", "By " + dl, "Your spouse also switches to Category 1", "Your spouse loses Category 3 when you leave the company pension (if they are 20 to 59). They file for Category 1 themselves and pay their own premium, or apply for an exemption.");
+    }
+
+    if (selfPay || spPay) {
+      var due = new Date(loss.getFullYear(), loss.getMonth() + 2, 0), dw = wkday(due);
+      put("prem", "From " + mon(loss), "Premiums start from this month", "The month of the day after your last day. Going late does not change this month. A payment slip comes about 2 weeks after joining.");
+      put("prem", "Due " + fmt(dw), "Due date for the first month", "Each month's premium is due at the end of the next month" + (dw.getTime() !== due.getTime() ? "; it falls on a weekend, so the next business day" : "") + ".");
+      var fy = loss.getMonth() >= 3 ? loss.getFullYear() : loss.getFullYear() - 1;
+      put("prem", fy === 2026 ? "April 2026 to March 2027" : "From April " + fy, fy === 2026 ? "17,920 yen per month" : "Check the monthly amount for this year", fy === 2026 ? "The same amount for everyone in Category 1. It changes every April." : "The amount changes every April. The Japan Pension Service publishes it.");
+      if (pay === "hard") {
+        var y1 = loss.getMonth() >= 6 ? loss.getFullYear() : loss.getFullYear() - 1;
+        put("ex", "July " + y1 + " to June " + (y1 + 1), "Apply for the special exemption for job loss", "The exemption year runs July to June; this is the one with your first month. The person who lost the job has last year's income treated as zero. The income of your spouse and the head of household is still checked.");
+        put("ex", "Same visit as joining", "Bring proof you left the job", "A copy of the rishokuhyo, or of the Hello Work eligibility card (受給資格者証) or notice. Apply at the city office, a pension office, by mail, or online.");
+        put("ex", "About 2 months after applying", "The result arrives by mail", "If a payment slip comes before the result, wait for the result. For the job-loss exemption, apply again for the next year (from July).");
+        if (age === "mid") put("ex", "", "Deferral is also possible (20 to 49)", "If the exemption is not approved because of the head of household's income, the deferral checks only you and your spouse.");
+        warn.push("- Exempt months count toward the 10 years needed for an old-age pension, but the amount is lower. You can pay them later, within 10 years.");
+      } else {
+        put("ex", "", "Not needed if you can pay", "If paying becomes hard later, you can still apply. Months up to 2 years and 1 month back can be covered.");
+      }
+      warn.push("- Unpaid months without an exemption can block disability or survivor pension. If you cannot pay, apply for the exemption instead of leaving it.");
+    } else {
+      put("prem", "", "No National Pension premium in your case", "Based on your answers. If your situation changes, check again.");
+      put("ex", "", "Not needed in your case", "Based on your answers.");
+    }
+    warn.push("- When you start a new job with company insurance, the new company handles the pension.");
+    warn.push("- Health insurance is a separate step at the same city office. Do both on one visit.");
+    warn.push("- Leaving Japan for good is a different flow (pension lump-sum withdrawal).");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "National Pension after quitting: my dates\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("last").value = "2026-12-25"; $("age").value = "mid"; $("next").value = "none"; $("sp").value = "yes"; $("pay").value = "hard"; make(); }
+})();
+</script>
+</body>
+</html>
