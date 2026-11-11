@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Residence Tax After Quitting: Bill Timeline Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Residence tax after quitting: bill timeline checker</h1>
+  <p class="lead">Enter your last working day and a few answers. You see how the rest of this year's residence tax is paid, when a bill from the city is likely to come, which year's income each bill is for, and what to ask if paying is hard. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your last day</h2>
+    <label class="f" for="last">Last working day<span class="hint">The last day you are employed (as written on your resignation papers)</span></label>
+    <input type="date" id="last">
+    <label class="f" for="paid">Was residence tax taken from your monthly salary?<span class="hint">A line like 住民税 on your payslip</span></label>
+    <select id="paid">
+      <option value="yes">Yes</option>
+      <option value="no">No / I paid it myself with bills</option>
+      <option value="unk">Not sure</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. What comes next</h2>
+    <label class="f" for="next">New job?<span class="hint">A job where tax is taken from the salary</span></label>
+    <select id="next">
+      <option value="none">No new job yet</option>
+      <option value="soon">A new job starts soon</option>
+    </select>
+    <label class="f" for="lump">For the rest of this year's tax, which do you prefer?<span class="hint">Only matters if your last day is between June 1 and December 31</span></label>
+    <select id="lump">
+      <option value="bill">Pay it myself with bills from the city</option>
+      <option value="lump">Have it all taken from my final pay</option>
+    </select>
+    <label class="f" for="why">Why did you leave?<span class="hint">Some cities reduce the tax mainly for people who lost a job for company reasons</span></label>
+    <select id="why">
+      <option value="co">Company reasons (dismissal, closure, contract not renewed by the company)</option>
+      <option value="self">My own decision / end of contract I chose</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my timeline</button>
+  <p class="err" id="err" hidden>Please enter your last working day.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your timeline</h2>
+    <h3>The rest of this year's tax</h3>
+    <div id="now"></div>
+    <h3>Bills that come later</h3>
+    <div id="later"></div>
+    <h3>If paying is hard</h3>
+    <div id="hard"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy timeline as text</button>
+  </div>
+
+  <p class="note">This is a guide based on general rules published by city offices. Each city decides the tax amount, the number of installments, the due dates and any reduction. The usual due months for bills (end of June, August, October and January) are used in many cities, but your notice shows your own dates. This page does not calculate the tax amount. Always confirm with the tax section of your city or ward office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var MF = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value;
+    if (!v) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["now","later","hard"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), y = L.getFullYear(), m = L.getMonth() + 1;
+    var paid = $("paid").value, nx = $("next").value, lump = $("lump").value, why = $("why").value;
+    var warn = [];
+    // tax year (June to May) that the last day falls in
+    var fy = m >= 6 ? y : y - 1;
+    var fyText = "June " + fy + " to May " + (fy + 1);
+
+    if (paid === "no") {
+      put("now", "Tax year " + fyText, "Keep paying with the bills you already have", "If you were already paying by bills from the city (not from salary), quitting does not change that. Pay each slip by its due date.");
+    } else {
+      if (m <= 4) {
+        put("now", "From your final pay (" + M[m - 1] + " " + y + ")", "The rest of this tax year, up to May, is taken in one go", "Your last day is between January 1 and April 30. The company takes what is left of the " + fyText + " tax from your final salary or retirement allowance, even if you do not ask." + (nx === "soon" ? " If your new job will continue the monthly deduction, tell both companies before your last day." : ""));
+      } else if (m === 5) {
+        put("now", "Final pay (May " + y + ")", "The last monthly deduction of this tax year", "Your last day is in May, the last month of the " + fyText + " tax year. Usually nothing of this year is left after your final pay. Check your last payslip.");
+      } else {
+        if (nx === "soon") {
+          put("now", "Tell both companies before " + fmt(L), "Ask your new company to continue the monthly deduction", "If the new company agrees, the rest of the " + fyText + " tax keeps coming out of your salary there. Your old company sends a form to the city for the change.");
+        }
+        if (lump === "lump") {
+          put("now", "Ask before " + fmt(L), "Ask the company to take the rest from your final pay", "Your last day is between June 1 and December 31, so the company takes it in one go only if you ask. It covers the " + fyText + " tax up to May " + (fy + 1) + ".");
+        } else {
+          put("now", "After you leave (" + M[m - 1] + " " + y + ")", "The rest switches to bills you pay yourself", "Your company tells the city you left. The city then mails a tax notice with payment slips for the rest of the " + fyText + " tax. When it arrives and how many slips it has depend on the city.");
+          put("now", "Due dates are on the notice", "Pay each slip by its due date", "Many cities use the end of June, August, October and January for bills. A notice sent in the middle of the year shows only the dates that are left. You can also pay ahead.");
+        }
+      }
+    }
+
+    // next June bills
+    if (m <= 5) {
+      put("later", "Around June " + y, "A bill for your income in " + (y - 1), "This is the tax year June " + y + " to May " + (y + 1) + ". It is based on your full salary in " + (y - 1) + ", so it can be large even if you have no income now. Without an employer taking it from salary, it comes as bills from the city.");
+      put("later", "Usual due months", "End of June, August, October " + y + " and January " + (y + 1), "Check your own notice. Some cities differ.");
+      put("later", "Around June " + (y + 1), "A bill for your income in " + y + " (January to your last day)", "Based on what you earned in " + y + ". If your income that year was small, there may be little or no tax. The city decides.");
+    } else {
+      put("later", "Around June " + (y + 1), "A bill for your income in " + y, "This is the tax year June " + (y + 1) + " to May " + (y + 2) + ". It is based on what you earned in " + y + " (January to your last day). If you have a job with salary deduction by then, it may come out of that salary instead.");
+      put("later", "Usual due months", "End of June, August, October " + (y + 1) + " and January " + (y + 2), "Check your own notice. Some cities differ.");
+    }
+    put("later", "Address on January 1", "The city where you live on January 1 sends the bill", "If you move after January 1, that year's tax still comes from the city where you lived on January 1. Tell it your new address so the notice reaches you.");
+
+    if (why === "co") {
+      put("hard", "Before the next due date", "Ask the city about a reduction (減免, genmen)", "Many cities have a reduction for people whose income dropped after losing a job, often only for company reasons. Rules differ by city. It usually covers only due dates after the day you apply, so ask early.");
+    } else {
+      put("hard", "Before the next due date", "Ask whether any reduction applies", "Many cities limit the job-loss reduction to company reasons, so it may not apply. Ask anyway if paying is hard. Rules differ by city.");
+    }
+    put("hard", "Before the due date, not after", "Ask about paying later or in parts", "City tax offices have systems for people who cannot pay on time. Talk to the tax payment section before the due date.");
+    put("hard", "Bring", "Proof that you left the job", "For example a rishokuhyo, the Hello Work eligibility card, or a notice of dismissal. Also your residence card and the tax notice. The city tells you what else it needs.");
+
+    warn.push("- Residence tax is for last year's income. A bill can come after you stop working.");
+    warn.push("- Late payment can bring reminders and late charges. If you cannot pay, talk to the city before the due date.");
+    warn.push("- Unemployment benefits and the health insurance or pension exemption are separate steps.");
+    warn.push("- Leaving Japan for good: ask the city how to pay the rest before you go.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Residence tax after quitting: my timeline\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("last").value = "2026-12-25"; $("paid").value = "yes"; $("next").value = "none"; $("lump").value = "bill"; $("why").value = "co"; make(); }
+})();
+</script>
+</body>
+</html>
