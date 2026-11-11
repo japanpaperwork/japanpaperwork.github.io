@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Changing Jobs in Japan: 14-Day Immigration Notice Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Changing jobs in Japan: 14-day immigration notice planner</h1>
+  <p class="lead">Enter your last day at the old company and the date of your new contract. You see which notice to send to immigration, the 14-day window for each, what to check about your status before you start, and the documents to collect. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your status</h2>
+    <label class="f" for="visa">Status of residence (on your residence card)</label>
+    <select id="visa">
+      <option value="c">Engineer/Specialist in Humanities/International Services, Researcher, Nursing Care, Skilled Labor</option>
+      <option value="a">Intra-company Transferee, Professor, Business Manager, Instructor, Medical Services, and other "activity" statuses</option>
+      <option value="x">Specified Skilled Worker or Highly Skilled Professional</option>
+      <option value="o">Permanent Resident, Spouse, Long-Term Resident, or other status without work limits</option>
+    </select>
+    <label class="f" for="same">Is the new work the same kind of work as now?<span class="hint">For example: engineer to engineer, interpreter to interpreter</span></label>
+    <select id="same">
+      <option value="yes">Yes, the same kind of work</option>
+      <option value="no">No, different work</option>
+      <option value="unk">Not sure</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your dates</h2>
+    <label class="f" for="last">Last day at the old company<span class="hint">The day your contract ends</span></label>
+    <input type="date" id="last">
+    <label class="f" for="next">Date of the new contract<span class="hint">The date on your new contract. Leave empty if you have no new job yet</span></label>
+    <input type="date" id="next">
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter your last day at the old company.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <h3>Notices to immigration</h3>
+    <div id="imm"></div>
+    <h3>Before you start the new job</h3>
+    <div id="check"></div>
+    <h3>Documents to collect</h3>
+    <div id="docs"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy plan as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of the Immigration Services Agency of Japan. It counts 14 days from the day of the change (your last day, or the date of the new contract) and shows a safer target a few days earlier. A notice cannot be sent before the change happens. This page does not judge whether your new job fits your status, and it does not fill in any form. Always confirm with the Immigration Services Agency (Immigration Services Information Center: 0570-013904).<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+  function addM(d, n) { return new Date(d.getFullYear(), d.getMonth() + n, d.getDate()); }
+  function days(a, b) { return Math.round((b - a) / 86400000); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value, nv = $("next").value;
+    if (!v) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["imm","check","docs"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), N = nv ? parse(nv) : null;
+    var visa = $("visa").value, same = $("same").value;
+    var warn = [];
+    var endName = visa === "a" ? "leaving the organization (離脱, ridatsu)" : "end of contract (契約の終了)";
+    var newName = visa === "a" ? "moving to a new organization (移籍, iseki)" : "new contract (新たな契約の締結)";
+    var site = visa === "a" ? "Notification of the Activity Organization" : "Notification of the Contracting Organization";
+
+    if (visa === "o") {
+      put("imm", "", "No notice about your employer is usually needed", "This notice is for statuses tied to a job, like Engineer/Specialist in Humanities/International Services. Statuses without work limits are not on the Immigration Services Agency's list for it. If unsure, ask the Immigration Services Information Center.");
+    } else {
+      if (visa === "x") {
+        put("imm", "Before you accept the new job", "Ask immigration first: your status has extra rules", "For Specified Skilled Worker and Highly Skilled Professional, your permission is tied to your employer. A job change can need a new permission before you start. Ask the regional immigration office or the Information Center before you sign.");
+      }
+      var e14 = add(L, 14);
+      if (N && N >= L && N <= e14) {
+        var t = add(N, 3) < e14 ? add(N, 3) : e14;
+        put("imm", "Between " + fmt(N) + " and " + fmt(e14), "One notice can cover both: " + endName + " and " + newName, "Your new contract comes within 14 days of your last day, so you can send both changes in one notice (on paper, the form for both changes at once). The window opens on the new contract date and closes 14 days after your last day. Safer target: by " + fmt(t) + ".");
+      } else {
+        put("imm", "Between " + fmt(L) + " and " + fmt(e14), "Notice 1: " + endName, "Within 14 days of your last day. Safer target: by " + fmt(add(L, 10)) + ". It cannot be sent before your last day.");
+        if (N) {
+          if (N < L) {
+            put("imm", "Check your dates", "The new contract date is before your last day", "If you hold two jobs for a while, a notice can still be needed for each change. Ask the Information Center how to file your case.");
+          } else {
+            put("imm", "Between " + fmt(N) + " and " + fmt(add(N, 14)), "Notice 2: " + newName, "A separate notice, within 14 days of the new contract date. Safer target: by " + fmt(add(N, 10)) + ".");
+          }
+        } else {
+          put("imm", "Within 14 days of the new contract", "Notice 2: " + newName + " (later)", "When you sign with a new company, send this notice within 14 days of the contract date. Come back and enter the date to see the window.");
+        }
+      }
+      put("imm", "Online, at a counter, or by mail", "How to send it", "Online: the Immigration Services Agency's electronic notification system (" + site + "), open 24 hours. You register as a user the first time; no documents are attached. At a counter: bring the form and your residence card. By mail: the form and a copy of your residence card, to the address on the agency's page.");
+    }
+
+    if (visa !== "o") {
+      if (same === "yes") {
+        put("check", "Optional, before or after you start", "Certificate of authorized employment (就労資格証明書)", "If you want written proof that the new job fits your current status, you can apply at the immigration office for your address. It is not required to work. When the employer has changed, it can take one to three months.");
+      } else {
+        put("check", "Before you start", "Check whether the new work fits your status", "If the new work is outside your current status, you need a change of status of residence (在留資格変更許可) before you do it. Ask the regional immigration office. Do not start the work first.");
+      }
+      put("check", "At your next renewal", "A renewal does not replace the notice", "The Immigration Services Agency says the job-change notice is still needed even if you got a renewal. It is not needed if you got a change of status for the new job.");
+      if (!N || days(L, N) > 30) {
+        put("check", "Around " + fmt(addM(L, 3)), "3 months after your last day", "For work statuses, not doing your status activity for 3 months or more can lead to cancellation of your status. Active job hunting can be a justifiable reason. Keep records: applications, interviews, Hello Work visits.");
+      }
+    }
+
+    put("docs", "Within 1 month after you leave", "Withholding tax slip (源泉徴収票, gensen choshuhyo)", "Your old company gives it to you. The new company needs it for year-end tax adjustment.");
+    put("docs", "When you sign", "The new company's details for the notice", "Its name and address, and the date of your contract. HR can tell you the details the notice asks for.");
+    if (!N || days(L, N) > 1) {
+      put("docs", "If there is a gap between jobs", "Proof that your health insurance ended (資格喪失証明書)", "Between jobs you join National Health Insurance and National Pension at the city office, within 14 days. The city usually asks for this proof. Ask your old company's HR.");
+    }
+    if (!N) {
+      put("docs", "If you will apply for unemployment benefits", "Separation notice (離職票, rishokuhyo)", "Hello Work uses it. Tell HR you want one.");
+    }
+
+    warn.push("- The law has penalties for not sending the notice or sending a false one. If you missed the 14 days, send it as soon as you notice.");
+    warn.push("- A notice cannot be sent for a future date. Wait until the change happens.");
+    warn.push("- Your new company may send its own notice to immigration. That does not replace yours.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Changing jobs in Japan: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("visa").value = "c"; $("same").value = "yes"; $("last").value = "2026-11-30"; $("next").value = "2026-12-08"; make(); }
+})();
+</script>
+</body>
+</html>
