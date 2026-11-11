@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pension Lump-Sum Withdrawal Planner for Leaving Japan | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Leaving Japan: pension lump-sum withdrawal planner</h1>
+  <p class="lead">Enter your pension months and your moving-out date. You see whether the basic conditions look met, the window to send the claim, what to do before you leave, the documents to attach, and the tax point. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. You and your pension</h2>
+    <label class="f" for="nat">Do you have Japanese nationality?</label>
+    <select id="nat">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="sys">Which pension were you in?<span class="hint">Company job = Employees' Pension (厚生年金). Self-paid = National Pension (国民年金)</span></label>
+    <select id="sys">
+      <option value="kosei">Employees' Pension only</option>
+      <option value="kokumin">National Pension only</option>
+      <option value="both">Both</option>
+    </select>
+    <label class="f" for="mon">Total months in Japan's pension<span class="hint">All your stays together. Check your pension record if unsure</span></label>
+    <input type="number" id="mon" min="0" max="600" inputmode="numeric" placeholder="e.g. 38">
+    <label class="f" for="agr">Were you ever in the pension of a country with a totalization agreement with Japan?<span class="hint">For example: Germany, USA, Canada, Australia, Brazil, India, the Philippines</span></label>
+    <select id="agr">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+      <option value="unk">Not sure</option>
+    </select>
+    <label class="f" for="got">Have you ever had the right to a Japanese pension (including a disability allowance)?</label>
+    <select id="got">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Leaving Japan</h2>
+    <label class="f" for="out">Will you file a moving-out notice (転出届) at the city office?</label>
+    <select id="out">
+      <option value="yes">Yes</option>
+      <option value="no">No, I will leave with a re-entry permit and keep my address</option>
+    </select>
+    <label class="f" for="day">Moving-out date<span class="hint">The (planned) moving-out date on your notice. Usually your departure date</span></label>
+    <input type="date" id="day">
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter your total months and your moving-out date.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <h3>Basic conditions</h3>
+    <div id="cond"></div>
+    <h3>When to send the claim</h3>
+    <div id="when"></div>
+    <h3>Before you leave Japan</h3>
+    <div id="before"></div>
+    <h3>Documents to attach</h3>
+    <div id="docs"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy plan as text</button>
+  </div>
+
+  <p class="note">This is a guide based on the Japan Pension Service's claim form instructions for the Lump-sum Withdrawal Payment (September 2026 edition). It does not calculate the amount or any tax, and it does not decide whether you qualify. The Japan Pension Service decides that when it receives your claim. Always confirm with the Japan Pension Service or a pension office (年金事務所).<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addY(d, n) {
+    var x = new Date(d.getFullYear() + n, d.getMonth(), d.getDate());
+    if (x.getMonth() !== d.getMonth()) x = new Date(d.getFullYear() + n, d.getMonth() + 1, 0);
+    return x;
+  }
+  function addMo(d, n) {
+    var x = new Date(d.getFullYear(), d.getMonth() + n, d.getDate());
+    if (x.getDate() !== d.getDate()) x = new Date(d.getFullYear(), d.getMonth() + n + 1, 0);
+    return x;
+  }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var mv = $("mon").value, dv = $("day").value;
+    var m = parseInt(mv, 10);
+    if (!dv || mv === "" || isNaN(m) || m < 0) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["cond","when","before","docs"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var D = parse(dv);
+    var nat = $("nat").value, sys = $("sys").value, agr = $("agr").value, got = $("got").value, out = $("out").value;
+    var stop = false, warn = [];
+
+    if (nat === "yes") { stop = true; put("cond", "Condition 1", "Not for Japanese nationals", "The payment is for people without Japanese nationality."); }
+    else put("cond", "Condition 1", "No Japanese nationality: looks met", "");
+    if (m < 6) { stop = true; put("cond", "Condition 2", "Under 6 months: not enough", "You need 6 months or more of Employees' Pension, or of paid National Pension months (partly exempt months count partly)."); }
+    else if (m >= 120) { stop = true; put("cond", "Condition 2", "120 months or more: you cannot claim it", "With 10 years or more of qualifying period, you can get a Japanese old-age pension later instead. The lump-sum is not available."); }
+    else put("cond", "Condition 2", "6 to 119 months: looks met", sys === "kosei" ? "" : "For National Pension, only paid months count fully. Exempt months count partly, and unpaid months do not count.");
+    if (out === "no") { stop = true; put("cond", "Condition 3", "Keeping your address: you cannot claim yet", "If you leave with a re-entry permit and do not file a moving-out notice, you stay in the National Pension until the permit expires. You cannot claim until then."); }
+    else put("cond", "Condition 3", "No address in Japan after moving out: looks met", "");
+    if (got === "yes") { stop = true; put("cond", "Condition 4", "You had the right to a pension: not eligible", "People who ever had the right to a Japanese pension, including a disability allowance, cannot claim it."); }
+    else put("cond", "Condition 4", "Never had the right to a pension: looks met", "");
+    if (agr !== "no" && m < 120) put("cond", "Check", "Totalization agreement: ask first", "With an agreement country, your periods can be added together. If the total qualifying period reaches 120 months, you cannot claim. If you do claim, those Japanese periods can no longer be added. Ask a pension office before you decide.");
+
+    if (out === "yes") {
+      var last = addY(D, 2);
+      put("when", "From " + fmt(D), "The earliest day it may arrive", "The Japan Pension Service must receive the claim on or after your moving-out date. If you mail it from Japan, make sure it arrives on or after that date.");
+      put("when", "Until around " + fmt(last), "Within 2 years of your moving-out date", "The claim must be made within 2 years from the day you no longer had an address in Japan. Do not wait for the end: aim to send it within a few months, by " + fmt(addMo(D, 3)) + " for example. If you are close to the end, ask the Japan Pension Service.");
+    } else {
+      put("when", "Later", "After your re-entry permit expires", "Or file a moving-out notice at the city office before you leave. Then you can claim after leaving.");
+    }
+    put("when", "By mail", "Where to send it", "Japan Pension Service (Foreign Business Group), 3-5-24 Takaido-Nishi, Suginami-ku, Tokyo 168-8505. The same address from Japan or abroad. The claim form has an address label to cut out.");
+
+    put("before", "Before you leave", "Moving-out notice at the city office (転出届)", "With this, you do not need to attach proof that your address in Japan ended. Ask the city office from which day you can file it.");
+    if (sys !== "kokumin") put("before", "Before you leave", "Tax agent notice at the tax office (納税管理人の届出書)", "For Employees' Pension, 20.42% income tax is taken from the payment. A refund may be possible by filing a tax return later. To file it from abroad, you name a tax agent who lives in Japan. Submit the notice to the tax office for your last address before you leave.");
+    put("before", "Before you leave", "Choose the bank account for the payment", "A bank abroad needs a SWIFT (BIC) code, and an IBAN in Europe or the Middle East. A bank in Japan needs the holder name in katakana. Japan Post Bank cannot be used. If you keep a Japanese account, check that it stays open.");
+    put("before", "Before you leave", "Find your Basic Pension Number", "On your Basic Pension Number Notice (基礎年金番号通知書) or pension handbook (年金手帳). Write it down; you also need it for questions later.");
+
+    put("docs", "1", "Copy of your passport", "The pages with your name, date of birth, nationality, signature and status of residence.");
+    put("docs", "2", out === "yes" ? "Proof your address ended: usually not needed" : "Proof your address in Japan ended", out === "yes" ? "If you filed a moving-out notice, the Japan Pension Service can check it. Otherwise, attach a copy of the deleted residence record (住民票の除票)." : "For example, a copy of the deleted residence record (住民票の除票).");
+    put("docs", "3", "Proof of your bank account", "Showing bank name, branch name, branch location, account number, and that the account is in your name. A certificate from the bank, for example.");
+    put("docs", "4", "Proof of your Basic Pension Number", "Basic Pension Number Notice, pension handbook, or similar.");
+
+    warn.push("- After you get the payment, all your Japanese pension periods before the claim are gone. They cannot count toward a pension later.");
+    if (m > 60 && m < 120) warn.push("- The amount is counted up to 60 months. You have " + m + " months, so the months over 60 are not paid, and all " + m + " months are gone after the claim.");
+    if (sys !== "kosei") warn.push("- National Pension part: no income tax is taken from it.");
+    warn.push("- A claim without documents 1 to 4 is sent back.");
+    if (stop) warn.push("- One or more conditions above do not look met. Ask the Japan Pension Service before you send anything.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Pension lump-sum withdrawal: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("nat").value = "no"; $("sys").value = "kosei"; $("mon").value = "38"; $("agr").value = "no"; $("got").value = "no"; $("out").value = "yes"; $("day").value = "2026-12-20"; make(); }
+})();
+</script>
+</body>
+</html>
