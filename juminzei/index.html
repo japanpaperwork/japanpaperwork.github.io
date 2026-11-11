@@ -144,13 +144,13 @@
       } else if (m === 5) {
         put("now", "Final pay (May " + y + ")", "The last monthly deduction of this tax year", "Your last day is in May, the last month of the " + fyText + " tax year. Usually nothing of this year is left after your final pay. Check your last payslip.");
       } else {
-        if (nx === "soon") {
+        if (nx === "soon" && lump !== "lump") {
           put("now", "Tell both companies before " + fmt(L), "Ask your new company to continue the monthly deduction", "If the new company agrees, the rest of the " + fyText + " tax keeps coming out of your salary there. Your old company sends a form to the city for the change.");
         }
         if (lump === "lump") {
           put("now", "Ask before " + fmt(L), "Ask the company to take the rest from your final pay", "Your last day is between June 1 and December 31, so the company takes it in one go only if you ask. It covers the " + fyText + " tax up to May " + (fy + 1) + ".");
         } else {
-          put("now", "After you leave (" + M[m - 1] + " " + y + ")", "The rest switches to bills you pay yourself", "Your company tells the city you left. The city then mails a tax notice with payment slips for the rest of the " + fyText + " tax. When it arrives and how many slips it has depend on the city.");
+          put("now", "After you leave (" + M[m - 1] + " " + y + ")", nx === "soon" ? "If it is not continued: bills you pay yourself" : "The rest switches to bills you pay yourself", "Your company tells the city you left. The city then mails a tax notice with payment slips for the rest of the " + fyText + " tax. When it arrives and how many slips it has depend on the city.");
           put("now", "Due dates are on the notice", "Pay each slip by its due date", "Many cities use the end of June, August, October and January for bills. A notice sent in the middle of the year shows only the dates that are left. You can also pay ahead.");
         }
       }
