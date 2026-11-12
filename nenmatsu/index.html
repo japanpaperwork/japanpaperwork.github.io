@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Year-End Tax Adjustment: Document Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Year-end tax adjustment: document checker</h1>
+  <p class="lead">Enter your company's deadline and a few answers. You get the forms to fill, the papers to collect, and the dates, in order. It also covers family members who live outside Japan. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your deadline and your job</h2>
+    <label class="f" for="day">Your company's deadline<span class="hint">The date HR gave you for the year-end papers (年末調整)</span></label>
+    <input type="date" id="day">
+    <label class="f" for="job">Did you have another job in Japan earlier this year?</label>
+    <select id="job">
+      <option value="no">No, only this company this year</option>
+      <option value="yes">Yes, I changed jobs this year</option>
+      <option value="side">I also work a second job now</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your family</h2>
+    <label class="f" for="sp">Your spouse<span class="hint">Legally married spouse</span></label>
+    <select id="sp">
+      <option value="none">No spouse</option>
+      <option value="jp">Spouse lives in Japan</option>
+      <option value="abroad">Spouse lives outside Japan</option>
+    </select>
+    <label class="f" for="fjp">Other family you support, living in Japan<span class="hint">Children, parents and other relatives who share your living costs</span></label>
+    <select id="fjp">
+      <option value="no">None</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="fab">Family you support, living outside Japan<span class="hint">Not your spouse. Choose the answer that fits each person; pick the first that fits anyone</span></label>
+    <select id="fab">
+      <option value="no">None</option>
+      <option value="young">Aged 16 to 29, or 70 and over</option>
+      <option value="send">Aged 30 to 69, I send 380,000 yen or more</option>
+      <option value="study">Aged 30 to 69, studying abroad</option>
+      <option value="dis">Aged 30 to 69, with a disability</option>
+      <option value="other">Aged 30 to 69, none of the above</option>
+      <option value="kid">Only children under 16</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>3. Things you paid yourself this year</h2>
+    <label class="f" for="life">Life, medical or private pension insurance<span class="hint">Insurance you pay to an insurance company</span></label>
+    <select id="life">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="eq">Earthquake insurance (地震保険)</label>
+    <select id="eq">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="soc">National Pension or National Health Insurance you paid yourself<span class="hint">Not taken from your pay. For example, before you joined this company</span></label>
+    <select id="soc">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="ideco">iDeCo paid from your own bank account<span class="hint">Not taken from your pay</span></label>
+    <select id="ideco">
+      <option value="no">No / taken from my pay</option>
+      <option value="yes">Yes</option>
+    </select>
+    <label class="f" for="loan">Housing loan deduction (住宅ローン控除)</label>
+    <select id="loan">
+      <option value="no">No housing loan</option>
+      <option value="first">First year (I moved in this year)</option>
+      <option value="next">Second year or later</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my checklist</button>
+  <p class="err" id="err" hidden>Please enter your company's deadline.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your checklist</h2>
+    <h3>Forms to fill (HR gives them to you)</h3>
+    <div id="forms"></div>
+    <h3>Papers to collect</h3>
+    <div id="docs"></div>
+    <h3>Family outside Japan</h3>
+    <div id="abroad"></div>
+    <h3>Dates</h3>
+    <div id="dates"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy checklist as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of the National Tax Agency for 2026 (checked November 2026). Your company may use an app instead of paper forms, and its deadline comes first. It does not calculate any tax or deduction amount and it is not tax advice. Always confirm with your HR team or the tax office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addD(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var dv = $("day").value;
+    if (!dv) { $("err").hidden = false; $("result").hidden = true; return false; }
+    $("err").hidden = true;
+    ["forms","docs","abroad","dates"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var D = parse(dv), Y = D.getFullYear();
+    var job = $("job").value, sp = $("sp").value, fjp = $("fjp").value, fab = $("fab").value,
+        life = $("life").value, eq = $("eq").value, soc = $("soc").value, ideco = $("ideco").value, loan = $("loan").value;
+    var warn = [];
+    var famAbroad = (sp === "abroad") || ["young","send","study","dis"].indexOf(fab) >= 0;
+    var anyFam = sp !== "none" || fjp === "yes" || fab !== "no";
+    var ins = life === "yes" || eq === "yes" || soc === "yes" || ideco === "yes";
+
+    // Forms
+    put("forms", "By " + fmt(D), "Dependents form (扶養控除等申告書)", famAbroad
+      ? "The one you gave HR at the start of the year (or when you joined). Check that every family member is still correct. For family outside Japan, you also write the total money you sent them this year: HR may hand the form back for this."
+      : "The one you gave HR at the start of the year (or when you joined). Check that it is still correct. Even with no family, everyone gives this form to their main employer.");
+    put("forms", "By " + fmt(D), "Basic deduction form (基礎控除申告書)", "Everyone fills this in. It is one sheet together with the spouse form and others. You write your estimated income for this year." + (job === "side" ? " Include the pay from your second job." : ""));
+    if (sp !== "none") put("forms", "By " + fmt(D), "Spouse deduction part (配偶者控除等申告書)", "On the same sheet. Write your spouse's estimated income for this year. Whether you can use it depends on both incomes; HR checks it.");
+    if (anyFam) put("forms", "If it fits", "Family aged 19 to 22 with some income", "From 2025 there is a separate deduction for a family member aged 19 to 22 whose income is above the dependent limit (特定親族特別控除申告書, on the same sheet). Ask HR if this fits anyone.");
+    if (ins) put("forms", "By " + fmt(D), "Insurance deduction form (保険料控除申告書)", "Write what you paid yourself this year: " + [life === "yes" ? "life / medical insurance" : "", eq === "yes" ? "earthquake insurance" : "", soc === "yes" ? "National Pension / NHI" : "", ideco === "yes" ? "iDeCo" : ""].filter(Boolean).join(", ") + ".");
+    if (loan === "next") put("forms", "By " + fmt(D), "Housing loan deduction form (住宅借入金等特別控除申告書)", "The tax office sent you this form for each year after your first-year tax return. Fill in this year's sheet.");
+
+    // Documents
+    if (job === "yes") put("docs", "As soon as possible", "Withholding slip (源泉徴収票) from your former employer", "HR adds your pay from the former job. Without this slip, HR cannot include it, and you settle the tax with a tax return instead. Ask your former employer now if you do not have it.");
+    if (job === "side") put("docs", "Note", "Second job: only one company adjusts", "The year-end adjustment is done by the company you gave the dependents form to. The pay from the other job is not settled there. Ask the tax office whether you need a tax return.");
+    if (life === "yes") put("docs", "Before " + fmt(addD(D, -3)), "Insurance certificates (控除証明書)", "From each insurance company. Attach them to the insurance form. If you cannot find one, ask the company to send it again.");
+    if (eq === "yes") put("docs", "Before " + fmt(addD(D, -3)), "Earthquake insurance certificate", "Needed whatever the amount you paid.");
+    if (soc === "yes") put("docs", "Before " + fmt(addD(D, -3)), "National Pension payment certificate", "For National Pension you paid yourself, attach the certificate (控除証明書) from the pension service. For NHI premiums, write the amount you paid; keep the receipts in case HR asks.");
+    if (ideco === "yes") put("docs", "Before " + fmt(addD(D, -3)), "iDeCo payment certificate", "For iDeCo paid from your own account, attach the certificate for this year's payments.");
+    if (loan === "next") put("docs", "Before " + fmt(addD(D, -3)), "Year-end loan balance information", "Depending on your bank, this is a paper certificate from the bank or information sent through the tax office. Attach what your form asks for.");
+    if (!ins && job === "no" && loan !== "next") put("docs", "", "No extra papers from your answers", "Fill in the forms above. HR may still ask for something else, so read their instructions.");
+
+    // Abroad
+    if (!famAbroad && fab === "no") put("abroad", "", "Nothing to do here", "You have no spouse or dependents outside Japan in your answers.");
+    if (famAbroad) {
+      put("abroad", "Should be given already", "Family relationship papers (親族関係書類)", "For each person outside Japan. A paper from a foreign government with their name, date of birth and address, or a Japanese government paper plus their passport copy. Usually given with the dependents form; ask HR if you have not.");
+      put("abroad", "By " + fmt(D), "Money transfer records (送金関係書類) for this year", "Proof that you paid their living or school costs during the year: for example, your bank's overseas transfer receipts or a family credit card statement. Copies are accepted. With 3 or more transfers to the same person, ask HR about the summary sheet (明細書).");
+      put("abroad", "With every foreign paper", "Japanese translation", "If a paper is not in Japanese, a Japanese translation is also needed.");
+    }
+    if (fab === "study") put("abroad", "With the dependents form", "Study visa papers (留学ビザ等書類)", "For a family member aged 30 to 69 who left Japan to study: a copy of their student visa or residence card of that country.");
+    if (fab === "send") put("abroad", "By " + fmt(D), "Records showing 380,000 yen or more", "For a family member aged 30 to 69, the transfers to that person this year must add up to 380,000 yen or more, shown by the records.");
+    if (fab === "dis") put("abroad", "Ask HR", "Disability: ask what proof they need", "A family member aged 30 to 69 with a disability can count. Ask HR which papers they need for this.");
+    if (fab === "other") put("abroad", "Note", "Aged 30 to 69 outside Japan: usually not a dependent", "Since 2023, family outside Japan aged 30 to 69 count only if they are studying abroad, have a disability, or receive 380,000 yen or more from you in the year.");
+    if (fab === "kid") put("abroad", "Note", "Children under 16 outside Japan", "Under 16, there is no dependent deduction for income tax. For residence tax, the city may ask for papers about them. Ask your city office.");
+
+    // Dates
+    put("dates", fmt(addD(D, -14)), "Start collecting papers", "Two weeks before the deadline. Certificates and transfer records take time to find or order.");
+    put("dates", fmt(D), "Give all forms and papers to HR", "Your company's deadline. The legal limit is the day before your last payday of the year, but HR needs time to check.");
+    put("dates", "Dec " + Y + " or Jan " + (Y + 1), "Check your pay slip and withholding slip", "At many companies, the adjustment shows up in the December or January pay. You also get a withholding slip (源泉徴収票) for " + Y + ". Keep it.");
+    put("dates", "Before your first payday of " + (Y + 1), "Next year's dependents form", "Often handed out at the same time. Give it to HR before your first pay of the new year.");
+    if (loan === "first") put("dates", "Feb 16 - Mar 15, " + (Y + 1), "Housing loan: first year is a tax return", "The first year of the housing loan deduction is done with a tax return, not at work. From the second year, it can be done at year-end adjustment.");
+
+    if (famAbroad) warn.push("- No money transfer records at year-end = that family member is left out. If you give them before your withholding slip is made, HR may redo it; after that, it means a tax return.");
+    if (job === "yes") warn.push("- No withholding slip from your former employer = HR cannot settle the full year. You would file a tax return.");
+    warn.push("- Not giving the dependents form at all means a higher tax rate on every payday, and no year-end adjustment.");
+    warn.push("- If HR uses an app, the same information goes into the app. The papers may be photos or files.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Year-end tax adjustment: my checklist\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("day").value = "2026-11-27"; $("job").value = "yes"; $("sp").value = "abroad"; $("fjp").value = "no"; $("fab").value = "send"; $("life").value = "yes"; $("eq").value = "no"; $("soc").value = "yes"; $("ideco").value = "no"; $("loan").value = "no"; make(); }
+})();
+</script>
+</body>
+</html>
