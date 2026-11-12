@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Leaving Japan for Good: Countdown Checklist | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Leaving Japan for good: countdown checklist</h1>
+  <p class="lead">Enter your departure date and a few answers. You get the paperwork for your last weeks in Japan in order: the city office, taxes, the airport, and what to keep open after you leave. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your departure</h2>
+    <label class="f" for="day">Departure date<span class="hint">The day you fly out of Japan</span></label>
+    <input type="date" id="day">
+    <label class="f" for="back">Will you come back to live in Japan?</label>
+    <select id="back">
+      <option value="no">No, I am leaving for good</option>
+      <option value="maybe">Not sure yet</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Work, insurance and tax</h2>
+    <label class="f" for="work">Your job<span class="hint">Your situation on the departure date</span></label>
+    <select id="work">
+      <option value="work">I work for a company until I leave</option>
+      <option value="quit">I already quit (or will quit before leaving)</option>
+      <option value="none">No job in Japan this year</option>
+    </select>
+    <label class="f" for="ins">Your health insurance<span class="hint">National Health Insurance (国民健康保険) is the one from the city office</span></label>
+    <select id="ins">
+      <option value="nhi">National Health Insurance (city office)</option>
+      <option value="co">Company health insurance</option>
+    </select>
+    <label class="f" for="jtax">Is there residence tax (住民税) still to pay for this year?<span class="hint">Bills come from the city office, or it is taken from your pay</span></label>
+    <select id="jtax">
+      <option value="yes">Yes</option>
+      <option value="unk">Not sure</option>
+      <option value="no">No, all paid</option>
+    </select>
+    <label class="f" for="after">Will you have tax things in Japan after you leave?<span class="hint">For example: a tax refund to claim, rent income, or the pension lump-sum tax refund</span></label>
+    <select id="after">
+      <option value="yes">Yes</option>
+      <option value="unk">Not sure</option>
+      <option value="no">No</option>
+    </select>
+    <label class="f" for="pen">Will you claim the pension lump-sum withdrawal?</label>
+    <select id="pen">
+      <option value="yes">Yes</option>
+      <option value="no">No / not sure</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my checklist</button>
+  <p class="err" id="err" hidden>Please enter your departure date.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your checklist</h2>
+    <h3>Now: decide and ask</h3>
+    <div id="now"></div>
+    <h3>City office, before you fly</h3>
+    <div id="city"></div>
+    <h3>Taxes</h3>
+    <div id="tax"></div>
+    <h3>At the airport</h3>
+    <div id="port"></div>
+    <h3>After you leave</h3>
+    <div id="later"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy checklist as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of the Immigration Services Agency, the National Tax Agency, and city offices (checked November 2026). Rules and the days a city office accepts the moving-out notice differ by city. It does not calculate any tax and it is not legal or tax advice. Always confirm with your city office, tax office, or immigration office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addD(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addY(d, n) {
+    var x = new Date(d.getFullYear() + n, d.getMonth(), d.getDate());
+    if (x.getMonth() !== d.getMonth()) x = new Date(d.getFullYear() + n, d.getMonth() + 1, 0);
+    return x;
+  }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var dv = $("day").value;
+    if (!dv) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["now","city","tax","port","later"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var D = parse(dv), Y = D.getFullYear();
+    var back = $("back").value, work = $("work").value, ins = $("ins").value,
+        jtax = $("jtax").value, after = $("after").value, pen = $("pen").value;
+    var needAgent = (jtax !== "no") || (after !== "no") || pen === "yes";
+    var warn = [];
+
+    // Now
+    if (needAgent) put("now", "Before " + fmt(D), "Find a tax agent (納税管理人)", "Someone who handles tax papers in Japan for you after you leave: family, a friend, your company, or a tax accountant office. Ask them early: they will receive your tax letters.");
+    if (work === "work") put("now", "Before your last day", "Ask HR about tax and your last papers", "Ask whether they settle your income tax for this year before you go (year-end adjustment can be done mid-year for someone who becomes a non-resident), how your residence tax will be paid, and ask for your withholding slip (源泉徴収票).");
+    else if (work === "quit") put("now", "Before " + fmt(D), "Get your withholding slip (源泉徴収票)", "From your former employer. You need it for any tax return for this year.");
+    put("now", "Before " + fmt(D), "Ask your bank and phone company", "Banks and phone companies have their own rules for customers who live abroad. Ask what happens to your account and contract, and decide what to keep and what to close.");
+
+    // City office
+    put("city", "Before " + fmt(D), "Moving-out notice (転出届) for moving abroad", "At the city or ward office. Bring your residence card, My Number card (or notification card), and your health insurance card if you have one. Ask from which day they accept it: it differs by city. No moving-out certificate is issued when you move abroad.");
+    if (ins === "nhi") put("city", "Same visit", "National Health Insurance: end it and settle the premium", "With the moving-out notice abroad, you leave National Health Insurance. Ask at the insurance counter about the last premium and how to pay it before you go.");
+    else put("city", "With HR", "Company health insurance", "It ends with your job. Ask HR when to return the card and what happens between your last day and your flight.");
+    if (jtax !== "no") put("city", "Before " + fmt(D), "Residence tax: pay the rest or name a tax agent", "Residence tax is for the city where you lived on January 1. Leaving during the year does not cancel this year's amount. Ask the tax counter how to pay the rest before you go, or submit a tax agent notice (納税管理人申告書) to the city.");
+
+    // Taxes (national)
+    if (after !== "no" || pen === "yes") {
+      put("tax", "Before " + fmt(D), "Tax agent notice to the tax office (納税管理人の届出書)", "The form is called 所得税・消費税の納税管理人の選任・解任届出書. It goes to the tax office for your address. With a tax agent, a tax return for this year is filed through them.");
+      put("tax", "Feb 16 - Mar 15, " + (Y + 1), "Tax return period, through your tax agent", "If you need to file a return for " + Y + ", your tax agent files it in the normal period of the next year. Ask the tax office whether you need one.");
+      put("tax", "If you do not name one", "Return by your departure date", "Without a tax agent, a person who needs to file a return for the time they lived in Japan files it by the time they leave (準確定申告).");
+    } else {
+      put("tax", "Ask HR or the tax office", "Check whether you need a tax return", work === "work" ? "If HR settles your income tax before you go, you may not need one. If not, a return without a tax agent is due by your departure date." : "If you need a return for this year and have no tax agent, it is due by your departure date (準確定申告).");
+    }
+
+    // Port
+    if (back === "no") put("port", fmt(D), "Hand your residence card to the immigration officer", "When you leave without a re-entry permit, you return the card at the airport. The officer punches a hole in it to cancel it and gives it back to you.");
+    else put("port", fmt(D), "Re-entry permit: decide at the airport", "If you leave with a (special) re-entry permit, you keep your card. If you then do not come back before the permit ends, you must return the card within 14 days after it ends (by mail to the immigration office).");
+
+    // Later
+    if (pen === "yes") put("later", "From " + fmt(D) + " to around " + fmt(addY(D, 2)), "Mail the pension lump-sum claim", "It must arrive on or after your moving-out date, and within 2 years of it. Keep a bank account that will stay open for the payment.");
+    if (needAgent) put("later", "After you leave", "Your tax agent forwards tax letters", "Tell them how to reach you. When you no longer need a tax agent, a cancellation notice is submitted.");
+    put("later", "Keep", "Keep copies of your papers", "Withholding slip, residence tax papers, Basic Pension Number, and any notices. People often need them from abroad later.");
+
+    if (back === "maybe") warn.push("- If you keep your address in Japan (no moving-out notice), city tax, health insurance and pension may keep going while you are away. Ask the city office.");
+    if (jtax === "unk") warn.push("- Not sure about residence tax? Ask the city tax counter before your last week. Bills for this year can come even after you stop working.");
+    if (needAgent) warn.push("- A tax agent receives your tax letters. The tax itself is still yours to pay.");
+    warn.push("- The days a city office accepts the moving-out notice differ by city. Ask early, not in your last days.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Leaving Japan: my checklist\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("day").value = "2027-03-20"; $("back").value = "no"; $("work").value = "work"; $("ins").value = "co"; $("jtax").value = "yes"; $("after").value = "yes"; $("pen").value = "yes"; make(); }
+})();
+</script>
+</body>
+</html>
