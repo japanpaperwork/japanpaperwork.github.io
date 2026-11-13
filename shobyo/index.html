@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sick Leave Pay in Japan (Shobyo Teate): Date Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sick leave pay in Japan (shobyo teate): date planner</h1>
+  <p class="lead">For employees with company health insurance (shakai hoken) who cannot work because of an illness or injury that is not work-related. Enter your dates. You get the 3 waiting days, the first day that can be paid, the longest period, the claim deadlines, a rough daily amount, and what happens if you quit. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your days off</h2>
+    <label class="f" for="d1">First day you could not work<span class="hint">The first day off because of the illness or injury. Paid leave and weekends count as days off</span></label>
+    <input type="date" id="d1">
+    <label class="c"><input type="checkbox" id="row" checked><span>I was off 3 days in a row from that day<small>Untick if you went back to work within the first 3 days</small></span></label>
+    <label class="f" for="pay">Salary for the days off<span class="hint">Paid leave counts as salary for that day</span></label>
+    <select id="pay">
+      <option value="none">No salary for those days</option>
+      <option value="part">Some salary (less than full)</option>
+      <option value="full">Full salary (for example, I use paid leave)</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your insurance and pay</h2>
+    <label class="f" for="mon">How long have you been insured at work?<span class="hint">Health insurance through employers, up to the first paid day</span></label>
+    <select id="mon">
+      <option value="12">12 months or more</option>
+      <option value="lt">Less than 12 months</option>
+    </select>
+    <label class="f" for="avg">Your standard monthly amount, average (optional)<span class="hint">標準報酬月額 (hyojun hoshu getsugaku). Ask HR, or see your pay slip records. Example: 170000</span></label>
+    <input type="number" id="avg" inputmode="numeric" min="0" step="1000" placeholder="yen per month">
+  </div>
+
+  <div class="card">
+    <h2>3. Are you quitting?</h2>
+    <label class="c"><input type="checkbox" id="quit"><span>I quit or will quit while still off sick</span></label>
+    <div id="qbox" hidden>
+      <label class="f" for="last">Last day of employment<span class="hint">Your coverage ends the next day</span></label>
+      <input type="date" id="last">
+      <label class="c"><input type="checkbox" id="year"><span>I was insured at work for 1 year or more in a row up to my last day<small>Voluntary continuation (任意継続) and National Health Insurance do not count</small></span></label>
+      <label class="c"><input type="checkbox" id="lastoff" checked><span>I do not work on my last day<small>No going in for a farewell or to hand over work</small></span></label>
+    </div>
+  </div>
+  <button id="make" type="button">Show my dates</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Dates</h3>
+    <div id="dates"></div>
+    <h3>Rough daily amount</h3>
+    <div id="amt"></div>
+    <h3>If you quit</h3>
+    <div id="after"></div>
+    <h3>How to claim</h3>
+    <div id="how"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the Japan Health Insurance Association (Kyokai Kenpo), the Ministry of Health, Labour and Welfare and Hello Work (checked November 2026). Health insurance societies of large companies (kenpo kumiai) may have extra rules. The amount is a rough guide only; the insurer decides. Not legal advice. Always confirm with your insurer or HR.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function parse(v) { if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  // Same day N months later; if that day does not exist, the last day of that month
+  function addM(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function yen(n) { return n.toLocaleString("en-US") + " yen"; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  $("quit").addEventListener("change", function () { $("qbox").hidden = !this.checked; });
+  function make() {
+    ["dates","amt","after","how"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var d1 = parse($("d1").value);
+    if (!d1) { $("vt").textContent = "Please enter the first day you could not work."; $("vs").textContent = ""; $("warn").textContent = "- The first day is needed to count the 3 waiting days."; $("result").hidden = false; return true; }
+    var row = $("row").checked, pay = $("pay").value, mon = $("mon").value;
+    var avg = parseInt($("avg").value, 10);
+    var quit = $("quit").checked, last = parse($("last").value), year = $("year").checked, lastoff = $("lastoff").checked;
+    var warn = [], vt, vs;
+    var w3 = add(d1, 2), p1 = add(d1, 3);
+    var maxEnd = add(addM(p1, 18), -1);
+    var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    if (!row) {
+      vt = "The waiting period is not finished yet.";
+      vs = "Payment needs 3 days off in a row first (the waiting period, 待期). Count again from the first day of a run of 3 days off in a row for the same illness or injury. Enter that day as the first day.";
+    } else if (pay === "full") {
+      vt = "No allowance for days with full salary.";
+      vs = "The 3 waiting days still count (paid leave is fine for them). The allowance can start on the days your salary stops.";
+    } else {
+      vt = "Payment can start on day 4: " + fmt(p1) + ".";
+      vs = "Days 1 to 3 (" + M[d1.getMonth()] + " " + d1.getDate() + " to " + M[w3.getMonth()] + " " + w3.getDate() + ") are the waiting period and are not paid." + (pay === "part" ? "\nWith some salary, only the difference is paid if your salary is less than the allowance." : "");
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    if (row) {
+      put("dates", fmt(d1) + " - " + fmt(w3), "Waiting period (3 days in a row)", "Not paid. Paid leave, weekends and holidays count. Salary or not does not matter.");
+      put("dates", fmt(p1), "First day that can be paid", "Only for days you cannot work and get no salary (or less than the allowance).");
+      put("dates", fmt(maxEnd), "Longest end, if paid every day from day 4", "The limit is 1 year 6 months of paid days in total for the same illness. Days you work (not paid) move this end later.");
+      var lim = add(p1, 1); lim = new Date(lim.getFullYear() + 2, lim.getMonth(), lim.getDate()); lim = add(lim, -1);
+      put("dates", "about " + fmt(lim), "Claim deadline for day 4", "The right for each day ends 2 years after the next day. Each later day has its own deadline, so claim month by month.");
+      if (lim < today) warn.push("- The 2-year limit for the first days may have passed. Days still within 2 years can be claimed. Ask your insurer.");
+    }
+
+    // Amount
+    if (avg > 0) {
+      var base = avg, capNote = "";
+      if (mon === "lt") {
+        var cap = p1 < new Date(2025, 3, 1) ? 300000 : 320000;
+        if (avg > cap) { base = cap; capNote = " Less than 12 months insured: the lower of your own average and " + yen(cap) + " is used."; }
+        else capNote = " Less than 12 months insured: your average is used because it is lower than " + yen(cap) + ".";
+      }
+      var per = Math.round(base / 30 / 10) * 10;
+      var day = Math.round(per * 2 / 3);
+      put("amt", "Per day (rough)", yen(day), "Average " + yen(base) + " ÷ 30 = " + yen(per) + " (to the nearest 10 yen), then × 2/3." + capNote);
+      put("amt", "30 days (rough)", yen(day * 30), "Only days that can be paid count. Waiting days and days with full salary are not paid.");
+    } else {
+      put("amt", "", "Not calculated", "Enter your average standard monthly amount (標準報酬月額) above to see a rough figure. Formula: average ÷ 30 (to the nearest 10 yen) × 2/3.");
+    }
+
+    // After quitting
+    if (!quit) {
+      put("after", "", "Not quitting", "If you quit later while still off sick, come back and tick the box.");
+    } else if (!last) {
+      put("after", "", "Enter your last day", "The conditions depend on your last day.");
+    } else {
+      var lose = add(last, 1);
+      put("after", fmt(lose), "Your company health insurance ends", "You join National Health Insurance or another plan from this day. That is a separate procedure.");
+      var ok = true;
+      if (!year) { ok = false; put("after", "Condition", "Not met: 1 year or more insured in a row", "Without 1 year in a row up to your last day, payment stops after your last day."); }
+      if (!lastoff) { ok = false; put("after", "Condition", "Not met: you work on your last day", "If you work on the last day, nothing is paid from the next day."); }
+      if (row && last < w3) { ok = false; put("after", "Check", "Your last day is before the 3 waiting days are done", "You must be getting, or able to get, the allowance on your last day. Ask your insurer before you set the last day."); }
+      if (!row) { ok = false; put("after", "Check", "Waiting period not done", "You must be getting, or able to get, the allowance on your last day."); }
+      if (ok) put("after", "From " + fmt(lose), "You can keep getting it after quitting", "For the rest of the 1 year 6 months, while you still cannot work. Once you are able to work, it does not start again, even if you get worse later.");
+      put("after", "Unemployment benefits", "Ask Hello Work about extending the period", "While you cannot work, you cannot look for work. If you cannot work for 30 days or more in a row, the period to receive unemployment benefits can be extended by those days (up to 3 years).");
+      put("after", "Old-age pension", "If you get an old-age pension after quitting", "The allowance is not paid. If 1/360 of the yearly pension is lower than the daily allowance, the difference is paid.");
+    }
+
+    // How
+    put("how", "Form", "健康保険傷病手当金支給申請書", "The sickness allowance claim form. Three people fill in their parts: you, your employer (salary and attendance), and your doctor (that you could not work).");
+    put("how", "When", "Once a month, after each pay period closes", "Your employer has to confirm salary for the period, so one claim per pay period is the usual way.");
+    put("how", "Where", "Your insurer (often through HR)", "Kyokai Kenpo: mail to your branch, or apply online. If paid, money arrives within about 10 business days after it is received. A health insurance society: ask HR.");
+
+    warn.push("- Work injury or commuting injury: this allowance does not apply. Ask the Labour Standards Inspection Office about workers' accident insurance (rosai).");
+    warn.push("- Maternity allowance and sickness allowance for the same days: maternity allowance is paid. If it is lower, the difference can be claimed.");
+    warn.push("- Illness that started while on voluntary continuation (任意継続) is not covered.");
+    warn.push("- Changed employers (or your insurance number changed) in the 12 months before day 4: Kyokai Kenpo asks for a paper showing the former employer and dates (健康保険加入状況等申告書).");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My sickness allowance plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("d1").value = "2026-11-02"; $("avg").value = "170000";
+    $("quit").checked = true; $("qbox").hidden = false; $("last").value = "2026-11-30"; $("year").checked = true;
+    make();
+  }
+})();
+</script>
+</body>
+</html>
