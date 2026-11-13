@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Having a Baby in Japan: Leave &amp; Money Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Having a baby in Japan: leave &amp; money planner</h1>
+  <p class="lead">For foreign residents in Japan who are expecting a baby. Enter your due date and your insurance. You get your maternity leave dates, the childbirth lump-sum, the maternity allowance with a rough daily amount, the deadlines after the birth, and what happens if you quit. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your dates</h2>
+    <label class="f" for="due">Due date<span class="hint">The expected delivery date from your doctor or midwife</span></label>
+    <input type="date" id="due">
+    <label class="f" for="born">Birth date (if the baby is already born)<span class="hint">Leave empty before the birth</span></label>
+    <input type="date" id="born">
+    <label class="c"><input type="checkbox" id="multi"><span>Twins or more (multiple pregnancy)<small>The leave before the birth becomes 14 weeks (98 days)</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>2. Your health insurance</h2>
+    <label class="f" for="ins">Which health insurance are you in?<span class="hint">Check your insurance card or ask HR</span></label>
+    <select id="ins">
+      <option value="own">My own, through my job (shakai hoken)</option>
+      <option value="dep">Dependent on my spouse's insurance at work</option>
+      <option value="nhi">National Health Insurance from the city</option>
+    </select>
+    <label class="f" for="fac">Is the hospital or clinic in the obstetric compensation system?<span class="hint">産科医療補償制度 (sanka iryo hosho seido). Ask the hospital</span></label>
+    <select id="fac">
+      <option value="yes">Yes, or not sure yet</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="card" id="workbox">
+    <h2>3. Your pay during the leave</h2>
+    <label class="f" for="pay">Salary for the leave days<span class="hint">Paid leave counts as salary for that day</span></label>
+    <select id="pay">
+      <option value="none">No salary for those days</option>
+      <option value="part">Some salary (less than full)</option>
+      <option value="full">Full salary</option>
+    </select>
+    <label class="f" for="mon">How long have you been insured at work?</label>
+    <select id="mon">
+      <option value="12">12 months or more</option>
+      <option value="lt">Less than 12 months</option>
+    </select>
+    <label class="f" for="avg">Your standard monthly amount, average (optional)<span class="hint">標準報酬月額 (hyojun hoshu getsugaku). Ask HR. Example: 240000</span></label>
+    <input type="number" id="avg" inputmode="numeric" min="0" step="1000" placeholder="yen per month">
+    <label class="c"><input type="checkbox" id="quit"><span>I quit or will quit before the birth</span></label>
+    <div id="qbox" hidden>
+      <label class="f" for="last">Last day of employment<span class="hint">Your coverage ends the next day</span></label>
+      <input type="date" id="last">
+      <label class="c"><input type="checkbox" id="year"><span>I was insured at work for 1 year or more in a row up to my last day<small>Voluntary continuation (任意継続) does not count</small></span></label>
+      <label class="c"><input type="checkbox" id="lastoff" checked><span>I do not work on my last day<small>Paid leave on the last day is fine</small></span></label>
+    </div>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Leave dates</h3>
+    <div id="dates"></div>
+    <h3>Money from health insurance</h3>
+    <div id="money"></div>
+    <h3>After the birth: deadlines</h3>
+    <div id="after"></div>
+    <h3>If you quit</h3>
+    <div id="qout"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the Japan Health Insurance Association (Kyokai Kenpo), the Japan Pension Service, the Ministry of Health, Labour and Welfare, the Ministry of Justice and the Immigration Services Agency (checked November 2026). Health insurance societies of large companies (kenpo kumiai) and National Health Insurance may have their own rules and extras. Amounts are rough guides only; the insurer decides. Not legal advice. Always confirm with your insurer, HR or city office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function parse(v) { if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addM(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function addY(d, n) { return addM(d, n * 12); }
+  function days(a, b) { return Math.round((b - a) / 86400000) + 1; }
+  function yen(n) { return n.toLocaleString("en-US") + " yen"; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  function sync() {
+    var own = $("ins").value === "own";
+    $("workbox").hidden = !own;
+    $("qbox").hidden = !(own && $("quit").checked);
+  }
+  $("ins").addEventListener("change", sync);
+  $("quit").addEventListener("change", sync);
+  function make() {
+    ["dates","money","after","qout"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var due = parse($("due").value), born = parse($("born").value);
+    if (!due) { $("vt").textContent = "Please enter your due date."; $("vs").textContent = ""; $("warn").textContent = "- The leave dates are counted from the due date (or the birth date)."; $("result").hidden = false; return true; }
+    var multi = $("multi").checked, ins = $("ins").value, fac = $("fac").value;
+    var pay = $("pay").value, mon = $("mon").value, avg = parseInt($("avg").value, 10);
+    var quit = ins === "own" && $("quit").checked, last = parse($("last").value), year = $("year").checked, lastoff = $("lastoff").checked;
+    var warn = [];
+    var pre = multi ? 98 : 42;
+    var b = born || due;                       // birth (or expected)
+    var ref = (born && born > due) ? due : b;  // pre-birth period counted from the due date if late
+    var preS = add(ref, -(pre - 1));
+    var postE = add(b, 56);
+    var late = (born && born > due) ? days(add(due, 1), born) : 0;
+    var total = pre + late + 56;
+    var wk6 = add(b, 42);
+
+    var vt = "Leave: " + fmt(preS) + " to " + fmt(postE) + ".";
+    var vs = (born ? "Birth date " : "Due date ") + M[b.getMonth()] + " " + b.getDate() + ". Before the birth: " + pre + " days" + (late ? " + " + late + " late days" : "") + " (the birth day is in this part). After the birth: 56 days.";
+    $("vt").textContent = vt; $("vs").textContent = vs; lines.push(vt);
+
+    put("dates", fmt(preS), "Leave before the birth can start", "On your request (" + (multi ? "14" : "6") + " weeks). You may keep working if you wish. Tell your employer in advance.");
+    put("dates", fmt(b), born ? "Birth date" : "Due date", born && late ? "Born " + late + " days after the due date. Those days are added to the leave before the birth." : "If the baby comes earlier or later, the dates move. Enter the birth date after the birth.");
+    put("dates", fmt(add(b, 1)) + " - " + fmt(postE), "Leave after the birth (8 weeks)", "Your employer must not have you work. From " + fmt(add(wk6, 1)) + " (after 6 weeks), you may return if you ask and a doctor says the work is fine.");
+
+    // Money
+    var per1 = fac === "no" ? 488000 : 500000, nb = multi ? 2 : 1;
+    var lumpTitle = yen(per1) + " per baby" + (multi ? " (" + yen(per1 * nb) + " for twins)" : "");
+    var lumpFrom = ins === "own" ? "From your health insurance (出産育児一時金)." : ins === "dep" ? "From your spouse's health insurance, as the family lump-sum (家族出産育児一時金). Your spouse is the one who claims." : "From National Health Insurance. Ask your city office about the amount and the form.";
+    put("money", "Childbirth lump-sum", ins === "nhi" ? "Ask your city office" : lumpTitle, lumpFrom + (fac === "no" ? " Hospital not in the obstetric compensation system: 488,000 yen per baby." : " For a birth at 22 weeks or later at a hospital in the obstetric compensation system.") + " Usually paid straight to the hospital (direct payment system): sign the agreement at the hospital and pay only the rest.");
+    if (ins === "own") {
+      if (pay === "full") {
+        put("money", "Maternity allowance", "Not paid for days with full salary", "The allowance (出産手当金) is for leave days with no salary, or salary lower than the allowance.");
+      } else if (avg > 0) {
+        var base = avg, capNote = "";
+        if (mon === "lt") {
+          var cap = preS < new Date(2025, 3, 1) ? 300000 : 320000;
+          if (avg > cap) { base = cap; capNote = " Less than 12 months insured: the lower of your own average and " + yen(cap) + " is used."; }
+          else capNote = " Less than 12 months insured: your average is used because it is lower than " + yen(cap) + ".";
+        }
+        var per = Math.round(base / 30 / 10) * 10, day = Math.round(per * 2 / 3);
+        put("money", "Maternity allowance, per day (rough)", yen(day), "Average " + yen(base) + " ÷ 30 = " + yen(per) + " (to the nearest 10 yen), then × 2/3." + capNote + (pay === "part" ? " With some salary, only the difference is paid." : ""));
+        put("money", "Maternity allowance, " + total + " days (rough)", yen(day * total), "If every leave day has no salary. Paid leave days are not paid.");
+      } else {
+        put("money", "Maternity allowance", "Not calculated", "Enter your average standard monthly amount (標準報酬月額) to see a rough figure. Formula: average ÷ 30 (to the nearest 10 yen) × 2/3, for each leave day with no salary.");
+      }
+      put("money", "Pension and health insurance premiums", "Not charged during the leave", "Your employer applies to the Japan Pension Service while you are on leave. The months are counted as paid for your future pension.");
+    } else {
+      put("money", "Maternity allowance", "Not paid in your case", ins === "dep" ? "The maternity allowance is only for people insured through their own job, not dependents." : "National Health Insurance usually has no maternity allowance. Ask your city office.");
+    }
+
+    // After the birth
+    put("after", born ? fmt(add(b, 13)) : "Within 14 days", "Birth notification (出生届)", "At the city office where the baby was born, where you live, or (for Japanese) the family register. Also required when both parents are foreign. Bring the birth certificate from the hospital and your Mother and Child Health Handbook.");
+    put("after", born ? fmt(add(b, 29)) : "Within 30 days", "Baby's residence status (if the baby is not Japanese)", "If the baby will stay in Japan more than 60 days, apply to the regional immigration office within 30 days of the birth. No fee.");
+    put("after", born ? "about " + fmt(addY(add(b, 1), 2)) : "2 years after the birth", "Lump-sum claim deadline", "If you do not use direct payment, or the cost is lower than the lump-sum, claim the money yourself. The right ends 2 years after the day after the birth.");
+    if (ins === "own" && pay !== "full") put("after", "Within 2 years per day", "Maternity allowance claims", "You can claim the days before the birth and after the birth separately. The doctor or midwife fills in the first claim after the birth. Your employer fills in each claim.");
+
+    // Quit
+    if (!quit) {
+      put("qout", "", ins === "own" ? "Not quitting" : "Not about your job", ins === "own" ? "If you plan to quit before the birth, tick the box above." : "This part is for people insured through their own job.");
+    } else if (!last) {
+      put("qout", "", "Enter your last day", "The conditions depend on your last day.");
+    } else {
+      var lose = add(last, 1);
+      put("qout", fmt(lose), "Your company health insurance ends", "You join National Health Insurance or your spouse's insurance from this day. That is a separate procedure.");
+      var inLeave = last >= preS;
+      var okA = year && lastoff && inLeave;
+      if (!year) put("qout", "Maternity allowance", "Stops after your last day", "Without 1 year or more insured in a row up to the last day, it is not paid after you leave.");
+      else if (!lastoff) put("qout", "Maternity allowance", "Stops after your last day", "If you work on the last day, nothing is paid from the next day.");
+      else if (!inLeave) put("qout", "Maternity allowance", "Not paid after leaving", "Your last day is before the leave period starts (" + fmt(preS) + "). You must be getting, or able to get, the allowance on your last day.");
+      if (okA) put("qout", "From " + fmt(lose), "Maternity allowance can continue", "For the rest of the leave period, because you were insured 1 year in a row and you are on leave on your last day.");
+      var lim6 = add(addM(lose, 6), -1);
+      if (year) put("qout", "Birth by about " + fmt(lim6), "Lump-sum from your former insurance", (b <= lim6 ? "Your " + (born ? "birth" : "due") + " date is within 6 months after coverage ends, so you can choose your former insurance. " : "Your " + (born ? "birth" : "due") + " date is more than 6 months after coverage ends, so it comes from your new insurance. ") + "Only one lump-sum per birth: choose one insurer.");
+      else put("qout", "Lump-sum", "From your new insurance", "National Health Insurance, or your spouse's insurance as the family lump-sum.");
+    }
+
+    warn.push("- The leave before the birth starts only if you ask for it. Tell your employer early, with the date you want to start.");
+    warn.push("- Sickness allowance and maternity allowance for the same days: maternity allowance is paid. If sickness allowance would be higher, the difference is paid.");
+    warn.push("- Childcare leave (ikukyu) after the 8 weeks is a separate system with its own benefit from employment insurance.");
+    warn.push("- Visa: this page does not judge your residence status. Ask the Immigration Services Agency about your own case.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My baby leave & money plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  sync();
+  if (DEMO) {
+    $("due").value = "2027-03-15"; $("avg").value = "240000";
+    $("quit").checked = true; $("last").value = "2027-02-28"; $("year").checked = true;
+    sync(); make();
+  }
+})();
+</script>
+</body>
+</html>
