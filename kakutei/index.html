@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>First Tax Return in Japan: Do I File? + Date Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>First tax return in Japan: do I file? + date planner</h1>
+  <p class="lead">For employees in Japan. Tick what fits your year. You get a first answer (must file / can file for a refund / probably not needed), the dates, the papers to have ready, and how to send it. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Which year?</h2>
+    <label class="f" for="yr">The year of the income (Jan 1 to Dec 31)<span class="hint">The return is filed in the next year</span></label>
+    <select id="yr">
+      <option value="2026">2026 (filed in 2027)</option>
+      <option value="2025">2025 (filed in 2026)</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your work and income that year</h2>
+    <label class="c"><input type="checkbox" id="big"><span>My pay was over 20 million yen<small>Salary income for the year, before tax</small></span></label>
+    <label class="c"><input type="checkbox" id="side"><span>I had other income over 200,000 yen<small>Income (after expenses) from freelance work, rent, crypto and similar. Not salary</small></span></label>
+    <label class="c"><input type="checkbox" id="two"><span>I worked two or more jobs at the same time<small>A main job plus a side job, both paying salary</small></span></label>
+    <label class="c"><input type="checkbox" id="noadj"><span>My main pay had no year-end adjustment<small>For example: I quit mid-year and did not start a new job by December</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>3. Deductions you want to use</h2>
+    <label class="c"><input type="checkbox" id="med"><span>Medical expense deduction<small>I paid a lot of medical costs for myself or my family</small></span></label>
+    <label class="c"><input type="checkbox" id="loan"><span>Housing loan deduction, first year<small>I moved into a home bought with a loan</small></span></label>
+    <label class="c"><input type="checkbox" id="furu"><span>Furusato nozei or other donations<small>Including donations sent with the one-stop form (ワンストップ特例)</small></span></label>
+    <label class="c"><input type="checkbox" id="late"><span>Something missed at year-end adjustment<small>For example: family abroad papers or an insurance certificate given too late</small></span></label>
+  </div>
+  <button id="make" type="button">Show my answer and dates</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your answer</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Dates</h3>
+    <div id="dates"></div>
+    <h3>Papers to have ready</h3>
+    <div id="docs"></div>
+    <h3>How to send it</h3>
+    <div id="how"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the National Tax Agency (checked November 2026). There are other cases (pension income, retirement pay, stock losses, non-residents and more) that this page does not cover. It does not calculate any tax or refund and it is not tax advice. Always confirm with the tax office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  // A deadline that falls on Sat/Sun moves to Monday (national holidays near these dates are not handled)
+  function due(d) { var w = d.getDay(); return w === 6 ? new Date(d.getFullYear(), d.getMonth(), d.getDate() + 2) : w === 0 ? new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1) : d; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  function c(id) { return $(id).checked; }
+  function make() {
+    ["dates","docs","how"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var Y = +$("yr").value, N = Y + 1;
+    var big = c("big"), side = c("side"), two = c("two"), noadj = c("noadj"),
+        med = c("med"), loan = c("loan"), furu = c("furu"), late = c("late");
+    var must = big || side || two;
+    var refund = noadj || med || loan || furu || late;
+    var start = new Date(N, 1, 16), end = due(new Date(N, 2, 15)), refundEnd = new Date(Y + 5, 11, 31);
+    var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var warn = [];
+    var vt, vs;
+    if (must) {
+      var why = [];
+      if (big) why.push("pay over 20 million yen");
+      if (side) why.push("other income over 200,000 yen");
+      if (two) why.push("salary from two or more places");
+      vt = "You likely need to file a tax return for " + Y + ".";
+      vs = "Reason: " + why.join(", ") + ".\nThe filing period and the payment deadline below apply to you.";
+      if (two && !big && !side) vs += "\nTwo jobs: if the pay that was not adjusted plus other income is 200,000 yen or less, filing is not required. There is also a 1.5-million-yen rule for low total pay. Ask the tax office about your numbers.";
+    } else if (refund) {
+      vt = "You do not seem required to file, but you can file to get tax back (a refund return).";
+      vs = "A refund return can be sent from January 1, " + N + ", for 5 years, outside the usual filing period. Tax comes back only if tax was taken from your pay (the withholding slip shows an amount in the tax box).";
+    } else {
+      vt = "From your answers, a tax return is probably not needed for " + Y + ".";
+      vs = "For most employees, the year-end adjustment at work finishes the income tax. Check your withholding slip, and see the cases this page does not cover in the note below.";
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    // Dates
+    if (refund && !must) {
+      put("dates", fmt(new Date(N, 0, 1)), "Refund return can be sent from this day", "You do not need to wait for February. The tax office is less busy in January.");
+      put("dates", fmt(refundEnd), "Last day for a refund return for " + Y, "5 years from January 1, " + N + ".");
+      if (refundEnd < today) warn.push("- The 5-year limit for " + Y + " has passed. A refund return for this year can no longer be sent.");
+      else if (end < today) warn.push("- The usual filing period for " + Y + " is over, but a refund return can still be sent until " + fmt(refundEnd) + ".");
+    }
+    if (must || (!refund)) {
+      put("dates", fmt(start) + " - " + fmt(end), "Filing period for " + Y, "The usual period is February 16 to March 15 of the next year (a weekend deadline moves to Monday).");
+    }
+    if (must) {
+      put("dates", fmt(end), "Last day to pay the tax", "Same day as the filing deadline. No bill is sent after you file; you pay yourself.");
+      put("dates", "April " + N + " (date set each year)", "If you choose direct debit (振替納税)", "The tax is taken from your bank account on a set day in April. Apply by the filing deadline. For the 2025 return, the day was April 23, 2026.");
+      if (end < today) warn.push("- The deadline for " + Y + " has passed. File as soon as possible; late filing and late payment can add extra tax. Ask the tax office.");
+    }
+    if (refund && must) put("dates", "", "Your deductions go on the same return", "Medical expenses, housing loan, donations and so on are added to the return you file anyway.");
+    if (loan) put("dates", "", "Housing loan: first year only", "The first year is done with a tax return. From the second year, it can usually be done at work, at year-end adjustment.");
+
+    // Documents
+    put("docs", "Everyone", "My Number card", "Or: a paper showing your My Number (for example a residence certificate with the number) plus an ID such as your residence card or passport. Show it at the office, or attach copies when mailing.");
+    put("docs", "Everyone", "Withholding slip(s) (源泉徴収票)", "One from each employer that paid you in " + Y + ". You do not attach it, but you need its numbers to fill in the return." + (noadj ? " If you quit, ask your former employer for it." : ""));
+    put("docs", "Everyone", "A bank account in Japan", "For a refund, you write the account the money is paid into. For direct debit of tax, you apply with an account.");
+    if (side) put("docs", "Side income", "Your income and expense records", "Sales, fees and costs for the year. Freelance work may need an income and expense statement (収支内訳書) with the return.");
+    if (med) put("docs", "Medical expenses", "Receipts and the medical expense statement (医療費控除の明細書)", "You list the costs on the statement and attach it. Keep the receipts at home; the tax office can ask to see them. Insurance money that covered the costs is subtracted.");
+    if (loan) put("docs", "Housing loan", "Loan balance certificate and home papers", "From the bank, plus papers about the home (purchase contract, registration). The tax office explains the full list for your case.");
+    if (furu) put("docs", "Donations", "Donation receipts (寄附金受領証明書)", "From each local government or organization. If you file a return, the one-stop form no longer counts: put all donations on the return.");
+    if (late) put("docs", "Missed at work", "The papers you gave too late", "For example, money transfer records for family abroad, or an insurance deduction certificate, plus your withholding slip.");
+
+    // How
+    put("how", "Option 1", "Online: the tax office's form site + e-Tax", "The National Tax Agency's online form site (確定申告書等作成コーナー) calculates as you type and can send by e-Tax, for example with a My Number card on a smartphone.");
+    put("how", "Option 2", "By mail", "Print the return and mail it to the tax office for your address. Send it as a letter (not as a parcel). The postmark date counts as the filing date.");
+    put("how", "Option 3", "At the tax office", "Hand it in at the tax office for your address. Many offices open a filing help corner in February and March; it gets crowded.");
+
+    warn.push("- If you file a return, include all your income for the year, including salary that was already adjusted at work.");
+    if (furu) warn.push("- Filing a return cancels the furusato nozei one-stop form. Forgetting to include those donations means losing them.");
+    if (noadj) warn.push("- Quit mid-year with no new job: you may get some tax back, because no year-end adjustment settled the tax taken from your pay.");
+    warn.push("- This page does not calculate tax or refunds. The online form site does the math for you.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My tax return plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("yr").value = "2026"; $("side").checked = true; $("med").checked = true; $("furu").checked = true; make(); }
+})();
+</script>
+</body>
+</html>
