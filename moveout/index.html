@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Moving Out in Japan: Dates &amp; Deposit Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .total { border: 2px solid var(--accent); border-radius: 10px; padding: 10px 12px; margin: 10px 0 4px; }
+  .total .t { font-weight: 700; font-size: 1.1rem; }
+  .total .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon .total .t, .mihon .total .s, .mihon #warn { filter: blur(6px); user-select: none; }
+  select:disabled, input:disabled { opacity: .55; }
+  .mihon .hint, .mihon .lead, .mihon .mh, .mihon #make { display: none !important; }
+</style>
+<style>
+  label.c { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; margin: 8px 0; font-size: .95rem; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  .grp { font-weight: 700; font-size: .85rem; color: var(--sub); margin: 14px 0 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Moving out of an apartment in Japan: dates &amp; deposit checker</h1>
+  <p class="lead">Enter your notice period, your moving-out date and the costs on the landlord's estimate. You get the last day to send the written notice, the steps with dates, and, for each cost, who usually pays under the Ministry of Land, Infrastructure, Transport and Tourism guideline. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Dates</h2>
+    <label class="f" for="out">The day you want to move out (hand back the keys)<span class="hint">The day the contract should end</span></label>
+    <input type="date" id="out">
+    <label class="f" for="notice">Notice period in your contract (解約予告)<span class="hint">Look for 解約 in the contract. Usually 1 to 2 months, in writing</span></label>
+    <select id="notice">
+      <option value="1" selected>1 month before</option>
+      <option value="2">2 months before</option>
+      <option value="3">3 months before</option>
+      <option value="0.5">Half a month before</option>
+    </select>
+    <div class="mh">
+    <label class="f" for="in">The day you moved in<span class="hint">The contract start date. Used to count the years for wallpaper and carpet</span></label>
+    <input type="date" id="in">
+    <label class="f" for="where">Where are you moving?</label>
+    <select id="where">
+      <option value="other">To another city or ward in Japan</option>
+      <option value="same">Inside the same city or ward</option>
+      <option value="abroad">Out of Japan</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="card mh">
+    <h2>2. Money</h2>
+    <label class="f" for="dep">Security deposit you paid (敷金, yen)<span class="hint">On your contract or the move-in receipt. Enter 0 if none</span></label>
+    <input type="number" id="dep" inputmode="numeric" min="0" step="1000" placeholder="e.g. 150000">
+    <label class="f" for="biki">Shikibiki or a fixed cleaning fee in the contract (yen)<span class="hint">敷引き or クリーニング費用 written as an amount. Enter 0 if none</span></label>
+    <input type="number" id="biki" inputmode="numeric" min="0" step="1000" placeholder="e.g. 0">
+  </div>
+
+  <div class="card">
+    <h2>3. Costs on the estimate</h2>
+    <span class="hint">Tick the lines on the landlord's or agent's estimate (見積書 / 精算書). If you do not have it yet, tick what they told you at the inspection.</span>
+    <div class="grp">Walls</div>
+    <label class="c"><input type="checkbox" id="c_wsun"> Wallpaper: sun fading, age, dark marks behind the fridge or TV</label>
+    <label class="c"><input type="checkbox" id="c_pin"> Small pin or thumbtack holes (posters, calendars)</label>
+    <label class="c"><input type="checkbox" id="c_wdmg"> Wallpaper: tobacco stains or smell, graffiti, damage you made</label>
+    <label class="c"><input type="checkbox" id="c_nail"> Nail or screw holes deep enough to replace the board</label>
+    <div class="grp">Floors</div>
+    <label class="c"><input type="checkbox" id="c_dent"> Dents from furniture, floor or tatami fading in the sun</label>
+    <label class="c"><input type="checkbox" id="c_scr"> Scratches from moving, or stains left without cleaning</label>
+    <label class="c"><input type="checkbox" id="c_pet"> Pet scratches or smell</label>
+    <div class="grp">Other</div>
+    <label class="c"><input type="checkbox" id="c_clean"> Professional cleaning of the whole room</label>
+    <label class="c"><input type="checkbox" id="c_key"> New lock or key change</label>
+    <label class="c"><input type="checkbox" id="c_keylost"> You lost a key</label>
+    <label class="c"><input type="checkbox" id="c_tatami"> New tatami covers or floor wax for the next tenant</label>
+    <label class="c"><input type="checkbox" id="c_left"> Things or garbage you left in the room</label>
+  </div>
+  <button id="make" type="button">Show my dates and deposit check</button>
+  <p class="err" id="err" hidden>Please enter the moving-out date and the move-in date.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <h3>Dates and steps</h3>
+    <div id="steps"></div>
+    <h3>The estimate, line by line</h3>
+    <div id="cost"></div>
+    <div class="total"><div class="t" id="sum"></div><div class="s" id="sumNote"></div></div>
+    <h3>Ask before you agree</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">This is a guide based on the guideline on restoration to the original condition (原状回復をめぐるトラブルとガイドライン, revised edition) and the Apartment Search Guidebook of the Ministry of Land, Infrastructure, Transport and Tourism, the Ministry of Justice explanation of the Civil Code rules on deposits and restoration, and pages of the Immigration Services Agency, the Ministry of Internal Affairs and Communications and the Consumer Affairs Agency (checked November 2026). The guideline is not a law, and your contract and the actual condition of the room decide. It is not legal advice.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addD(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addM(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function yen(n) { return Math.round(n).toLocaleString("en-US") + " yen"; }
+  function num(id) { var v = $(id).value; return v === "" ? 0 : Math.max(0, +v); }
+  function on(id) { return $(id).checked; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+
+  function make() {
+    var ov = $("out").value, iv = $("in").value;
+    if (!ov || !iv) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["cost", "steps"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var O = parse(ov), I = parse(iv), n = +$("notice").value, where = $("where").value;
+    var dep = num("dep"), biki = num("biki");
+    var years = Math.max(0, (O - I) / (365.25 * 864e5));
+    var warn = [];
+
+    // --- steps
+    lines.push("-- Dates and steps --");
+    var last = n === 0.5 ? addD(O, -15) : addM(O, -n);
+    put("steps", "By " + fmt(last) + " (it must arrive by then)", "Send the written notice to cancel (解約通知)",
+      "Your contract says " + (n === 0.5 ? "half a month" : n + (n > 1 ? " months" : " month")) + " before. Send it in writing to the landlord or the management company, as the contract says (form, mail or their website). If the contract counts from the day it arrives, send it a few days earlier. Keep a copy.");
+    put("steps", "Right after the notice", "Book the moving company and ask about large garbage",
+      "Large items (sofas, beds) usually need a booking with the city, often with a fee. Do not leave anything in the room.");
+    put("steps", "About 1 week before " + fmt(O), "Stop electricity, gas, water and internet",
+      "Tell each company your last day. The contacts are on your bills. Ask the gas company if they need to visit.");
+    if (where === "other") put("steps", "Before you move (from when the date is fixed) or up to 14 days after", "Moving-out notice (転出届) at your current city office",
+      "You get a moving-out certificate. Then the moving-in notice at the new city within 14 days of moving in. Some cities take the notice online with a My Number card.");
+    else if (where === "same") put("steps", "Within 14 days after you move", "Change-of-address notice (転居届) at your city office",
+      "Bring your residence card. The address on the card is updated at the same time.");
+    else put("steps", "Before you leave Japan", "Moving-out notice (転出届) at your city office",
+      "Also pension, tax and residence card steps when you leave. See the note on leaving Japan for good.");
+    put("steps", "Before " + fmt(O), "Mail forwarding at the post office",
+      "Japan Post forwards mail to the new address in Japan for 1 year, free. Not to an address abroad.");
+    put("steps", "Before the inspection", "Clean the room and take dated photos",
+      "Normal cleaning: remove garbage, wipe the kitchen, bath and toilet. Take photos of each room and of any marks, and compare them with your move-in photos.");
+    put("steps", fmt(O), "Inspection with the landlord (立会い) and return all keys",
+      "Walk through the room together. Ask them to point to each mark and say if it is wear or damage. Return every key, including copies you made.");
+    put("steps", "After " + fmt(O), "Get the estimate in writing, then the deposit",
+      "Under the Civil Code, the deposit is returned after the contract ends and the room is handed back, minus unpaid rent and the costs you owe. The contract may say when it is paid. Give your bank account for the refund.");
+
+    // --- cost check
+    lines.push("-- The estimate --");
+    var L = "Usually the landlord's side", Y = "Usually your side", C = "Check the contract";
+    var share = Math.max(0, 1 - years / 6), pct = Math.round(share * 100);
+    var yrs = years.toFixed(1);
+    var any = false, mine = 0, theirs = 0;
+    function row(id, who, title, sub) { if (!on(id)) return; any = true; if (who === L) theirs++; else mine++; put("cost", who, title, sub); }
+    row("c_wsun", L, "Wallpaper: sun fading, age, fridge or TV marks", "Normal wear and aging. The guideline and the Civil Code say the tenant does not have to restore this.");
+    row("c_pin", L, "Small pin or thumbtack holes", "Holes that do not need the board replaced are normal use under the guideline.");
+    row("c_wdmg", Y, "Wallpaper: tobacco, graffiti, damage", "Usually yours. But wallpaper loses value over 6 years in the guideline. You lived there about " + yrs + " years, so your share of a new wallpaper cost is about " + (pct > 0 ? pct + "%" : "very small (close to 1 yen in value)") + ". Work to clean off graffiti can still be charged.");
+    row("c_nail", Y, "Deep nail or screw holes", "Usually yours when the board must be replaced. Ask how much of the wall is charged: usually the damaged part, not the whole room.");
+    row("c_dent", L, "Furniture dents, sun fading of floors", "Normal wear under the guideline.");
+    row("c_scr", Y, "Scratches from moving, stains left uncleaned", "Usually yours. Carpet also loses value over 6 years in the guideline: your share would be about " + (pct > 0 ? pct + "%" : "very small") + ". Ask how the floor amount was counted.");
+    row("c_pet", Y, "Pet scratches or smell", "Usually yours under the guideline and the Ministry of Justice examples.");
+    row("c_clean", biki > 0 ? C : L, "Professional cleaning of the whole room", biki > 0 ? "The guideline puts it on the landlord if you cleaned normally. But you entered a fixed fee in the contract. A clause like that can apply if the amount is clearly written and you agreed to it. Check the contract and the important points paper." : "The guideline puts it on the landlord if you cleaned normally. If the contract has a clear cleaning clause, it may apply. Check.");
+    row("c_key", L, "New lock or key change (no key lost)", "Under the guideline and the Ministry of Justice examples, this is the landlord's when no key was lost or broken. Check for a key clause in the contract.");
+    row("c_keylost", Y, "Lost key", "Usually yours.");
+    row("c_tatami", L, "Tatami re-covering or floor wax for the next tenant", "Work to get the next tenant is the landlord's under the guideline, if there is no damage.");
+    row("c_left", Y, "Things or garbage left in the room", "Usually yours. Take everything out before the inspection.");
+    if (!any) put("cost", "-", "No cost ticked", "Tick the lines on the estimate to see who usually pays.");
+    var back = Math.max(0, dep - biki);
+    $("sum").textContent = dep > 0 ? "Deposit " + yen(dep) + (biki > 0 ? ", minus fixed amount " + yen(biki) + " = up to " + yen(back) : "") : "No deposit entered";
+    $("sumNote").textContent = (mine + theirs > 0 ? theirs + " line(s) are usually the landlord's side and " + mine + " are usually yours or need a check. " : "") + "The deposit is returned minus unpaid rent and the costs you owe. This page does not calculate the refund: the amounts are on the estimate.";
+    lines.push($("sum").textContent);
+
+    // --- warn
+    if (theirs > 0) warn.push("- Some lines look like normal wear or aging. Ask: \"Is this wear from normal use?\" and ask them to show the guideline item.");
+    if (on("c_wdmg") || on("c_scr")) warn.push("- Ask how the years were counted for wallpaper or carpet (about " + yrs + " years in your case), and how much area is charged.");
+    warn.push("- Ask for the estimate in writing, line by line (amount, area, unit price). You do not have to agree on the spot.");
+    if (biki > 0) warn.push("- Check where the fixed amount (shikibiki or cleaning fee) is written, and that it is not charged twice.");
+    if (dep === 0) warn.push("- No deposit: the costs you owe are billed to you. Ask for the estimate before you pay.");
+    warn.push("- If you cannot agree, call the consumer hotline 188. It connects you to a local consumer center.");
+    $("warn").textContent = warn.join("\n");
+    lines.push("-- Ask before you agree --"); lines.push(warn.join("\n"));
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Moving out in Japan: my checklist\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("out").value = "2027-03-31"; $("notice").value = "1"; $("in").value = "2023-04-01"; $("where").value = "other"; $("dep").value = "150000"; $("biki").value = "0";
+    ["c_wsun", "c_pin", "c_scr", "c_clean", "c_key"].forEach(function (id) { $(id).checked = true; }); make(); }
+})();
+</script>
+</body>
+</html>
