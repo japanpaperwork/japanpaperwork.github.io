@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://japanpaperwork.github.io/sitemap.xml
