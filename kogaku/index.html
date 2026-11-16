@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>High-Cost Medical Expense Benefit in Japan: Limit Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>High-cost medical expense benefit in Japan: limit checker</h1>
+  <p class="lead">For people under 70 in Japanese public health insurance, with a big hospital bill in one month. Enter the month, your income band and the costs. You get your monthly limit, a rough refund, the lower limit from the 4th time, the yearly cap, the claim deadline and what to check. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The month and you</h2>
+    <label class="f" for="ym">Month of the treatment<span class="hint">The limit is counted per calendar month (1st to the last day)</span></label>
+    <input type="month" id="ym">
+    <label class="f" for="age">Age of the patient that month</label>
+    <select id="age">
+      <option value="u70">Under 70</option>
+      <option value="o70">70 or older</option>
+    </select>
+    <label class="f" for="band">Income band<span class="hint">Employee insurance: by your standard monthly amount (標準報酬月額); ask HR. City insurance (NHI) has its own bands; ask your city office</span></label>
+    <select id="band">
+      <option value="a">Band A (ア): 830,000 yen or more</option>
+      <option value="i">Band I (イ): 530,000 to 790,000 yen</option>
+      <option value="u" selected>Band U (ウ): 280,000 to 500,000 yen</option>
+      <option value="e">Band E (エ): 260,000 yen or less</option>
+      <option value="o">Band O (オ): residence-tax exempt (low income)</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. The costs at one place</h2>
+    <label class="f" for="tot">Total medical cost for the month (optional)<span class="hint">The full cost before your share (10割). On many receipts, total points (点) × 10 = yen. Ask the counter if unsure. Example: 1000000</span></label>
+    <input type="number" id="tot" inputmode="numeric" min="0" step="1000" placeholder="yen">
+    <label class="f" for="paid">What you paid at the counter (optional)<span class="hint">Insurance-covered part only. Not meals, private-room fees or other extras</span></label>
+    <input type="number" id="paid" inputmode="numeric" min="0" step="100" placeholder="yen">
+  </div>
+
+  <div class="card">
+    <h2>3. Your situation</h2>
+    <label class="c"><input type="checkbox" id="many"><span>I already got this benefit in 3 or more months in the last 12 months<small>With the same insurer. This lowers the limit from the 4th time</small></span></label>
+    <label class="c"><input type="checkbox" id="card"><span>I showed a My Number insurance card or a limit certificate<small>限度額適用認定証 (gendogaku tekiyo ninteisho)</small></span></label>
+  </div>
+  <button id="make" type="button">Show my limit</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Limits</h3>
+    <div id="lim"></div>
+    <h3>Money back</h3>
+    <div id="back"></div>
+    <h3>How to claim</h3>
+    <div id="how"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the Japan Health Insurance Association (Kyokai Kenpo) and the Ministry of Health, Labour and Welfare (checked November 2026). The figures are Kyokai Kenpo's for people under 70. Health insurance societies (kenpo kumiai) and city insurance (NHI) handle claims in their own way, and some societies pay extra. A rough guide only; the insurer decides. Not legal advice. Always confirm with your insurer.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function yen(n) { return Math.round(n).toLocaleString("en-US") + " yen"; }
+  // Kyokai Kenpo tables, under 70: base, threshold (0 = flat), from the 4th time, yearly cap
+  var NEW = { a: [270300, 901000, 140100, 1680000], i: [179100, 597000, 93000, 1110000], u: [85800, 286000, 44400, 530000], e: [61500, 0, 44400, 530000], o: [36900, 0, 24600, 290000] };
+  var OLD = { a: [252600, 842000, 140100, 0], i: [167400, 558000, 93000, 0], u: [80100, 267000, 44400, 0], e: [57600, 0, 44400, 0], o: [35400, 0, 24600, 0] };
+  var NAME = { a: "Band A (ア)", i: "Band I (イ)", u: "Band U (ウ)", e: "Band E (エ)", o: "Band O (オ)" };
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function make() {
+    ["lim","back","how"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var ym = $("ym").value;
+    if (!ym) { $("vt").textContent = "Please enter the month of the treatment."; $("vs").textContent = ""; $("warn").textContent = "- The limit depends on the month (the amounts changed in August 2026)."; $("result").hidden = false; return true; }
+    var y = +ym.split("-")[0], m = +ym.split("-")[1] - 1;
+    var ml = M[m] + " " + y;
+    if ($("age").value === "o70") {
+      $("vt").textContent = "This page covers people under 70.";
+      $("vs").textContent = "From 70, the limits and rules are different (for example, an outpatient limit per person, and all shares can be added up). Ask your insurer for your limit.";
+      $("warn").textContent = "- Show your My Number insurance card at the counter so the limit can be applied there.";
+      lines.push($("vt").textContent);
+      put("lim", "", "Ask your insurer", "The amounts on this page are for people under 70.");
+      put("back", "", "Claim within 2 years", "Counted from the 1st of the month after the treatment.");
+      put("how", "Where", "Your insurer", "Kyokai Kenpo, your health insurance society, or your city office.");
+      $("result").hidden = false; return true;
+    }
+    var band = $("band").value;
+    var isNew = (y > 2026) || (y === 2026 && m >= 7);
+    var T = (isNew ? NEW : OLD)[band];
+    var many = $("many").checked, card = $("card").checked;
+    var tot = parseInt($("tot").value, 10), paid = parseInt($("paid").value, 10);
+    var limit, how;
+    if (T[1] === 0) {
+      limit = T[0]; how = "A flat amount for this band.";
+    } else if (tot > 0) {
+      limit = T[0] + Math.max(0, tot - T[1]) * 0.01;
+      how = yen(T[0]) + " + 1% of the part of the total cost over " + yen(T[1]) + ".";
+    } else {
+      limit = null; how = yen(T[0]) + " + 1% of the part of the total cost over " + yen(T[1]) + ". Enter the total cost to see the figure.";
+    }
+    var use = many ? T[2] : limit;
+    var vt, vs;
+    if (use === null) {
+      vt = "Your limit for " + ml + ": " + yen(T[0]) + " or a little more.";
+      vs = how;
+    } else {
+      vt = "Your limit for " + ml + ": about " + yen(use) + ".";
+      vs = (many ? "The lower limit from the 4th time applies." : how) + "\n" + NAME[band] + ", " + (isNew ? "amounts from August 2026." : "amounts until July 2026.");
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("lim", "Monthly limit", limit === null ? "Base " + yen(T[0]) : yen(limit), how);
+    put("lim", "From the 4th time", yen(T[2]), "If you got this benefit in 3 or more months in the last 12 months with the same insurer, the limit from the 4th month is this.");
+    if (isNew) {
+      put("lim", "Yearly cap (August to July)", yen(T[3]), "New from August 2026. If your shares from August to the next July pass this, the rest can be paid back. Kyokai Kenpo starts taking these claims from August 2027." + (band === "e" ? " If your standard monthly amount is confirmed at 150,000 yen or less, the cap is 410,000 yen." : ""));
+    } else {
+      put("lim", "Yearly cap", "None for this month", "The yearly cap starts with treatment from August 2026.");
+    }
+
+    // Money back
+    if (paid > 0 && use !== null) {
+      if (paid > use) put("back", "Rough refund", yen(paid - use), "What you paid (" + yen(paid) + ") minus your limit (" + yen(use) + "). The insurer decides the exact amount.");
+      else put("back", "Rough refund", "None at this place", "What you paid is not over your limit. Other places or family members in the same month may be added (see below).");
+    } else if (paid > 0) {
+      put("back", "Rough refund", "Enter the total cost", "Your band's limit uses the total cost. Enter it above.");
+    } else {
+      put("back", "Rough refund", "Enter what you paid", "Enter what you paid at the counter above.");
+    }
+    if (card) put("back", "At the counter", "Your share should stop at the limit", "With a My Number insurance card (where the place checks it online) or a limit certificate, you pay up to the limit at the counter. Costs at other places may still be added up later.");
+    else put("back", "At the counter", "You may pay the full share first", "Then you claim the part over the limit. Next time, show a My Number insurance card or a limit certificate so you pay only up to the limit.");
+    var nx = new Date(y, m + 1, 1), endD = new Date(y + 2, m + 1, 0);
+    put("back", "Claim deadline", "About the end of " + M[endD.getMonth()] + " " + endD.getFullYear(), "The 2 years are counted from " + M[nx.getMonth()] + " 1, " + nx.getFullYear() + " (the 1st of the month after the treatment).");
+    if (endD < new Date()) warn.push("- The 2-year limit for this month may have passed. Ask your insurer.");
+
+    // How
+    put("how", "Form", "健康保険高額療養費支給申請書", "The high-cost medical expense claim form (Kyokai Kenpo).");
+    put("how", "Where", "Your insurer", "Kyokai Kenpo: mail it to your branch, or apply online. A health insurance society: ask HR. City insurance (NHI): ask your city office.");
+    put("how", "Before a planned stay", "Limit certificate, or My Number insurance card", "A limit certificate (限度額適用認定証) starts from the month your insurer receives the application, so apply early. Kyokai Kenpo says certificates issued from August 2026 are valid until July 31, 2027.");
+
+    warn.push("- Each month is counted separately (1st to the last day). A stay from late one month into the next is split.");
+    warn.push("- Each person, each place. Inpatient and outpatient, and medical and dental, are counted separately. A pharmacy is added to the clinic that wrote the prescription.");
+    warn.push("- Under 70, only shares of 21,000 yen or more (per place, per type) can be added together, also with family members on the same insurance.");
+    warn.push("- Not covered: meals in hospital, private-room fees, and costs outside insurance.");
+    warn.push("- Insurer changed (for example, you quit and joined city insurance): the count for the 4th time starts again.");
+    if (y > 2027 || (y === 2027 && m >= 7)) warn.push("- From August 2027, the income bands are planned to be divided further. Check the amounts with your insurer.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My high-cost medical expense check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("ym").value = "2026-10"; $("tot").value = "1000000"; $("paid").value = "300000";
+    make();
+  }
+})();
+</script>
+</body>
+</html>
