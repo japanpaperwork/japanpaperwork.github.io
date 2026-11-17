@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Paid Leave in Japan: Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Paid leave in Japan: checker</h1>
+  <p class="lead">For people working for a company in Japan (full-time or part-time) who want to know how many days of paid leave (年次有給休暇, <i>nenji yukyu kyuka</i>) the law gives them, when the days expire, and how to use them before leaving a job. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your job</h2>
+    <label class="f" for="hire">First day at this company<span class="hint">The day you were hired (入社日). Continuous service counts from here</span></label>
+    <input type="date" id="hire">
+    <label class="f" for="pat">How much you work (in your contract)<span class="hint">Part-time rows apply only if you work under 30 hours a week</span></label>
+    <select id="pat">
+      <option value="5" selected>Full-time, or 5+ days a week, or 30+ hours a week</option>
+      <option value="4">4 days a week (169 to 216 days a year)</option>
+      <option value="3">3 days a week (121 to 168 days a year)</option>
+      <option value="2">2 days a week (73 to 120 days a year)</option>
+      <option value="1">1 day a week (48 to 72 days a year)</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. If you plan to leave (optional)</h2>
+    <label class="f" for="last">Planned last day<span class="hint">Your last day on the contract (退職日). Leave empty if you are not leaving</span></label>
+    <input type="date" id="last">
+    <label class="f" for="left">Days of paid leave you have left<span class="hint">As shown by your company (pay slip, HR system). Leave empty if you do not know</span></label>
+    <input type="number" id="left" min="0" max="40" step="0.5" inputmode="decimal">
+  </div>
+
+  <div class="card">
+    <h2>3. Your situation</h2>
+    <label class="c"><input type="checkbox" id="att"><span>I was absent on more than 20% of my working days in a year<small>Unpaid absences, sick days without paid leave. (Paid leave days, maternity leave, childcare or family care leave and time off for a work injury count as days worked)</small></span></label>
+    <label class="c"><input type="checkbox" id="no"><span>The company said no to my leave request<small>Or says I have no paid leave, or will not let me use it before I leave</small></span></label>
+  </div>
+  <button id="make" type="button">Check my leave</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Your days by date</h3>
+    <div id="dates"></div>
+    <h3>What to do, in order</h3>
+    <div id="steps"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the Labour Standards Act (Art. 39 and 115) and pages of the Ministry of Health, Labour and Welfare and Labour Bureaus (checked November 2026). It shows the minimum the law gives; your company may give more or give it earlier. Public holidays and company days off are not counted in the dates. Not legal advice. Always confirm with your company's HR or the Labour Standards Inspection Office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addM(d, n) { var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); var last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); }
+  function parse(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function today() { var t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  function dd(n) { return n + (n === 1 ? " day" : " days"); }
+  // Labour Standards Act Art. 39 and the MHLW table (after 0.5, 1.5, ... 6.5+ years)
+  var T = { 5: [10,11,12,14,16,18,20], 4: [7,8,9,10,12,13,15], 3: [5,6,6,8,9,10,11], 2: [3,4,4,5,6,6,7], 1: [1,2,2,2,3,3,3] };
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function backWeekdays(end, n) {
+    var d = new Date(end.getFullYear(), end.getMonth(), end.getDate()), c = 0;
+    while (true) { if (d.getDay() !== 0 && d.getDay() !== 6) { c++; if (c >= n) return d; } d = add(d, -1); }
+  }
+  function expiry(g) { return add(addM(g, 24), -1); }
+  function make() {
+    ["dates","steps"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var hv = $("hire").value;
+    if (!hv) { $("vt").textContent = "Please enter your first day at the company."; $("vs").textContent = ""; $("warn").textContent = "- Paid leave is counted from the day you were hired."; $("result").hidden = false; return true; }
+    var H = parse(hv), pat = +$("pat").value, row = T[pat];
+    var lv = $("last").value, L = lv ? parse(lv) : null;
+    if (L && L < H) L = null;
+    var ref = L || today();
+    var leftRaw = $("left").value, left = leftRaw === "" ? null : Math.max(0, +leftRaw);
+    var att = $("att").checked, no = $("no").checked;
+    var past = [], nxt = null;
+    for (var k = 0; k < 60; k++) {
+      var g = addM(H, 6 + 12 * k), n = row[Math.min(k, 6)];
+      if (g > ref) { nxt = { d: g, n: n }; break; }
+      past.push({ d: g, n: n });
+    }
+    var alive = past.filter(function (x) { return expiry(x.d) >= ref; });
+    var max = alive.reduce(function (s, x) { return s + x.n; }, 0);
+    var vt, vs;
+    if (!past.length) {
+      vt = "No paid leave yet: your first " + dd(row[0]) + " come on " + fmt(nxt.d) + ".";
+      vs = "The law gives paid leave after 6 months of continuous service with attendance of 80% or more.";
+      if (L) vs += "\nYour last day is before that date, so the law gives no paid leave for this job.";
+    } else {
+      var latest = past[past.length - 1];
+      vt = "Up to " + dd(max) + " of paid leave can be alive " + (L ? "on your last day" : "now") + ".";
+      vs = "Latest grant: " + dd(latest.n) + " on " + fmt(latest.d) + ", usable until " + fmt(expiry(latest.d));
+      if (alive.length > 1) vs += "\nOlder grant: " + dd(alive[0].n) + " on " + fmt(alive[0].d) + ", usable until " + fmt(expiry(alive[0].d));
+      vs += "\nThis is the legal minimum if you used none. Days you already used come off.";
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("dates", fmt(H), "First day at the company", "Continuous service counts from here.");
+    if (past.length > 3) put("dates", "", "(earlier grants: " + (past.length - 3) + ", not shown)", "Paid leave expires 2 years after it is given.");
+    past.slice(-3).forEach(function (x) {
+      var exp = expiry(x.d), gone = exp < ref;
+      put("dates", fmt(x.d), dd(x.n) + " given" + (gone ? " (expired)" : ""), gone ? "Expired after 2 years (" + fmt(exp) + ")." : "Usable until " + fmt(exp) + " (2 years).");
+    });
+    if (nxt) {
+      if (L) put("dates", fmt(nxt.d), "Next grant: after your last day", "You leave before this date, so these " + dd(nxt.n) + " are not given.");
+      else put("dates", fmt(nxt.d), "Next grant: " + dd(nxt.n), "If your attendance in the year before is 80% or more.");
+    }
+    if (L) {
+      put("dates", fmt(L), "Your last day", "Unused paid leave ends with your job. After this day you cannot use it.");
+      var u = left !== null ? left : max;
+      if (u > 0 && pat === 5) {
+        var start = backWeekdays(L, Math.ceil(u));
+        put("dates", "Start by " + fmt(start), "To use " + dd(u) + " before you leave", "Counted back on weekdays (Mon to Fri) from your last day. Public holidays and company days off are not counted, so check your work calendar; the real date may be later.");
+      } else if (u > 0) {
+        put("dates", "Count back from " + fmt(L), "To use " + dd(u) + " before you leave", "Count back " + Math.ceil(u) + " of your scheduled working days from your last day. That is the latest day to start your leave.");
+      }
+    }
+
+    put("steps", "Step 1", "Check your balance", "Ask HR or check your pay slip or HR system: how many days are left, and your grant date. Your company may give days earlier or more than the law.");
+    if (L) {
+      put("steps", "Step 2", "Ask for the days in writing, early", "Email your manager or HR with the dates (for example: from the start date to your last day). You do not have to explain what the leave is for. Keep a copy.");
+      put("steps", "Step 3", "Plan the handover before your leave", "The company can move leave days only if your leave would disrupt normal business, and it cannot move them past your last day. A handover plan helps the leave go smoothly.");
+      put("steps", "Step 4", "If the company refuses", "Ask the Labour Standards Inspection Office (労働基準監督署) or a 総合労働相談コーナー (General Labour Consultation Corner; free, no reservation). English line: 0570-001-701 (Mon-Fri 10:00-15:00, not 12:00-13:00, call fee).");
+    } else {
+      put("steps", "Step 2", "Tell your company the dates you want", "You choose the dates. The company may move them only if your leave would disrupt normal business, and must still give the leave.");
+      put("steps", "Step 3", "The 5-day rule", (past.length && past[past.length - 1].n >= 10) ? "Your latest grant is 10 days or more, so the company must make sure you take 5 days within 1 year of the grant. It asks your wishes and sets dates for the days you have not taken." : "This rule applies only to people given 10 days or more in one grant.");
+      put("steps", "Step 4", "If the company refuses", "Ask the Labour Standards Inspection Office (労働基準監督署) or a 総合労働相談コーナー (free). English line: 0570-001-701 (Mon-Fri 10:00-15:00, not 12:00-13:00, call fee).");
+    }
+
+    warn.push("- These are the days the law gives at the least. Check your company rules (就業規則) too.");
+    if (att) warn.push("- If you came to work on less than 80% of your working days in a year, the law gives no new days for the next year. Days already given are not lost.");
+    if (no) warn.push("- The law says the company must give paid leave on the days you ask. It can only move them when your leave would disrupt normal business. The Ministry says that when you are leaving, the company cannot move leave past your last day.");
+    if (L) warn.push("- Payment for unused days is not a right. A prefecture's labour Q&A says a company may pay for days left when you leave, but it does not have to.");
+    if (pat < 5) warn.push("- Part-time rows are for people working under 30 hours a week. If your days vary week to week, the yearly days decide the row.");
+    warn.push("- Leave days are paid. The company must not cut your pay or bonus because you took paid leave.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My paid leave check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("hire").value = "2023-04-01"; $("last").value = "2026-12-31"; $("left").value = "14";
+    make();
+  }
+})();
+</script>
+</body>
+</html>
