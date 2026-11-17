@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Final Pay and Unpaid Wages in Japan: Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final pay and unpaid wages: planner</h1>
+  <p class="lead">For people who left (or will leave) a job at a company in Japan and are waiting for their last pay, or were not paid in full. Enter your last day and your company's pay rule. You get the date your pay is due, the 7-day date if you ask in writing, the time limit to claim, and where to go. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your last day and pay rule</h2>
+    <label class="f" for="last">Last day of employment<span class="hint">The day your contract ends (退職日)</span></label>
+    <input type="date" id="last">
+    <label class="f" for="close">Pay closing day (締め日)<span class="hint">The day each pay period ends. See your contract or pay slip</span></label>
+    <select id="close">
+      <option value="5">5th</option><option value="10">10th</option><option value="15">15th</option><option value="20">20th</option><option value="25">25th</option><option value="31" selected>End of month (末日)</option>
+    </select>
+    <label class="f" for="payday">Payday (支払日)<span class="hint">The day pay for that period is paid</span></label>
+    <select id="payday">
+      <option value="5">5th</option><option value="10">10th</option><option value="15">15th</option><option value="20">20th</option><option value="25" selected>25th</option><option value="31">End of month (末日)</option>
+    </select>
+    <label class="f" for="pm">Paid in<span class="hint">The same month as the closing day, or the next month</span></label>
+    <select id="pm"><option value="0">The same month</option><option value="1" selected>The next month</option></select>
+  </div>
+
+  <div class="card">
+    <h2>2. Asking in writing</h2>
+    <label class="f" for="req">Day you asked the company in writing to pay (optional)<span class="hint">Email or letter after leaving. Leave empty if you have not asked yet</span></label>
+    <input type="date" id="req">
+  </div>
+
+  <div class="card">
+    <h2>3. Your situation</h2>
+    <label class="c"><input type="checkbox" id="late"><span>The payday has passed and I was not paid (or not in full)<small>Regular pay, overtime pay, pay for paid leave</small></span></label>
+    <label class="c"><input type="checkbox" id="ret"><span>A retirement allowance (退職金) is promised in the rules<small>Its payday is set by the company's rules</small></span></label>
+    <label class="c"><input type="checkbox" id="dep"><span>The company holds money or things of mine<small>A deposit, savings or other things that belong to me</small></span></label>
+    <label class="c"><input type="checkbox" id="bk"><span>The company closed down or went bankrupt<small>Or stopped business and cannot pay</small></span></label>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Dates to watch</h3>
+    <div id="dates"></div>
+    <h3>What to do, in order</h3>
+    <div id="steps"></div>
+    <h3>Bring to the office</h3>
+    <div id="bring"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the Labour Standards Act and pages of the Ministry of Health, Labour and Welfare and Labour Bureaus (checked November 2026). Weekends, holidays and your company's rules can move real dates. Not legal advice, and it does not calculate amounts. Always confirm with the office named.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addM(d, n) { var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate(); var last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); }
+  function dayIn(y, m, day) { var last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(day, last)); }
+  function parse(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function make() {
+    ["dates","steps","bring"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var v = $("last").value;
+    if (!v) { $("vt").textContent = "Please enter your last day."; $("vs").textContent = ""; $("warn").textContent = "- The dates are counted from your last day and your pay rule."; $("result").hidden = false; return true; }
+    var L = parse(v);
+    var cd = +$("close").value, pd = +$("payday").value, pm = +$("pm").value;
+    var C = dayIn(L.getFullYear(), L.getMonth(), cd);
+    if (C < L) C = dayIn(L.getFullYear(), L.getMonth() + 1, cd);
+    var P = dayIn(C.getFullYear(), C.getMonth() + pm, pd);
+    if (P < C) P = dayIn(C.getFullYear(), C.getMonth() + pm + 1, pd);
+    var rv = $("req").value, R = rv ? parse(rv) : null;
+    if (R && R < L) R = null;
+    var R7 = R ? add(R, 7) : null;
+    var late = $("late").checked, ret = $("ret").checked, dep = $("dep").checked, bk = $("bk").checked;
+    var lim = addM(P, 36), b6 = addM(L, 6);
+    var due = (R7 && R7 < P) ? R7 : P;
+    var vt = "Your last pay is due by " + fmt(due) + ".";
+    var vs = "Pay period closes: " + fmt(C) + "\nRegular payday: " + fmt(P) + (R7 ? "\nAsked in writing on " + fmt(R) + ", so the 7-day date is " + fmt(R7) : "\nIf you ask in writing after leaving, the company must pay within 7 days.") + "\nTime limit to claim this pay: about " + fmt(lim);
+    if (rv && !R) vs += "\nThe request date is before your last day, so the 7-day rule is counted from a request after leaving.";
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("dates", fmt(L), "Last day", "Write down your hours and what you are owed while you still remember.");
+    put("dates", fmt(C), "Last pay period closes", "Your work up to the last day is in this period (closing day: " + (cd === 31 ? "end of month" : cd + "th") + ").");
+    if (R7) put("dates", "By " + fmt(R7), "7 days after your written request", "Labour Standards Act Art. 23: after you leave and ask, wages must be paid within 7 days. If part of the amount is disputed, the part not disputed must be paid within that time.");
+    else put("dates", "Any day after leaving", "Ask in writing (optional)", "Labour Standards Act Art. 23: after you leave and ask, wages must be paid within 7 days. This can be earlier than the regular payday.");
+    put("dates", fmt(P), "Regular payday", "The last regular pay should come by this day at the latest.");
+    if (dep) put("dates", R7 ? "By " + fmt(R7) : "7 days after you ask", "Money and things the company holds", "Art. 23 also covers deposits, savings and other money or things that belong to you: returned within 7 days after you ask.");
+    if (ret) put("dates", "The day set in the rules", "Retirement allowance", "If the rules set a payday for it, the company may pay on that day; the 7-day rule does not bring it earlier. Time limit: 5 years.");
+    if (bk) put("dates", "By " + fmt(b6), "Advance payment: 6-month line", "For the government's advance payment of unpaid wages, a bankruptcy petition or an application to the Labour Standards Inspection Office must be made within 6 months after your last day. Ask early.");
+    put("dates", "About " + fmt(lim), "Time limit for this pay", "Wages (not retirement allowance): 3 years from the day they could be claimed, for now (Art. 115 and supplementary Art. 143).");
+
+    put("steps", "Step 1", "Ask the company in writing", "Email or letter. Say what is unpaid, the period, and where to pay. Keep a copy and a note of every reply.");
+    put("steps", "Step 2", (late || bk) ? "Consult now: Labour Standards Inspection Office" : "If it is not paid by " + fmt(due) + ": Labour Standards Inspection Office", "労働基準監督署 (rodo kijun kantokusho). You can also use the 総合労働相談コーナー (free, no reservation). You can report (申告) at any office; the office for the company's area investigates.");
+    if (bk) put("steps", "Step 3", "Ask about the advance payment system", "未払賃金立替払制度: for regular pay and retirement allowance unpaid because of bankruptcy. Conditions apply. Ask the Labour Standards Inspection Office or the JOHAS consultation corner (044-431-8663).");
+    else put("steps", "Step 3", "If the company still does not pay", "The office can tell the company to correct it. It is not a court. Court routes include labour tribunal (労働審判), payment demand (支払督促) and small claims (少額訴訟, up to 600,000 yen). For legal help, ask 法テラス (Houterasu).");
+    put("steps", "Phone help in English", "Foreign worker consultation line", "外国人労働者向け相談ダイヤル (English): 0570-001-701, Mon-Fri 10:00-15:00 (not 12:00-13:00). A call fee applies. Evenings and weekends: 労働条件相談ほっとライン, free, English 0120-531-401 (check the days on the Ministry page).");
+
+    put("bring", "", "Pay slips (給与明細)", "Every month you have.");
+    put("bring", "", "Contract or working conditions notice", "労働契約書 / 労働条件通知書");
+    put("bring", "", "Company rules", "就業規則, wage rules" + (ret ? ", retirement allowance rules" : "") + ", if you have them.");
+    put("bring", "", "Records of your hours", "Time card copies, a notebook or phone notes.");
+    put("bring", "", "Your messages with the company", "Your written request and the replies.");
+
+    warn.push("- This page shows dates only. It does not calculate how much you are owed.");
+    warn.push("- Show the real papers at the office, and sort out your questions before you go.");
+    warn.push("- Wages unpaid after leaving can carry interest of 14.6% a year (retirement allowance not included). This is a civil claim; ask a specialist how to claim it.");
+    if (lim < new Date()) warn.push("- About 3 years have passed since this payday. The claim may have expired. Ask the office now.");
+    if (bk) warn.push("- Advance payment: only regular pay and retirement allowance, not bonuses; 80% of the unpaid total, with a cap by age.");
+    warn.push("- Visa: if your status is tied to your job, the immigration notice is a separate step (within 14 days).");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My final pay plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("last").value = "2026-11-30"; $("req").value = "2026-12-01"; $("dep").checked = true;
+    make();
+  }
+})();
+</script>
+</body>
+</html>
