@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Visa Renewal Planner: When to Apply, Fees and Papers | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Visa renewal planner: when to apply, fees and papers</h1>
+  <p class="lead">Enter the expiry date on your residence card, your current period of stay, your status, and how you plan to apply. You see the first and last day you can apply, a safer target date, how long you can stay while you wait, the papers to prepare, the fee, and what to watch out for. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your card</h2>
+    <label class="f" for="exp">Expiry date on your residence card<span class="hint">"Period of stay" (在留期間) on the front of the card: the date after "until"</span></label>
+    <input type="date" id="exp">
+    <label class="f" for="per">Your current period of stay<span class="hint">The length written on the card, e.g. "1 year" (1年) or "3 years" (3年)</span></label>
+    <select id="per">
+      <option value="3m">3 months or less</option>
+      <option value="6m">6 months</option>
+      <option value="1y" selected>1 year</option>
+      <option value="3y">3 years</option>
+      <option value="5y">5 years</option>
+      <option value="ot">Another length (more than 6 months)</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your status and how you apply</h2>
+    <label class="f" for="visa">Status of residence</label>
+    <select id="visa">
+      <option value="w">Engineer / Specialist in Humanities / International Services (技術・人文知識・国際業務)</option>
+      <option value="d">Dependent (家族滞在)</option>
+      <option value="o">Another status (spouse, student, Specified Skilled Worker, etc.)</option>
+    </select>
+    <label class="f" for="job">Did you change employers since your last permission?<span class="hint">Only matters for work statuses</span></label>
+    <select id="job">
+      <option value="n">No</option>
+      <option value="y">Yes</option>
+    </select>
+    <label class="f" for="how">How do you plan to apply?</label>
+    <select id="how">
+      <option value="c">At the immigration office counter</option>
+      <option value="i">Online (in-person system for individuals)</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter the expiry date on your residence card.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <h3>When you can apply</h3>
+    <div id="when"></div>
+    <h3>While you wait</h3>
+    <div id="wait"></div>
+    <h3>Papers to prepare</h3>
+    <div id="docs"></div>
+    <h3>Fee</h3>
+    <div id="fee"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy plan as text</button>
+  </div>
+
+  <p class="note">This is a guide based on the Immigration Control Act and pages of the Immigration Services Agency of Japan (checked November 2026; fees as revised on October 1, 2026). It does not judge whether your renewal will be granted, which period you will get, or which papers your own case needs, and it does not fill in any form. Always confirm with the regional immigration office or the Immigration Services Information Center (0570-013904).<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+  function addM(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(d.getDate(), last));
+  }
+  function days(a, b) { return Math.round((b - a) / 86400000); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function weekday(d) { while (d.getDay() === 0 || d.getDay() === 6) d = add(d, -1); return d; }
+  var FEE = { "3m": [10000, 10330], "6m": [18000, 15330], "1y": [33000, 27330], "3y": [64000, 56550], "5y": [75000, 65550] };
+  function yen(n) { return n.toLocaleString("en-US") + " yen"; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var ev = $("exp").value;
+    if (!ev) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["when","wait","docs","fee"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var E = parse(ev), T = DEMO ? parse("2026-12-01") : today();
+    var per = $("per").value, visa = $("visa").value, job = $("job").value, how = $("how").value;
+    var short = per === "3m";
+    var online = how === "i" && !short;
+    var warn = [];
+
+    // When
+    var start = short ? null : addM(E, -3);
+    var lastDay = online ? add(E, -1) : E;
+    var target = weekday(addM(E, -1));
+    if (start && target < start) target = start;
+    if (E < T) {
+      put("when", fmt(E), "Your period of stay has already ended", "The special period only applies when you applied before the expiry date. Contact the regional immigration office or the Information Center (0570-013904) right away.");
+    } else {
+      if (start) {
+        var st = DEMO ? "" : (T < start ? " Opens in " + days(T, start) + " day(s)." : " The window is open now.");
+        put("when", "From " + fmt(start), "First day you can apply", "With a period of stay of 6 months or more, you can apply from 3 months before the expiry date." + st + " Earlier is accepted only in special cases (for example, a long business trip abroad or giving birth around that time); ask the office first.");
+      } else {
+        put("when", "Any time before " + fmt(E), "You can apply now", "With a period of stay of 3 months or less, the 3-month rule does not apply. Apply on or before the expiry date.");
+      }
+      put("when", "By " + fmt(target), "Safer target date", "About 1 month before the expiry date, on a weekday. The agency's standard processing time is 2 weeks to 1 month, so applying by then gives the decision a chance to arrive before your card's date. This target is our suggestion, not a rule.");
+      put("when", fmt(lastDay), online ? "Last day to apply online" : "Last day to apply at the counter",
+        online ? "The online system does not accept applications on the expiry date itself. If you miss this day, apply at the counter on the expiry date." :
+        "The expiry date itself. Counters open on weekdays, 9:00-12:00 and 13:00-16:00. If this day is a weekend or holiday, go on an earlier weekday.");
+    }
+
+    // Wait
+    var sp = addM(E, 2);
+    if (E < T) put("wait", "", "The special period does not cover you", "It applies only to people who applied on or before the expiry date. Ask the office what to do now.");
+    else put("wait", "Until the decision, at the latest the end of " + fmt(sp), "Special period (特例期間)", "If you apply before the expiry date and the decision is not made by then, you can stay with your current status and keep doing the same activities until the decision is made or until 2 months have passed from the expiry date, whichever comes first.");
+    if (online) {
+      put("wait", "The day after the application is accepted", "Keep the acceptance email", "An online application does not put the \"applying\" stamp on the back of your card. The agency asks you to carry the email with the application number together with your card.");
+    } else {
+      put("wait", "On the day you apply", "Your card gets an \"applying\" note", "At the counter, the back of your residence card is marked that an application is in progress.");
+    }
+    put("wait", "When you are told the result", "Pick up your new card", "Bring your passport and residence card. At the counter, the fee is paid with revenue stamps (shunyu inshi); online, you pay by the payment email before the pick-up day.");
+
+    // Docs
+    put("docs", "All statuses", "Application form for extension of period of stay", "Download the form for your status from the agency's page for that status (PDF or Excel). Each status has its own form.");
+    if (short) {
+      put("docs", "All statuses", "Photo", "Not needed when you ask to renew for 3 months or less.");
+    } else {
+      put("docs", "All statuses", "Photo, 4 cm tall x 3 cm wide", "Taken within 6 months, no hat, facing front, plain background, your name on the back. Not needed for a child under 1 year old.");
+    }
+    put("docs", "All statuses", "Passport and residence card (show them)", "");
+    if (visa === "w") {
+      put("docs", "Engineer / Humanities", "A paper showing your employer's category", "For example, proof the company is listed (category 1), or a copy of the employer's withholding summary (法定調書合計表) for the previous year (categories 2 and 3). Ask HR. With no such paper, you are treated as category 4.");
+      put("docs", "Engineer / Humanities (category 3 or 4)", "Declaration about your employer's representative", "A reference form (所属機関の代表者に関する申告書) on the agency's page. Categories 1 and 2 in principle do not need it.");
+      put("docs", "Engineer / Humanities (category 3 or 4)", "Resident tax certificates", "Taxation (or non-taxation) certificate and tax payment certificate (住民税の課税証明書・納税証明書) for 1 year, from the city office where you lived on January 1. One paper that shows both income and payment is enough. Categories 1 and 2 in principle do not need them.");
+      if (job === "y") {
+        warn.push("- First renewal after changing to a category 3 or 4 employer: the agency asks for extra papers, such as your working conditions notice, the company registration, a company brochure, and the latest financial statements. See the agency's page for Engineer / Specialist in Humanities / International Services.");
+      }
+    } else if (visa === "d") {
+      put("docs", "Dependent", "Proof of your relationship", "One of: family register, certificate of acceptance of marriage, marriage certificate (copy), birth certificate (copy), or an equivalent paper.");
+      put("docs", "Dependent", "Copy of your supporter's residence card or passport", "");
+      put("docs", "Dependent", "Your supporter's job and income", "If your supporter works: a certificate of employment (or business license copy) and their resident tax certificates for 1 year. If not: a bank balance certificate or scholarship certificate in their name.");
+    } else {
+      put("docs", "Your status", "Check the papers for your status", "The agency has one page per status, each with a renewal section and a checklist sheet. Open the page for the status on your card and prepare what it lists.");
+    }
+    put("docs", "If papers are in another language", "Japanese translation", "Papers in a foreign language need a Japanese translation attached, as the agency's pages say.");
+
+    // Fee
+    if (FEE[per]) {
+      var f = FEE[per];
+      put("fee", "Counter: revenue stamps", "If you get the same period again: " + yen(f[0]), "The fee depends on the period you are granted, which you find out at the decision. Counter fees by period granted: 3 months or less 10,000 / over 3 to 6 months 18,000 / over 6 months, under 1 year 25,000 / 1 year 33,000 / over 1, under 3 years 48,000 / 3 to under 5 years 64,000 / 5 years or more 75,000 yen.");
+      if (!short) put("fee", "Online: convenience store or bank", "If you get the same period again: " + yen(f[1]) + " in total", "Online fees are lower and include a payment fee of 330 or 550 yen. No credit card or QR payment. The payment email comes from @service-dgft.com; emails from other addresses asking for payment are fraud, the agency warns.");
+    } else {
+      put("fee", "Depends on the period granted", "Counter: 25,000 to 75,000 yen for periods over 6 months", "Counter fees by period granted: over 6 months, under 1 year 25,000 / 1 year 33,000 / over 1, under 3 years 48,000 / 3 to under 5 years 64,000 / 5 years or more 75,000 yen. Online it is lower (21,330 to 65,550 yen including the payment fee).");
+    }
+    put("fee", "Counter only", "Reduced fee: 10,000 yen", "People in serious financial hardship close to public assistance level, and some other cases, may pay a reduced fee, with proof. The online system does not handle the reduction, so apply at the counter.");
+
+    // Warnings
+    if (how === "i" && short) warn.push("- With a period of 3 months or less, you cannot use the online system. Apply at the counter.");
+    if (online) {
+      warn.push("- Online, you need a My Number Card, and you must be 15 or older. Register as a user first.");
+      warn.push("- If your My Number Card's validity is not extended by your card's expiry date and you enter the special period, you can no longer submit papers through the online system.");
+    }
+    warn.push("- The special period is up to 2 months after the expiry date. If the result is still not out near that date, contact the office.");
+    warn.push("- Fees changed on October 1, 2026. Older guides that say 6,000 yen are out of date.");
+    warn.push("- Moved or changed jobs and did not report it? The 14-day notices are separate from the renewal. Send them first.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Visa renewal: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("exp").value = "2027-03-20"; $("per").value = "1y"; $("visa").value = "w"; $("job").value = "n"; $("how").value = "c"; make(); }
+})();
+</script>
+</body>
+</html>
