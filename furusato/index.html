@@ -139,7 +139,7 @@
     var file = must || want || n > 5;
     var jan = $("jan").value, mv = $("mv").checked, nm = $("nm").checked;
     var dec31 = new Date(Y, 11, 31), jan10 = new Date(Y + 1, 0, 10), jan1 = new Date(Y + 1, 0, 1);
-    var feb16 = new Date(Y + 1, 1, 16), mar15 = nextWeekday(new Date(Y + 1, 2, 15)), jun = new Date(Y + 1, 5, 1);
+    var feb16 = new Date(Y + 1, 1, 16), mar15 = nextWeekday(new Date(Y + 1, 2, 15));
     var vt, vs;
     if (!file) {
       vt = "The one-stop exception can work for you: no tax return needed.";
@@ -160,11 +160,11 @@
     if (!file) {
       put("dates", "By " + fmt(jan10), "One-stop applications must arrive", "One form to each city, with copies of your My Number and ID." + (wkend(jan10) ? " This day is a " + (jan10.getDay() === 0 ? "Sunday" : "Saturday") + ": some cities accept on the next open day, others do not. Send so it arrives before." : " Many cities say it must arrive by this day."));
       if (mv) put("dates", "By " + fmt(jan10), "Send a change form if you move", "To every city you applied to: the change notice (申告特例申請事項変更届出書).");
-      put("dates", "From " + fmt(jun), "Residence tax goes down", "Check your residence tax notice for " + (Y + 1) + ". The donation deduction (寄附金税額控除) should be on it.");
+      put("dates", "From June " + (Y + 1), "Residence tax goes down", "Check your residence tax notice for " + (Y + 1) + ". The donation deduction (寄附金税額控除) should be on it.");
     } else {
       put("dates", "From " + fmt(jan1), "You can file a refund return", "If you only file to get tax back, the National Tax Agency accepts it from January 1, for 5 years.");
       put("dates", fmt(feb16) + " to " + fmt(mar15), "Tax return period", "If you must file, this is your window. Enter every donation for " + Y + "; you need the receipts.");
-      put("dates", "From " + fmt(jun), "Residence tax goes down", "Check your residence tax notice for " + (Y + 1) + ".");
+      put("dates", "From June " + (Y + 1), "Residence tax goes down", "Check your residence tax notice for " + (Y + 1) + ".");
     }
 
     put("steps", "Step 1", "Check your limit", "Ask your city office. Choose amounts under the limit.");
@@ -178,7 +178,7 @@
       put("steps", "Step 5", "Check the June notice", "Your residence tax for " + (Y + 1) + " should show the deduction.");
     }
 
-    if (jan === "n") warn.push("- Residence tax is charged by the city where you live on January 1, and the one-stop deduction comes only off that residence tax. If you will not live in Japan on January 1, " + (Y + 1) + ", ask your city office before donating whether any deduction would happen.");
+    if (jan === "n") warn.push("- Residence tax is charged by the city where you live on January 1, and " + (file ? "the residence tax part of the deduction comes" : "the whole one-stop deduction comes only") + " off that residence tax. If you will not live in Japan on January 1, " + (Y + 1) + ", ask your city office before donating whether any deduction would happen.");
     if (jan === "u") warn.push("- If you may leave Japan before January 1, " + (Y + 1) + ", ask your city office before donating. The residence tax part of the deduction depends on where you live on that day.");
     if (nm) warn.push("- The deduction is for the taxpayer who donated, and the donation must be in that person's own name. A donation in the name of a partner with no income does not lower your tax.");
     if (n > 5 && !must && !want) warn.push("- With 6 or more cities, the one-stop exception does not apply. Donating to 5 cities or fewer would keep it.");
