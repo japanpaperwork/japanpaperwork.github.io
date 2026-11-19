@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pension Record Check: Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pension record check: planner</h1>
+  <p class="lead">For people working or living in Japan who want to see their Japanese pension record online on Nenkin Net (ねんきんネット, the Japan Pension Service's website). It shows which way to register fits you, how long it takes, when your next Nenkin Teikibin (ねんきん定期便, the yearly pension statement) should come, and what to check. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. About you</h2>
+    <label class="f" for="by">Year of birth</label>
+    <select id="by"></select>
+    <label class="f" for="bm">Month of birth<span class="hint">The yearly statement is sent in your birth month</span></label>
+    <select id="bm"></select>
+  </div>
+
+  <div class="card">
+    <h2>2. What you have</h2>
+    <label class="f" for="bpn">Your basic pension number (基礎年金番号)<span class="hint">On the Basic Pension Number Notice or an old pension handbook</span></label>
+    <select id="bpn">
+      <option value="y" selected>I have it</option>
+      <option value="n">I lost it, or I do not know where it is</option>
+    </select>
+    <label class="c"><input type="checkbox" id="mc"><span>I have a My Number Card and know its PINs<small>To log in to Mynaportal (マイナポータル), the government's online service</small></span></label>
+    <label class="c"><input type="checkbox" id="ak"><span>I have a recent Nenkin Teikibin with a 17-digit access key<small>Arrived in the last few months, and the key is not expired</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>3. Why you want to check</h2>
+    <label class="f" for="why">Main reason</label>
+    <select id="why">
+      <option value="check" selected>Just to see my record</option>
+      <option value="leave">I may leave Japan (lump-sum withdrawal later)</option>
+      <option value="job">I changed jobs or quit</option>
+      <option value="gap">A period looks missing or wrong</option>
+    </select>
+  </div>
+  <button id="make" type="button">Make my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Your dates</h3>
+    <div id="dates"></div>
+    <h3>What to do, in order</h3>
+    <div id="steps"></div>
+    <h3>What to check in your record</h3>
+    <div id="checks"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the Japan Pension Service (Nenkin Net registration, Nenkin Teikibin, records with gaps or errors, lost pension number; checked November 2026). Screens and steps on Nenkin Net and Mynaportal can change; follow what the site shows. For your own record, ask a pension office (年金事務所). Not legal advice.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function wkend(d) { return d.getDay() === 0 || d.getDay() === 6; }
+  function addBiz(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); while (n > 0) { x.setDate(x.getDate() + 1); if (!wkend(x)) n--; } return x; }
+  var now = new Date(), y0 = now.getFullYear();
+  var today = new Date(y0, now.getMonth(), now.getDate());
+  for (var y = y0 - 18; y >= y0 - 80; y--) { var o = document.createElement("option"); o.value = y; o.textContent = y; $("by").appendChild(o); }
+  M.forEach(function (m, i) { var o = document.createElement("option"); o.value = i; o.textContent = m; $("bm").appendChild(o); });
+  $("by").value = String(y0 - 30);
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function make() {
+    ["dates","steps","checks"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var by = +$("by").value, bm = +$("bm").value;
+    var bpn = $("bpn").value === "y", mc = $("mc").checked, ak = $("ak").checked, why = $("why").value;
+    var route, vt, vs, pc = addBiz(today, 5);
+    if (!bpn) {
+      route = "num";
+      vt = "First, get your basic pension number back.";
+      vs = "Every way to register asks for it (the Mynaportal way may not work without it).\nAsk a pension office (年金事務所) to reissue the Basic Pension Number Notice (基礎年金番号通知書). It is mailed to the address the Japan Pension Service has.";
+    } else if (ak) {
+      route = "key";
+      vt = "Register with your access key: user ID right away.";
+      vs = "Use \"With access key\" (アクセスキーあり) on Nenkin Net. You need the 17-digit key, your basic pension number and an email address.\nThe link in the user ID email works for 24 hours.";
+    } else if (mc) {
+      route = "myna";
+      vt = "Register through Mynaportal with your My Number Card.";
+      vs = "No user ID needed. Log in to Mynaportal, open 年金 (Pension), link Nenkin Net, then register your email and enter the one-time password.\nFirst-time registration: weekdays, 8:00 to 23:00.";
+    } else {
+      route = "post";
+      vt = "Register without an access key: user ID by postcard.";
+      vs = "Use \"Without access key\" (アクセスキーなし). A postcard with your user ID comes to your registered address in about 5 business days.\nApply today, and it should come around " + fmt(pc) + " (holidays add days).";
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    var ny = (today.getMonth() > bm) ? y0 + 1 : y0;
+    var age = ny - by;
+    var env = (age === 35 || age === 45 || age === 59);
+    var thisMonth = (ny === y0 && today.getMonth() === bm);
+    var mailTxt = env ? "At " + age + " it comes as an envelope (封書) with your full history and every month, plus a reply form for gaps." : "At " + age + " it comes as a postcard (はがき) with the last 13 months. Envelopes with the full history come at 35, 45 and 59.";
+    put("dates", "Today", "Start", route === "num" ? "Look for the notice, or ask a pension office for a reissue." : "You can start registering now." + (route === "myna" && wkend(today) ? " Today is a weekend: first-time registration through Mynaportal is on weekdays." : ""));
+    if (route === "post") put("dates", "Around " + fmt(pc), "Postcard with your user ID", "About 5 business days after you apply. Keep the application number shown on the screen until it comes.");
+    if (route === "myna" && wkend(today)) put("dates", fmt(addBiz(today, 1)), "Next weekday for first-time registration", "8:00 to 23:00.");
+    put("dates", (thisMonth ? "This month: " : "") + M[bm] + " " + ny, "Next Nenkin Teikibin (yearly statement)", mailTxt);
+
+    var s = 1;
+    if (route === "num") {
+      put("steps", "Step " + s++, "Look for the paper first", "Basic Pension Number Notice (基礎年金番号通知書, since April 2022) or an old pension handbook (年金手帳). The handbook still works as proof of the number.");
+      put("steps", "Step " + s++, "If lost: ask for a reissue", "At a pension office: 基礎年金番号通知書再交付申請書. It is mailed to your registered address. To pick it up at the office, bring ID.");
+      put("steps", "Step " + s++, "Then register on Nenkin Net", mc ? "With a My Number Card, the Mynaportal way; otherwise the no-access-key way (postcard)." : "The no-access-key way: the user ID comes by postcard.");
+    } else if (route === "key") {
+      put("steps", "Step " + s++, "Open Nenkin Net, \"New registration\"", "From the Japan Pension Service site, choose 新規登録, then アクセスキーあり.");
+      put("steps", "Step " + s++, "Enter the key and your details", "Access key, basic pension number, name, date of birth, a password and a secret question.");
+      put("steps", "Step " + s++, "Confirm by email within 24 hours", "Note the application number shown at the end. Open the link in the email, enter your password, and keep your user ID.");
+    } else if (route === "myna") {
+      put("steps", "Step " + s++, "Log in to Mynaportal", "With your My Number Card (PC or smartphone).");
+      put("steps", "Step " + s++, "年金 → 連携をはじめる", "Open the Pension page and start the link. Agree to the Nenkin Net terms.");
+      put("steps", "Step " + s++, "Register your email", "Open ねんきんネットTOP from the Pension page, register an email, and enter the one-time password sent to it.");
+    } else {
+      put("steps", "Step " + s++, "Open Nenkin Net, \"New registration\"", "Choose 新規登録, then アクセスキーなし.");
+      put("steps", "Step " + s++, "Enter your details", "Basic pension number, name, date of birth, a password and a secret question.");
+      put("steps", "Step " + s++, "Keep the application number", "Print it or write it down. When the postcard comes, log in with the user ID on it.");
+    }
+    put("steps", "Step " + s++, "Open your record", "Look at the list of periods (加入履歴) and the month-by-month view. Unpaid months and big changes in monthly pay are marked with icons.");
+    if (why !== "check") put("steps", "Step " + s++, "Something wrong? Ask a pension office", "Or a 街角の年金相談センター (pension consultation center). The Japan Pension Service then looks into the record." + (env ? " With the envelope at " + age + ", you can also send back the reply form (年金加入記録回答票)." : ""));
+
+    put("checks", "", "Every employer is there", "Each job with company insurance should show as a period of employees' pension (厚生年金).");
+    put("checks", "", "No missing months between jobs", "Months between jobs should show as national pension (国民年金): paid, exempt, or unpaid.");
+    put("checks", "", "Monthly pay looks right", "The standard monthly remuneration (標準報酬月額) is a band, not your exact pay. Look for months that are far off.");
+    if (why === "leave") put("checks", "", "Count your months", "The lump-sum withdrawal depends on your insured months. Keep a screenshot or print of your record before you leave.");
+    if (why === "job") put("checks", "", "The end and start months", "Check the last month at your old job and the first month at the new one.");
+    if (why === "gap") put("checks", "", "Write down the exact months", "Which months, which employer, and what you think is wrong. Bring pay slips from that time if you have them.");
+
+    if (!ak && route !== "num") warn.push("- An access key has an expiry. Past Japan Pension Service guides said 3 months after the statement arrives. If yours is expired, use the no-access-key way.");
+    if (route === "post") warn.push("- The postcard goes to the address the Japan Pension Service has. If you moved, ask a pension office whether your address there is up to date.");
+    if (route === "myna") warn.push("- Linking can take time at busy hours. First-time registration through Mynaportal is only on weekdays, 8:00 to 23:00.");
+    warn.push("- Go to Nenkin Net from the Japan Pension Service site or Mynaportal. The Japan Pension Service warns about suspicious emails.");
+    if (why === "leave") warn.push("- The statement can be mailed to an address abroad. Ask a pension office how to register a foreign address before you leave.");
+    warn.push("- A record that looks wrong is not fixed online. Ask a pension office (年金事務所). Phone line for Nenkin Net: 0570-058-555.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My pension record plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("by").value = String(y0 - 33); $("bm").value = "5"; $("why").value = "leave";
+    make();
+  }
+})();
+</script>
+</body>
+</html>
