@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bank Account &amp; Phone When You Quit or Leave Japan: Checklist | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bank account &amp; phone: when you quit or leave Japan</h1>
+  <p class="lead">Answer a few questions. You get what to tell your bank, what to do with your phone contract, and what never to do with them, in order. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. What is happening</h2>
+    <label class="f" for="sit">Your situation</label>
+    <select id="sit">
+      <option value="leave">I am leaving Japan for good</option>
+      <option value="quit">I quit (or will quit) my job, and stay in Japan</option>
+      <option value="change">My address, period of stay or visa changed</option>
+    </select>
+    <label class="f" for="day"><span id="daylabel">Departure date</span><span class="hint" id="dayhint">The day you fly out of Japan</span></label>
+    <input type="date" id="day">
+  </div>
+
+  <div class="card">
+    <h2>2. Your bank account</h2>
+    <label class="f" for="incoming">Is money still coming into this account?<span class="hint">For example: last salary, a tax refund, unemployment benefit, rosai, the pension lump-sum</span></label>
+    <select id="incoming">
+      <option value="yes">Yes</option>
+      <option value="unk">Not sure</option>
+      <option value="no">No</option>
+    </select>
+    <label class="f" for="auto">Are bills paid automatically from it?<span class="hint">Rent, electricity, gas, water, phone, credit card</span></label>
+    <select id="auto">
+      <option value="yes">Yes</option>
+      <option value="unk">Not sure</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>3. Your phone</h2>
+    <label class="f" for="ph">Your phone line</label>
+    <select id="ph">
+      <option value="contract">A contract in my name (monthly bill)</option>
+      <option value="device">A contract in my name, and I am still paying for the phone</option>
+      <option value="company">A phone from my company</option>
+      <option value="other">Someone else's contract / not sure</option>
+    </select>
+    <label class="f" for="asked">Has anyone asked to buy or "borrow" your account, card or SIM?</label>
+    <select id="asked">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my checklist</button>
+  <p class="err" id="err" hidden>Please enter the date.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your checklist</h2>
+    <h3>Your bank</h3>
+    <div id="bank"></div>
+    <h3>Your phone</h3>
+    <div id="phone"></div>
+    <h3>Never do this</h3>
+    <div id="never"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy checklist as text</button>
+  </div>
+
+  <p class="note">This is a guide based on a Financial Services Agency leaflet for foreign residents, the Act on Prevention of Transfer of Criminal Proceeds, and the Mobile Phone Improper Use Prevention Act (checked November 2026). Each bank and phone company has its own rules for closing, fees and customers abroad. It is not legal advice. Always confirm with your bank, your phone company, or the police.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  var LBL = {
+    leave: ["Departure date", "The day you fly out of Japan"],
+    quit: ["Last day at work", "Your last working day (or the day you quit)"],
+    change: ["Date of the change", "The day you moved, or got your new residence card"]
+  };
+  function relabel() { var l = LBL[$("sit").value]; $("daylabel").textContent = l[0]; $("dayhint").textContent = l[1]; }
+  $("sit").addEventListener("change", relabel);
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var dv = $("day").value;
+    if (!dv) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["bank","phone","never"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var D = parse(dv), F = fmt(D);
+    var sit = $("sit").value, inc = $("incoming").value, auto = $("auto").value,
+        ph = $("ph").value, asked = $("asked").value;
+    var warn = [];
+
+    // Bank
+    if (sit === "leave") {
+      if (inc !== "no") put("bank", "Before " + F, "List the money still coming, and where it will go", "Last salary, tax refund, pension lump-sum and so on. The pension lump-sum can be paid to a bank abroad (not to Japan Post Bank). For each payment, ask the payer which accounts they can send to, before you close anything.");
+      if (auto !== "no") put("bank", "Before " + F, "Stop or move the automatic payments", "Rent, utilities, phone and card bills paid from this account. Ask each company for the final bill and how to pay it, so nothing is left unpaid after the account closes.");
+      put("bank", "Before " + F, "Close your bank account", "The Financial Services Agency asks foreign residents to contact their bank and close the account when they go back to their country. Ask your bank what to bring and how long it takes. Then move or withdraw the balance.");
+      put("bank", "When you close it", "Keep the closing papers", "Do not hand the passbook, card or online banking login to anyone, even a friend who stays in Japan.");
+    } else if (sit === "quit") {
+      put("bank", "After " + F, "Tell your bank that you quit", "The Financial Services Agency lists \"if you quit your work or school\" as a time to contact your bank. Banks check details such as your job and period of stay, and you may not be able to use the account if they cannot.");
+      if (inc !== "no") put("bank", "Keep it open", "Keep the account for the money still coming", "Last salary, unemployment benefit, tax refunds. Do not close it before they arrive.");
+      put("bank", "When your bank asks", "Answer the bank's check of your details", "Letters or app messages asking you to confirm your address, job, visa and period of stay. Reply by the date the bank gives.");
+    } else {
+      put("bank", "From " + F, "Tell your bank about the change", "The Financial Services Agency asks you to contact your bank when your address, period of residence or status of residence changes. Bring your new residence card. If your details cannot be checked, you may not be able to use the account.");
+      put("bank", "When your bank asks", "Answer the bank's check of your details", "Letters or app messages asking you to confirm your address, job, visa and period of stay. Reply by the date the bank gives.");
+    }
+
+    // Phone
+    if (ph === "company") {
+      put("phone", sit === "leave" ? "Before " + F : "On " + F, "Return the company phone", "Ask HR or IT how to return it and the SIM. Move your own photos and contacts off it first.");
+      if (sit !== "change") put("phone", "Before you return it", "Change the phone number on your accounts", "Bank, city office, Hello Work, landlord. Codes sent by SMS to the company phone will not reach you anymore.");
+    } else if (ph === "other") {
+      put("phone", "Now", "Find out whose name the contract is in", "If the contract is in someone else's name, talk to that person and the phone company. Giving someone a phone or SIM from a contract that is not yours is an offense under the Mobile Phone Improper Use Prevention Act (fine up to 500,000 yen).");
+    } else {
+      if (sit === "leave") {
+        put("phone", "Before " + F, "Cancel your phone contract", "Ask your phone company how to cancel, the last bill, and any cancellation fee. If the bill is paid from your bank account, pay the last one before the account closes.");
+        if (ph === "device") put("phone", "Before " + F, "Ask what is left to pay for the phone", "Installments for the phone itself may continue after you cancel the line. Ask how to pay the rest before you leave.");
+        put("phone", "Before you cancel", "Move logins off your Japanese number", "Bank apps, government services and shopping sites often send codes by SMS. Change them to e-mail or a new number first.");
+      } else if (sit === "quit") {
+        put("phone", "Keep it", "Keep your phone line while you look for work", "Hello Work, landlords and new employers may call this number. If the bill was paid by your company, change the payment to your own.");
+        if (ph === "device") put("phone", "If you change plans", "Check the phone installments", "If you change to a cheaper company, ask what is left to pay for the phone.");
+      } else {
+        put("phone", "From " + F, "Update your address with the phone company", "Bills and notices go to the address on the contract.");
+      }
+      put("phone", "If you give a phone away", "Get consent before handing over a working SIM", "Under the Mobile Phone Improper Use Prevention Act, you need the phone company's consent before giving a phone or SIM from your contract to someone, except family or someone you live with.");
+    }
+
+    // Never
+    put("never", "Never", "Do not sell, give or lend your account", "Handing your passbook, cash card or online banking login to someone for money without a proper reason, or to someone who will misuse it, is a crime: up to 3 years in prison and/or a fine of up to 5 million yen.");
+    put("never", "Never", "Do not sell your SIM or phone line", "Selling phones or SIMs from your contract as a business without the phone company's consent: up to 2 years in prison and/or 3 million yen.");
+    put("never", "Never", "Do not move money for someone else", "\"Send this money through your account and get 10,000 yen\" is how money laundering works. The Financial Services Agency warns that giving your account to others can mean you may not be able to stay in or enter Japan.");
+
+    if (asked === "yes") warn.push("- Someone asked for your account, card or SIM. Do not hand anything over. Talk to the police or your bank.");
+    if (sit === "leave") warn.push("- \"I want to use your account after you go home\" is exactly what the government leaflet warns about. Close it.");
+    if (inc === "unk") warn.push("- Not sure what money is still coming? Ask your last employer, and check letters from the city office and tax office.");
+    if (auto === "unk") warn.push("- Not sure about automatic payments? Look at your bank statement or app for the last 2 months.");
+    warn.push("- Closing steps, fees and rules for customers abroad differ by bank and phone company. Ask them early, not on your last day.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Bank & phone: my checklist\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("sit").value = "leave"; relabel(); $("day").value = "2027-03-20"; $("incoming").value = "yes"; $("auto").value = "yes"; $("ph").value = "device"; $("asked").value = "no"; make(); }
+})();
+</script>
+</body>
+</html>
