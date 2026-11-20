@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Child Allowance in Japan: Amount &amp; Deadline Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Child allowance in Japan: amount &amp; deadline planner</h1>
+  <p class="lead">For foreign residents in Japan raising children. Choose what happened, enter the date and your children's birth dates. You get the 15-day deadline, the month the allowance starts, the monthly amount for each child (including the 3rd-child amount), the payment months, and the notices to give the city. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. What happened?</h2>
+    <label class="f" for="sit">Your situation</label>
+    <select id="sit">
+      <option value="birth">A baby was born</option>
+      <option value="move">We moved to another city in Japan</option>
+      <option value="abroad">We moved to Japan from abroad</option>
+      <option value="check">Already getting it: check my amount</option>
+      <option value="leave">We are leaving Japan</option>
+    </select>
+    <label class="f" for="ev" id="evlab">Date<span class="hint" id="evhint"></span></label>
+    <input type="date" id="ev">
+    <div id="appbox">
+      <label class="f" for="app">Date you apply at the city office (optional)<span class="hint">Leave empty to use today</span></label>
+      <input type="date" id="app">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Your children</h2>
+    <p class="note" style="margin-top:0">Enter every child up to age 22, oldest first. Older children count for the 3rd-child amount only if you look after them and pay their living costs.</p>
+    <div id="kids"></div>
+  </div>
+
+  <div class="card">
+    <h2>3. A few more questions</h2>
+    <label class="c"><input type="checkbox" id="civil"><span>The higher earner of the parents is a public servant (komuin)<small>Public servants apply at their workplace, not the city office</small></span></label>
+    <label class="c"><input type="checkbox" id="away"><span>A child lives outside Japan<small>For example with grandparents in your home country, or studying abroad</small></span></label>
+    <label class="c"><input type="checkbox" id="sep"><span>The parents live apart<small>Separated, or talking about divorce</small></span></label>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Deadline and start</h3>
+    <div id="dates"></div>
+    <h3>Monthly amount</h3>
+    <div id="money"></div>
+    <h3>Payments</h3>
+    <div id="pay"></div>
+    <h3>Changes ahead</h3>
+    <div id="ahead"></div>
+    <h3>What to do</h3>
+    <div id="todo"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the Child Allowance Act (児童手当法, e-Gov, current text) and pages of the Children and Families Agency (こども家庭庁, checked November 2026). The city office (or, for public servants, the workplace) decides. Actual payment days depend on the city. Not legal advice. Always confirm with your city office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function mon(m) { return M[m % 12] + " " + Math.floor(m / 12); }
+  function mi(d) { return d.getFullYear() * 12 + d.getMonth(); }
+  function parse(v) { if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function today() { var t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  function yen(n) { return n.toLocaleString("en-US") + " yen"; }
+  // "the first March 31 on or after the day the child reaches age N" (reaching age N = the day before the Nth birthday)
+  function lastMar(b, n) {
+    var reach = new Date(b.getFullYear() + n, b.getMonth(), b.getDate() - 1);
+    var y = reach.getMonth() > 2 || (reach.getMonth() === 2 && reach.getDate() > 31) ? reach.getFullYear() + 1 : reach.getFullYear();
+    return new Date(y, 2, 31);
+  }
+  // (calendar months Feb, Apr, Jun, Aug, Oct, Dec have index 1,3,5,7,9,11)
+  function payOf(m) { return (m % 12) % 2 === 0 ? m + 1 : m + 2; }
+
+  var N = 5;
+  var html = "";
+  for (var i = 0; i < N; i++) {
+    html += '<label class="f" for="k' + i + '">Child ' + (i + 1) + ': birth date' + (i === 0 ? '<span class="hint">Leave empty if you have fewer children</span>' : '') + '</label>' +
+      '<input type="date" id="k' + i + '">' +
+      '<label class="c"><input type="checkbox" id="s' + i + '" checked><span>Lives with us or we pay their living costs<small>Untick if this child is independent</small></span></label>';
+  }
+  $("kids").innerHTML = html;
+
+  function sync() {
+    var s = $("sit").value;
+    var lab = { birth: "Birth date", move: "Moving-in date (new city)", abroad: "Moving-in date (city in Japan)", check: "Today (or any date to check)", leave: "Moving-out date" }[s];
+    var hint = { birth: "The 15 days start the day after the birth", move: "The day you moved in (registered at the new city)", abroad: "The day you registered your address in Japan", check: "Leave empty to use today", leave: "The day you leave your address in Japan" }[s];
+    $("evlab").firstChild.textContent = lab;
+    $("evhint").textContent = hint;
+    $("appbox").hidden = !(s === "birth" || s === "move" || s === "abroad");
+  }
+  $("sit").addEventListener("change", sync);
+
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+
+  function amounts(kids, m) {
+    // kids sorted oldest first; returns per-kid info for month m
+    var counted = 0, out = [], total = 0;
+    kids.forEach(function (k) {
+      var e18 = mi(lastMar(k.b, 18)), e22 = mi(lastMar(k.b, 22));
+      var born = mi(k.b);
+      var elig = m > born && m <= e18;
+      var inCount = m >= born && (m <= e18 || (k.sup && m <= e22));
+      if (inCount) counted++;
+      var rank = inCount ? counted : 0;
+      var amt = 0;
+      if (elig) {
+        var u3 = m <= mi(new Date(k.b.getFullYear() + 3, k.b.getMonth(), 1));
+        amt = rank >= 3 ? 30000 : (u3 ? 15000 : 10000);
+      }
+      total += amt;
+      out.push({ k: k, elig: elig, rank: rank, amt: amt, past18: m > e18, inCount: inCount });
+    });
+    return { list: out, total: total };
+  }
+
+  function make() {
+    ["dates","money","pay","ahead","todo"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var s = $("sit").value, ev = parse($("ev").value) || (s === "check" ? today() : null);
+    var kids = [];
+    for (var i = 0; i < N; i++) { var b = parse($("k" + i).value); if (b) kids.push({ b: b, sup: $("s" + i).checked, n: i + 1 }); }
+    kids.sort(function (a, b) { return a.b - b.b; });
+    kids.forEach(function (k, j) { k.label = "Child born " + M[k.b.getMonth()] + " " + k.b.getFullYear(); });
+    var warn = [];
+    if (!ev) { $("vt").textContent = "Please enter the date."; $("vs").textContent = ""; $("warn").textContent = "- The deadline is counted from this date."; $("result").hidden = false; return true; }
+    if (!kids.length) { $("vt").textContent = "Please enter at least one child's birth date."; $("vs").textContent = ""; $("warn").textContent = "- The amount depends on each child's age and birth order."; $("result").hidden = false; return true; }
+    var civil = $("civil").checked, where = civil ? "your workplace" : "the city office where you live";
+    var start, vt, vs;
+
+    if (s === "birth" || s === "move" || s === "abroad") {
+      var app = parse($("app").value) || today();
+      var dl = add(ev, 15);
+      var onTime = app <= dl;
+      start = onTime ? mi(ev) + 1 : mi(app) + 1;
+      var lost = onTime ? 0 : start - (mi(ev) + 1);
+      vt = onTime ? "Apply by " + fmt(dl) + ". Paid from " + mon(start) + "." : "Late: paid from " + mon(start) + ", " + lost + " month" + (lost === 1 ? "" : "s") + " lost.";
+      vs = (s === "birth" ? "Birth" : "Moving in") + " on " + M[ev.getMonth()] + " " + ev.getDate() + ". The 15 days start the next day. Apply at " + where + ".";
+      put("dates", fmt(dl), "Deadline: apply within 15 days", "Submit the application (認定請求書, nintei seikyusho) at " + where + ". " + (s === "birth" ? "Also if the baby was born in another city (for example near family): apply where you live." : "The old city's allowance ends; you apply again at the new city."));
+      put("dates", fmt(app), onTime ? "You apply on time" : "You apply after the deadline", onTime ? "The allowance starts from the month after the " + (s === "birth" ? "birth" : "move") + "." : "The allowance starts from the month after the month you apply. The months before are not paid.");
+      put("dates", mon(start), "First month of the allowance", "From this month, each month is paid.");
+    } else if (s === "check") {
+      start = mi(ev);
+      vt = "Your amount for " + mon(start) + ".";
+      vs = "Based on the birth dates you entered. Changes ahead are listed below.";
+    } else {
+      start = mi(ev);
+      vt = "Tell the city before you move out. The last month is " + mon(start) + ".";
+      vs = "The allowance is for a parent with an address in Japan. It ends with the month the reason ends.";
+      put("dates", "Before " + fmt(ev), "Notice to the city (or workplace)", "Tell them you are moving abroad (海外への転出, kaigai e no tenshutsu). Ask when the last payment comes.");
+      put("dates", mon(start), "Last month of the allowance (if the whole family leaves)", "If a child stays in Japan with someone else, a different rule (a designated person in Japan) may apply. Ask the city.");
+    }
+
+    // money
+    var a = amounts(kids, start);
+    a.list.forEach(function (x) {
+      var why = x.elig ? (x.rank >= 3 ? "3rd child or later in the count: 30,000 yen" : (x.amt === 15000 ? "Under 3 (up to the month of the 3rd birthday)" : "3 years old to high school age")) : (x.past18 ? (x.inCount ? "Past high school age: no allowance, but counted for younger children" : "Past high school age and not counted") : "Not paid for this month");
+      put("money", x.inCount ? "Count: no. " + x.rank : "Not counted", x.k.label + ": " + yen(x.amt) + " a month", why + ".");
+    });
+    put("money", mon(start), "Total: " + yen(a.total) + " a month", "No income limit since October 2024. Paid for each month you are eligible.");
+
+    // payments
+    if (s !== "leave") {
+      var p1 = payOf(start);
+      put("pay", mon(p1), "First payment (usually)", "Covers " + (p1 - start === 1 ? mon(start) : mon(start) + " and " + mon(start + 1)) + ". If approval takes time, it can come with a later payment.");
+      put("pay", "Feb, Apr, Jun, Aug, Oct, Dec", "6 payments a year", "Each payment covers the 2 months before. Example: June pays April and May. The exact day depends on the city.");
+    } else {
+      put("pay", mon(payOf(start)), "Last payment (usually)", "The months up to " + mon(start) + ". A city can pay the last part outside the usual months. Keep a bank account open until it arrives, or ask the city.");
+    }
+
+    // changes ahead
+    var evs = [];
+    kids.forEach(function (k) {
+      var m3 = mi(new Date(k.b.getFullYear() + 3, k.b.getMonth(), 1));
+      var e18 = lastMar(k.b, 18), e22 = lastMar(k.b, 22);
+      if (m3 >= start) evs.push([m3 + 1, k.label + ": turns 3", "From " + mon(m3 + 1) + ", 10,000 yen (unless 3rd child or later)."]);
+      if (mi(e18) >= start) evs.push([mi(e18) + 1, k.label + ": high school age ends", "Last month " + mon(mi(e18)) + " (March 31, " + e18.getFullYear() + "). After that, counted only if you support them, until March 31, " + e22.getFullYear() + "."]);
+      else if (k.sup && mi(e22) >= start) evs.push([mi(e22) + 1, k.label + ": stops counting", "After March 31, " + e22.getFullYear() + ", younger children may move down in the count."]);
+    });
+    evs.sort(function (x, y) { return x[0] - y[0]; });
+    if (s === "leave") evs = [];
+    if (!evs.length) put("ahead", "", s === "leave" ? "Not shown" : "No changes found", s === "leave" ? "The allowance ends when you leave." : "");
+    evs.slice(0, 6).forEach(function (e) { put("ahead", mon(e[0]), e[1], e[2]); });
+    if (kids.some(function (k) { return mi(lastMar(k.b, 18)) < start && k.sup; }) && s !== "leave") put("ahead", "When you apply", "Paper for older children", "To count a child past high school age, the city asks for a confirmation form (監護相当・生計費の負担についての確認書).");
+
+    // todo
+    if (s === "birth" || s === "move" || s === "abroad") {
+      put("todo", "", "Bring to " + (civil ? "your workplace" : "the city office"), "The application form (at the counter), your residence card, My Number, a bank account, and proof of health insurance or pension. If you moved, an income certificate from the old city may be needed. Ask what your city needs.");
+      if (s === "move") put("todo", "", "Tell the old city too", "The allowance from the old city ends. Moving within the same city also needs a notice.");
+    }
+    put("todo", "", "Who applies", "The parent who supports the family more, usually the parent with the higher income. Both parents' situation is checked.");
+    put("todo", "", "Notices later", "Tell the city when your address, name, marital status or pension (job type) changes, when you stop raising a child, or when a child moves out or abroad. The yearly status report (genkyo todoke) is not needed in most cases since June 2022, unless the city asks.");
+
+    if ($("away").checked) warn.push("- A child living outside Japan is in principle not paid. A child studying abroad can be paid in some cases (lived in Japan more than 3 years before, not living with the parents, within 3 years). Ask the city.");
+    if ($("sep").checked) warn.push("- Parents living apart (talking about divorce): the parent living with the child can receive it, with proof. Ask the city what proof they accept.");
+    if (civil) warn.push("- Public servants: apply at the workplace. When you stop being a public servant, apply at the city within 15 days.");
+    warn.push("- Late application: the months before you apply are lost. Only the 15-day rule saves them.");
+    warn.push("- Residence status: this page does not judge your visa. The allowance needs an address in Japan for the parent and, in principle, the child.");
+    $("vt").textContent = vt; $("vs").textContent = vs; lines.unshift(vt);
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My child allowance plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  sync();
+  if (DEMO) {
+    $("ev").value = "2026-11-24"; $("app").value = "2026-12-03";
+    $("k0").value = "2007-06-10"; $("k1").value = "2019-02-03"; $("k2").value = "2026-11-24";
+    make();
+  }
+})();
+</script>
+</body>
+</html>
