@@ -82,7 +82,7 @@
     <div id="kids"></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="more">
     <h2>3. A few more questions</h2>
     <label class="c"><input type="checkbox" id="civil"><span>The higher earner of the parents is a public servant (komuin)<small>Public servants apply at their workplace, not the city office</small></span></label>
     <label class="c"><input type="checkbox" id="away"><span>A child lives outside Japan<small>For example with grandparents in your home country, or studying abroad</small></span></label>
@@ -139,11 +139,12 @@
   var N = 5;
   var html = "";
   for (var i = 0; i < N; i++) {
-    html += '<label class="f" for="k' + i + '">Child ' + (i + 1) + ': birth date' + (i === 0 ? '<span class="hint">Leave empty if you have fewer children</span>' : '') + '</label>' +
+    html += '<div id="kid' + i + '"><label class="f" for="k' + i + '">Child ' + (i + 1) + ': birth date' + (i === 0 ? '<span class="hint">Leave empty if you have fewer children</span>' : '') + '</label>' +
       '<input type="date" id="k' + i + '">' +
-      '<label class="c"><input type="checkbox" id="s' + i + '" checked><span>Lives with us or we pay their living costs<small>Untick if this child is independent</small></span></label>';
+      '<label class="c"><input type="checkbox" id="s' + i + '" checked><span>Lives with us or we pay their living costs<small>Untick if this child is independent</small></span></label></div>';
   }
   $("kids").innerHTML = html;
+  if (Q.indexOf("mihon") >= 0) { ["kid3", "kid4", "more"].forEach(function (id) { $(id).hidden = true; }); document.querySelector(".lead").hidden = true; }
 
   function sync() {
     var s = $("sit").value;
