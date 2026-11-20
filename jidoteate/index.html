@@ -209,7 +209,7 @@
       var lost = onTime ? 0 : start - (mi(ev) + 1);
       vt = onTime ? "Apply by " + fmt(dl) + ". Paid from " + mon(start) + "." : "Late: paid from " + mon(start) + ", " + lost + " month" + (lost === 1 ? "" : "s") + " lost.";
       vs = (s === "birth" ? "Birth" : "Moving in") + " on " + M[ev.getMonth()] + " " + ev.getDate() + ". The 15 days start the next day. Apply at " + where + ".";
-      put("dates", fmt(dl), "Deadline: apply within 15 days", "Submit the application (認定請求書, nintei seikyusho) at " + where + ". " + (s === "birth" ? "Also if the baby was born in another city (for example near family): apply where you live." : "The old city's allowance ends; you apply again at the new city."));
+      put("dates", fmt(dl), "Deadline: apply within 15 days", "Submit the application (認定請求書, nintei seikyusho) at " + where + ". " + (s === "birth" ? "Also if the baby was born in another city (for example near family): apply where you live." : civil ? "Public servants: tell your workplace about the new address and ask what it needs." : "The old city's allowance ends; you apply again at the new city."));
       put("dates", fmt(app), onTime ? "You apply on time" : "You apply after the deadline", onTime ? "The allowance starts from the month after the " + (s === "birth" ? "birth" : "move") + "." : "The allowance starts from the month after the month you apply. The months before are not paid.");
       put("dates", mon(start), "First month of the allowance", "From this month, each month is paid.");
     } else if (s === "check") {
@@ -258,19 +258,20 @@
 
     // todo
     if (s === "birth" || s === "move" || s === "abroad") {
-      put("todo", "", "Bring to " + (civil ? "your workplace" : "the city office"), "The application form (at the counter), your residence card, My Number, a bank account, and proof of health insurance or pension. If you moved, an income certificate from the old city may be needed. Ask what your city needs.");
-      if (s === "move") put("todo", "", "Tell the old city too", "The allowance from the old city ends. Moving within the same city also needs a notice.");
+      put("todo", "", "Bring to " + (civil ? "your workplace" : "the city office"), "The application form (at the counter), your residence card, My Number, a bank account, and proof of health insurance or pension. If you moved, an income certificate from the old city may be needed. Ask what " + (civil ? "your workplace" : "your city") + " needs.");
+      if (s === "move" && !civil) put("todo", "", "Tell the old city too", "The allowance from the old city ends. Moving within the same city also needs a notice.");
     }
-    put("todo", "", "Who applies", "The parent who supports the family more, usually the parent with the higher income. Both parents' situation is checked.");
+    if (s !== "leave") put("todo", "", "Who applies", "The parent who supports the family more, usually the parent with the higher income. Both parents' situation is checked.");
     put("todo", "", "Notices later", "Tell the city when your address, name, marital status or pension (job type) changes, when you stop raising a child, or when a child moves out or abroad. The yearly status report (genkyo todoke) is not needed in most cases since June 2022, unless the city asks.");
 
     if ($("away").checked) warn.push("- A child living outside Japan is in principle not paid. A child studying abroad can be paid in some cases (lived in Japan more than 3 years before, not living with the parents, within 3 years). Ask the city.");
     if ($("sep").checked) warn.push("- Parents living apart (talking about divorce): the parent living with the child can receive it, with proof. Ask the city what proof they accept.");
     if (civil) warn.push("- Public servants: apply at the workplace. When you stop being a public servant, apply at the city within 15 days.");
-    warn.push("- Late application: the months before you apply are lost. Only the 15-day rule saves them.");
+    if (s !== "leave" && s !== "check") warn.push("- Late application: the months before you apply are lost. Only the 15-day rule saves them.");
     warn.push("- Residence status: this page does not judge your visa. The allowance needs an address in Japan for the parent and, in principle, the child.");
     $("vt").textContent = vt; $("vs").textContent = vs; lines.unshift(vt);
     $("warn").textContent = warn.join("\n");
+    ["dates","todo"].forEach(function (id) { var e = $(id); e.hidden = !e.children.length; e.previousElementSibling.hidden = e.hidden; });
     $("result").hidden = false;
     return true;
   }
