@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Health Insurance Dependent Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item.bad { background: var(--warn-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Join your family's health insurance? Dependent checker</h1>
+  <p class="lead">For people in Japan who leave a job (or work little) and want to join a spouse's or family member's company health insurance as a dependent (fuyo, 扶養). Enter your situation. You get the income rules that apply to you, a rough yes / no, the dates, the papers, and what unemployment benefit changes. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. You and the family member</h2>
+    <label class="f" for="last">Your last working day (if you are leaving a job)<span class="hint">Leave empty if you are not leaving a job</span></label>
+    <input type="date" id="last">
+    <label class="f" for="rel">The insured family member is your...<span class="hint">The person who works and has company health insurance</span></label>
+    <select id="rel">
+      <option value="sp">Spouse (husband or wife)</option>
+      <option value="pc">Parent, child, grandparent, grandchild, brother or sister</option>
+      <option value="ot">Other relative (aunt, uncle, in-law...)</option>
+    </select>
+    <label class="f" for="liv">Do you live together?</label>
+    <select id="liv">
+      <option value="y">Yes, same address</option>
+      <option value="n">No, separate addresses</option>
+    </select>
+    <label class="f" for="age">Your age on December 31 of this year</label>
+    <select id="age">
+      <option value="u19">Under 19</option>
+      <option value="1922">19 to 22</option>
+      <option value="2359">23 to 59</option>
+      <option value="60">60 or older</option>
+    </select>
+    <label class="f" for="dis">Do you get a disability pension (or are you at that level)?</label>
+    <select id="dis">
+      <option value="n">No</option>
+      <option value="y">Yes</option>
+    </select>
+    <label class="f" for="res">Will you have a resident registration (address) in Japan?</label>
+    <select id="res">
+      <option value="y">Yes, I live in Japan</option>
+      <option value="n">No, I live abroad</option>
+    </select>
+    <label class="f" for="ins">The family member's insurer<span class="hint">The name on their insurance card or "shikaku joho no oshirase"</span></label>
+    <select id="ins">
+      <option value="kk">Kyokai Kenpo (全国健康保険協会)</option>
+      <option value="ku">A health insurance union (健康保険組合) or other</option>
+      <option value="x">Not sure</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Money for the next 12 months</h2>
+    <label class="f" for="inc">Your expected income for the next 12 months, in yen<span class="hint">Part-time pay, pensions, sick leave pay... Not last year's income. Enter 0 if none</span></label>
+    <input type="number" id="inc" min="0" step="1000" inputmode="numeric" placeholder="e.g. 900000">
+    <label class="f" for="fin">The family member's yearly income, in yen<span class="hint">Used for the "less than half" rule when you live together</span></label>
+    <input type="number" id="fin" min="0" step="1000" inputmode="numeric" placeholder="e.g. 5000000">
+    <label class="f" for="rem">If you live apart: money they send you in a year, in yen</label>
+    <input type="number" id="rem" min="0" step="1000" inputmode="numeric" placeholder="e.g. 1200000">
+    <label class="f" for="ub">Will you claim unemployment benefit (kihon teate)?</label>
+    <select id="ub">
+      <option value="n">No</option>
+      <option value="y">Yes</option>
+      <option value="x">Not sure yet</option>
+    </select>
+    <label class="f" for="day">Daily benefit amount, in yen (if you know it)<span class="hint">基本手当日額. On the Hello Work eligibility card</span></label>
+    <input type="number" id="day" min="0" step="1" inputmode="numeric" placeholder="e.g. 4500">
+  </div>
+  <button id="make" type="button">Check my case</button>
+  <p class="err" id="err" hidden>Please enter your expected income (0 if none).</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Income checks</h3>
+    <div id="chk"></div>
+    <h3>Dates</h3>
+    <div id="dead"></div>
+    <h3>Papers that are often asked for</h3>
+    <div id="doc"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">A guide based on pages of the Japan Pension Service on dependents of employees' health insurance and Category 3 of the National Pension, and city pages on National Health Insurance (checked November 2026). The insurer decides; health insurance unions can ask for other papers. Weekends and holidays are not counted here. Please confirm with the family member's company and insurer.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function yen(n) { return Math.round(n).toLocaleString("en-US") + " yen"; }
+  var DAYMAX = 3611; // Japan Pension Service: unemployment benefit daily amount of 3,611 yen or less (3,612+ : removal while paid)
+
+  var lines = [];
+  function put(box, date, title, sub, bad) {
+    var el = document.createElement("div"); el.className = "item" + (bad ? " bad" : "");
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var incV = $("inc").value;
+    if (incV === "") { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["chk","dead","doc"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var rel = $("rel").value, liv = $("liv").value, age = $("age").value, dis = $("dis").value, res = $("res").value, ins = $("ins").value;
+    var inc = Math.floor(+incV || 0), fin = Math.floor(+$("fin").value || 0), rem = Math.floor(+$("rem").value || 0);
+    var ub = $("ub").value, day = Math.floor(+$("day").value || 0);
+    var lastV = $("last").value;
+
+    // limit
+    var lim = 1300000, limWhy = "the basic limit";
+    if (age === "60" || dis === "y") { lim = 1800000; limWhy = "60 or older, or disability-pension level"; }
+    else if (age === "1922" && rel !== "sp") { lim = 1500000; limWhy = "aged 19 to 22 and not the spouse (from October 2025)"; }
+    var mon = Math.floor((lim - 1) / 12);
+
+    var bad = 0, unsure = 0;
+    // relation / living
+    if (rel === "ot" && liv === "n") { bad++; put("chk", "", "Relation: other relatives must live together", "Aunts, uncles, nieces, nephews, in-laws and other relatives within the 3rd degree count only if they live with the insured person.", true); }
+    else put("chk", "", "Relation: OK", rel === "ot" ? "Other relatives within the 3rd degree count if they live with the insured person." : "Spouse, parents, children, grandparents, grandchildren, brothers and sisters can count even if they live apart.");
+    if (res === "n") { bad++; put("chk", "", "Address in Japan: needed", "Since April 2020, a dependent needs a resident registration in Japan. Exceptions exist (for example studying abroad, or going with the insured person who is posted abroad), with papers. Ask the insurer.", true); }
+
+    // income limit
+    if (inc < lim) put("chk", "", "Income limit: " + yen(inc) + " is under " + yen(lim), "Your limit is " + yen(lim) + " a year (" + limWhy + "). For salary, about " + yen(mon) + " a month or less.");
+    else { bad++; put("chk", "", "Income limit: " + yen(inc) + " is NOT under " + yen(lim), "Your limit is " + yen(lim) + " a year (" + limWhy + "). It is the expected income for the next 12 months, not last year's.", true); }
+
+    // half / remittance
+    if (liv === "y") {
+      if (fin > 0) {
+        if (inc * 2 < fin) put("chk", "", "Less than half of their income: OK", yen(inc) + " is under half of " + yen(fin) + ".");
+        else { unsure++; put("chk", "", "Less than half of their income: NOT met", yen(inc) + " is not under half of " + yen(fin) + ". The Japan Pension Service says it may still accept you if the insured person is the main earner of the household and earns more than you. Ask.", true); }
+      } else { unsure++; put("chk", "", "Less than half of their income: enter their income", "When you live together, your income must also be under half of theirs."); }
+    } else {
+      if (rem > 0) {
+        if (inc < rem) put("chk", "", "Less than what they send you: OK", yen(inc) + " is under the " + yen(rem) + " they send in a year. Keep bank records of the transfers.");
+        else { bad++; put("chk", "", "Less than what they send you: NOT met", "When you live apart, your income must be under the money they send you (" + yen(rem) + ").", true); }
+      } else { unsure++; put("chk", "", "Living apart: enter the money they send", "Your income must be under the money they send you. Bank records or registered-mail receipts are used as proof."); }
+    }
+
+    // unemployment benefit
+    var ubBlock = false;
+    if (ub === "y" || ub === "x") {
+      if (day > 0 && day <= DAYMAX) put("chk", "", "Unemployment benefit: " + yen(day) + " a day is within the line", "A daily amount of 3,611 yen or less is within the income rule. The benefit still counts as income.");
+      else if (day > DAYMAX) { ubBlock = true; put("chk", "", "Unemployment benefit: " + yen(day) + " a day is over the line", "While a daily amount of 3,612 yen or more is paid, you cannot stay a dependent. During the waiting period before payments start, you can. When payments start, the family member's company files a removal.", true); }
+      else { unsure++; put("chk", "", "Unemployment benefit: check the daily amount", "3,611 yen a day or less: within the rule. 3,612 yen or more: you cannot be a dependent while it is paid (the waiting period before payments is OK). The amount is on your Hello Work card."); }
+    }
+
+    // verdict
+    var vt, vs;
+    if (bad > 0) { vt = "As entered, you probably cannot be a dependent now."; vs = "Join National Health Insurance (and National Pension if you are 20 to 59) at the city office. If your situation changes (income drops, benefit ends), you can apply then."; }
+    else if (ubBlock) { vt = "Likely yes, but not while the benefit is paid."; vs = "You can be a dependent from leaving until payments start. While it is paid, you need National Health Insurance. When the benefit ends, you can apply again."; }
+    else if (unsure > 0) { vt = "Possibly yes. A few points need checking."; vs = "Look at the items marked below, then ask the family member to ask their HR."; }
+    else { vt = "Likely yes, as entered."; vs = "The family member asks their company to file the dependent notice. The insurer decides."; }
+    if (ins !== "kk") vs += "\nTheir insurer is a union (or not sure): unions can ask for their own papers. Ask HR.";
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.unshift(vt);
+
+    // dates
+    if (lastV) {
+      var L = parse(lastV), loss = add(L, 1);
+      put("dead", "From " + fmt(loss), "Your own company insurance ends", "The day after your last day. Hand back your card or papers to the company.");
+      if (!bad) {
+        put("dead", "By " + fmt(add(loss, 4)), "Family member's company files the dependent notice", "The rule is within 5 days of the event. Your family member hands HR the papers; HR files it. If it is filed more than 60 days late, more proof is asked for.");
+      }
+      put("dead", "By " + fmt(add(loss, 13)), "If you will NOT be a dependent: join National Health Insurance", "Cities ask you to join within 14 days from the day your company insurance ended. Coverage and premiums go back to that day.");
+      if (ubBlock) put("dead", "When payments start", "Removal notice, then National Health Insurance", "The family member's company files the removal. You join National Health Insurance (and National Pension) at the city office.", true);
+      if (ub === "y" || ub === "x") put("dead", "When the benefit ends", "You can apply again", "The Hello Work eligibility card (or its copy) is used to show the benefit has ended.");
+    } else {
+      put("dead", "Within 5 days of the event", "Family member's company files the dependent notice", "The event is, for example, your income dropping or your job ending. More than 60 days late: more proof is asked for.");
+    }
+    if (rel === "sp" && age !== "60" && age !== "u19") put("dead", "Same form", "National Pension Category 3", "A spouse aged 20 to 59 who is a dependent of a company employee usually becomes Category 3: no pension premium to pay yourself. With Kyokai Kenpo, the same form does both. With a union, the company files the Category 3 notice to the Japan Pension Service separately.");
+    else if (rel === "sp" && age === "60") put("dead", "", "Pension: Category 3 is for ages 20 to 59", "At 60 or older, you are not in Category 3. Health insurance as a dependent can still be possible.");
+    else put("dead", "", "Pension: not included", "Only a spouse can be Category 3. If you are 20 to 59, join National Pension at the city office.");
+    if (!lastV || !bad) put("dead", "When things change", "Tell them when you stop being a dependent", "For example a new job with insurance, or income going over the limit. The company files the removal; you join your own insurance.");
+
+    // papers
+    put("doc", "", "Proof of the relationship", "Family register (koseki) or residence record (juminhyo copy, without My Number, issued within 90 days). Often not needed if both My Numbers are on the form and the company confirms the relationship.");
+    if (lastV) put("doc", "", "Proof that your income stopped", "Certificate of leaving (taishoku shomeisho) or a copy of the separation notice (rishokuhyo). Not needed if the family member's company already treats you as a tax dependent; their company decides.");
+    if (ub === "y" || ub === "x") put("doc", "", "Unemployment benefit papers", "A copy of the Hello Work eligibility card (koyo hoken jukyu shikakusha sho) or its notice. It shows the daily amount and the dates.");
+    put("doc", "", "Income for other cases", "Tax certificate (kazei shomeisho), pension notice, or the latest tax return. Non-taxable money (sick leave pay, survivors' pension...) needs the notice showing the amount.");
+    if (liv === "n") put("doc", "", "Proof of money sent", "Copies of bank book pages (name, dates, amounts) or registered-mail receipts.");
+    if (inc > 0) put("doc", "", "Salary only, from April 2026", "If your only income is salary, the insurer can judge it from your labor contract (rodo joken tsuchisho or koyo keiyakusho). Not for contracts under 1 year, unclear shifts, or unclear allowances.");
+
+    var warn = [];
+    warn.push("- 'Income' is what you expect for the next 12 months from the day you become a dependent, not last year's total.");
+    warn.push("- Unemployment benefit, pensions, sick leave pay and maternity pay count as income.");
+    warn.push("- If you joined National Health Insurance first, tell the city when you become a dependent, so it can be ended.");
+    warn.push("- A tax dependent and a health insurance dependent are different rules. Being one does not mean the other.");
+    if (rel === "sp") warn.push("- If both of you work, children go on the plan of the parent with the higher income.");
+    $("warn").textContent = warn.join("\n");
+    lines.push("Watch out:"); warn.forEach(function (w) { lines.push(w); });
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Health insurance dependent: my check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  window.__check = make;
+  if (DEMO) { $("last").value = "2027-03-31"; $("rel").value = "sp"; $("liv").value = "y"; $("age").value = "2359"; $("dis").value = "n"; $("res").value = "y"; $("ins").value = "kk"; $("inc").value = "0"; $("fin").value = "5000000"; $("ub").value = "y"; $("day").value = "4500"; make(); }
+})();
+</script>
+</body>
+</html>
