@@ -226,13 +226,13 @@
       put("dead", "By " + fmt(add(loss, 13)), "If you will NOT be a dependent: join National Health Insurance", "Cities ask you to join within 14 days from the day your company insurance ended. Coverage and premiums go back to that day.");
       if (ubBlock) put("dead", "When payments start", "Removal notice, then National Health Insurance", "The family member's company files the removal. You join National Health Insurance (and National Pension) at the city office.", true);
       if (ub === "y" || ub === "x") put("dead", "When the benefit ends", "You can apply again", "The Hello Work eligibility card (or its copy) is used to show the benefit has ended.");
-    } else {
+    } else if (!bad) {
       put("dead", "Within 5 days of the event", "Family member's company files the dependent notice", "The event is, for example, your income dropping or your job ending. More than 60 days late: more proof is asked for.");
     }
     if (rel === "sp" && age !== "60" && age !== "u19") put("dead", "Same form", "National Pension Category 3", "A spouse aged 20 to 59 who is a dependent of a company employee usually becomes Category 3: no pension premium to pay yourself. With Kyokai Kenpo, the same form does both. With a union, the company files the Category 3 notice to the Japan Pension Service separately.");
     else if (rel === "sp" && age === "60") put("dead", "", "Pension: Category 3 is for ages 20 to 59", "At 60 or older, you are not in Category 3. Health insurance as a dependent can still be possible.");
     else put("dead", "", "Pension: not included", "Only a spouse can be Category 3. If you are 20 to 59, join National Pension at the city office.");
-    if (!lastV || !bad) put("dead", "When things change", "Tell them when you stop being a dependent", "For example a new job with insurance, or income going over the limit. The company files the removal; you join your own insurance.");
+    if (!bad) put("dead", "When things change", "Tell them when you stop being a dependent", "For example a new job with insurance, or income going over the limit. The company files the removal; you join your own insurance.");
 
     // papers
     put("doc", "", "Proof of the relationship", "Family register (koseki) or residence record (juminhyo copy, without My Number, issued within 90 days). Often not needed if both My Numbers are on the form and the company confirms the relationship.");
