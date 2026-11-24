@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Re-Employment Allowance Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item.bad { background: var(--warn-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Found a job early? Re-employment allowance checker</h1>
+  <p class="lead">For people in Japan who were approved for the basic allowance (unemployment benefit) at Hello Work and found a new job. Enter your dates and numbers. You get the days left, the rate (60% or 70%), a rough amount, the deadline to apply, and the conditions to check. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your Hello Work dates</h2>
+    <label class="f" for="last">Last working day at the old job<span class="hint">As on the rishokuhyo</span></label>
+    <input type="date" id="last">
+    <label class="f" for="dec">Day Hello Work approved you (jukyu shikaku kettei)<span class="hint">Usually the day you first applied. It is on your eligibility card</span></label>
+    <input type="date" id="dec">
+    <label class="f" for="res">Restriction for your reason for leaving (kyufu seigen)</label>
+    <select id="res">
+      <option value="0">None (company reasons or a valid reason)</option>
+      <option value="1">1 month (own reasons)</option>
+      <option value="3">3 months</option>
+      <option value="t">There was one, but training lifted it</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your benefit numbers</h2>
+    <label class="f" for="days">Prescribed number of days (shotei kyufu nissu)<span class="hint">On your eligibility card</span></label>
+    <select id="days">
+      <option>90</option><option>120</option><option>150</option><option>180</option><option>210</option>
+      <option>240</option><option>270</option><option>300</option><option>330</option><option>360</option>
+    </select>
+    <label class="f" for="daily">Daily benefit amount in yen (kihon teate nichigaku)<span class="hint">On your eligibility card. Leave empty if you do not know: you still get the days and the rate</span></label>
+    <input type="number" id="daily" min="0" step="1" inputmode="numeric" placeholder="e.g. 5000">
+    <label class="f" for="age">Your age on your last working day</label>
+    <select id="age">
+      <option value="u60">Under 60</option>
+      <option value="60">60 to 64</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>3. The new job</h2>
+    <label class="f" for="job">First day at the new job</label>
+    <input type="date" id="job">
+    <label class="f" for="route">How you found it</label>
+    <select id="route">
+      <option value="hw">Through Hello Work or a licensed job agency</option>
+      <option value="other">On my own (job site, friend, direct application)</option>
+    </select>
+    <label class="f" for="len">How long is the job?</label>
+    <select id="len">
+      <option value="long">Permanent, or likely to last more than 1 year</option>
+      <option value="short">1 year or less, renewal not expected</option>
+      <option value="x">Not sure</option>
+    </select>
+    <label class="f" for="ins">Will you be in employment insurance there?<span class="hint">In general, 20+ hours a week and expected to work 31+ days</span></label>
+    <select id="ins">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="x">Not sure</option>
+    </select>
+    <label class="f" for="chk">Any of these true?</label>
+    <select id="chk">
+      <option value="none">None of these</option>
+      <option value="same">It is my old employer, or a company closely tied to it</option>
+      <option value="offer">I had the job offer before I applied at Hello Work</option>
+      <option value="past">I got this allowance (or a similar one) in the last 3 years</option>
+    </select>
+  </div>
+  <button id="make" type="button">Check my case</button>
+  <p class="err" id="err" hidden>Please enter the three dates. The approval day must be after your last working day, and the first day at work after the approval day.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Days and amount</h3>
+    <div id="calc"></div>
+    <h3>Dates</h3>
+    <div id="dates"></div>
+    <h3>Conditions</h3>
+    <div id="cond"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">A guide based on pages of the Ministry of Health, Labour and Welfare and Hello Work, and the Hello Work leaflet on the re-employment allowance (checked November 2026). The amount is a rough estimate: the days actually paid, the upper limit of the daily amount (changed every August 1) and whether you qualify are decided by Hello Work. Your case may differ. Please confirm with the Hello Work for your home address.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addMonths(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function diff(a, b) { return Math.round((b - a) / 86400000); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function yen(n) { return n.toLocaleString("en-US") + " yen"; }
+  var CAP = { u60: 6745, "60": 5454 }; // Hello Work: upper limit of the daily amount for this allowance (until July 31, 2027)
+
+  var lines = [];
+  function put(box, date, title, sub, bad) {
+    var el = document.createElement("div"); el.className = "item" + (bad ? " bad" : "");
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value, dv = $("dec").value, jv = $("job").value;
+    if (!v || !dv || !jv || parse(dv) <= parse(v) || parse(jv) <= parse(dv)) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["calc","dates","cond"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), D = parse(dv), J = parse(jv);
+    var res = $("res").value, days = +$("days").value, daily = Math.floor(+$("daily").value || 0), age = $("age").value;
+    var route = $("route").value, len = $("len").value, ins = $("ins").value, chk = $("chk").value;
+
+    var wEnd = add(D, 6);                 // 7-day waiting period, approval day included
+    var afterW = add(wEnd, 1);
+    var refEnd = add(addMonths(afterW, 1), -1);   // 1 month after the waiting period
+    var months = (res === "1") ? 1 : (res === "3" ? 3 : 0);
+    var payFrom = afterW, rEnd = null;
+    if (months > 0) { rEnd = add(addMonths(afterW, months), -1); payFrom = add(rEnd, 1); }
+    var dayBefore = add(J, -1);
+    var paid = Math.max(0, diff(payFrom, dayBefore) + 1);
+    if (paid > days) paid = days;
+    var left = days - paid;
+    var recvEnd = addMonths(L, 12);       // receiving period: 1 year from the day after the last day
+    var toEnd = diff(J, recvEnd) + 1;
+    var capped = false;
+    if (toEnd < left) { left = Math.max(0, toEnd); capped = true; }
+    var rate = 0;
+    if (left * 3 >= days * 2) rate = 70; else if (left * 3 >= days) rate = 60;
+
+    var stop = [];
+    if (J <= wEnd) stop.push("You start work during the 7-day waiting period. The allowance is for jobs that start after it ends.");
+    var hasRes = (res !== "0");
+    if (hasRes && J >= afterW && J <= refEnd && route === "other") stop.push("You had a restriction and start within 1 month after the waiting period. In that month, only jobs found through Hello Work or a licensed agency count.");
+    if (rate === 0 && J > wEnd) stop.push("Days left are less than 1/3 of your prescribed days (" + Math.ceil(days / 3) + " needed).");
+    if (len === "short") stop.push("The job must be expected to last more than 1 year.");
+    if (ins === "no") stop.push("In principle, you must be in employment insurance at the new job.");
+    if (chk === "same") stop.push("A job at your old employer, or a company closely tied to it, does not count.");
+    if (chk === "offer") stop.push("A job offered before your Hello Work approval does not count.");
+    if (chk === "past") stop.push("If you got this allowance or the regular-employment preparation allowance for a job in the last 3 years, it does not count.");
+
+    var vt, vs;
+    var amt = 0, useDaily = 0;
+    if (daily > 0) { useDaily = Math.min(daily, CAP[age]); amt = Math.floor(useDaily * left * rate / 100); }
+    if (stop.length) {
+      vt = "Looks like you may not qualify.";
+      vs = stop.join("\n") + "\nAsk Hello Work before you give up: it decides.";
+    } else {
+      vt = "Possible: " + rate + "% of " + left + " days left" + (amt ? " = about " + yen(amt) + "." : ".");
+      vs = "If Hello Work agrees with all the conditions. Apply by " + fmt(addMonths(J, 1)) + "." + (ins === "x" || len === "x" ? "\nSome answers were \"not sure\": check them (see Conditions)." : "");
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("calc", "", "Days already paid (estimate): " + paid, "From " + fmt(payFrom) + " to the day before your first day (" + fmt(dayBefore) + "). Only days covered by a recognition day are paid, so go to Hello Work before you start work.");
+    put("calc", "", "Days left: " + left + " of " + days + (capped ? " (limited by the receiving period)" : ""), capped ? "The days left cannot be more than the days from your first day to the end of the receiving period (" + fmt(recvEnd) + ")." : "Days left = prescribed days minus days paid up to the day before your first day.");
+    put("calc", "", "Rate: " + (rate ? rate + "%" : "none"), "2/3 or more left (" + Math.ceil(days * 2 / 3) + "+ days): 70%. 1/3 or more (" + Math.ceil(days / 3) + "+ days): 60%. Less: no allowance.", rate === 0);
+    if (daily > 0) {
+      put("calc", "", "Rough amount: " + yen(amt), yen(useDaily) + " x " + left + " days x " + rate + "%" + (daily > CAP[age] ? ". Your daily amount is above the limit for this allowance (" + yen(CAP[age]) + "), so the limit is used." : ".") + " Yen below 1 are cut.");
+    } else {
+      put("calc", "", "Amount: enter your daily amount", "Daily amount x days left x " + (rate || 0) + "%. For this allowance the daily amount has an upper limit (" + yen(CAP[age]) + " for your age group, until July 31, 2027).");
+    }
+    if (rate === 70) {
+      var at60 = days - Math.ceil(days * 2 / 3);
+      put("calc", "", "Starting later lowers the rate", "If more than " + at60 + " days are paid before you start, the rate drops to 60%.");
+    }
+
+    put("dates", fmt(D) + " to " + fmt(wEnd), "7-day waiting period", "Work that starts in these days does not count.");
+    if (months > 0) put("dates", fmt(afterW) + " to " + fmt(rEnd), months + "-month restriction", "No basic allowance for these days. You can still get the re-employment allowance for a job found here (see the next line).");
+    if (hasRes) put("dates", fmt(afterW) + " to " + fmt(refEnd), "Only Hello Work or a licensed agency counts", "For people with a restriction (also if training lifted it): a job that starts in this month counts only if found through Hello Work or a licensed agency. After it, any route counts.");
+    put("dates", "Before " + fmt(J), "Go to Hello Work before your first day", "Get the recognition up to the day before your first day and ask for the application form. Hello Work tells you what to bring.");
+    put("dates", "By " + fmt(addMonths(J, 1)), "Apply for the re-employment allowance", "Within 1 month from the day after your first day. In person, by an agent, or by mail.");
+    put("dates", "Ends on " + fmt(recvEnd), "End of your receiving period", "1 year from the day after your last working day.");
+    put("dates", "After " + fmt(addMonths(J, 6)), "6 months later: a possible top-up", "If you stay 6+ months and the pay is lower than before, ask Hello Work about the employment settlement allowance (shugyo sokushin teichaku teate).");
+
+    put("cond", "", "Start after the 7-day waiting period", J > wEnd ? "Looks met." : "Not met.", J <= wEnd);
+    put("cond", "", "1/3 or more of the days left", rate ? "Looks met (" + left + " of " + days + ")." : "Not met.", !rate);
+    put("cond", "", "Expected to work more than 1 year", len === "long" ? "Looks met." : (len === "short" ? "Not met." : "Check your contract. Fixed-term jobs where renewal is not expected do not count."), len === "short");
+    put("cond", "", "In employment insurance at the new job", ins === "yes" ? "Looks met." : (ins === "no" ? "Not met (in principle)." : "Ask the new employer."), ins === "no");
+    put("cond", "", "Not your old employer or a related company", chk === "same" ? "Not met." : "Looks met.", chk === "same");
+    put("cond", "", "No job offer before your approval", chk === "offer" ? "Not met." : "Looks met.", chk === "offer");
+    put("cond", "", "No such allowance in the last 3 years", chk === "past" ? "Not met." : "Looks met.", chk === "past");
+    if (hasRes) put("cond", "", "Route in the first month after waiting", (J >= afterW && J <= refEnd) ? (route === "hw" ? "Looks met (Hello Work or agency)." : "Not met (found on your own).") : "Your start day is after that month: any route counts.", hasRes && J >= afterW && J <= refEnd && route === "other");
+
+    var warn = [];
+    warn.push("- If you start work without going to Hello Work first, the days before your start may not be counted. Tell Hello Work your start day as soon as it is decided.");
+    warn.push("- The 1-month deadline is short. Ask the new employer early to fill in its part of the form, if Hello Work asks for it.");
+    warn.push("- If you missed the deadline, MHLW says some benefits can still be claimed within the 2-year time limit. Ask Hello Work.");
+    warn.push("- If you leave the new job and are unemployed again, you may get the days left minus the allowance part. Ask Hello Work.");
+    warn.push("- Your visa: if you changed jobs, a 14-day notice to immigration may apply. Check your status of residence.");
+    $("warn").textContent = warn.join("\n");
+    lines.push("Watch out:"); warn.forEach(function (w) { lines.push(w); });
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Re-employment allowance: my check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  window.__check = make;
+  if (DEMO) { $("last").value = "2026-12-25"; $("dec").value = "2027-01-12"; $("res").value = "1"; $("days").value = "90"; $("daily").value = "5000"; $("age").value = "u60"; $("job").value = "2027-03-01"; $("route").value = "other"; $("len").value = "long"; $("ins").value = "yes"; $("chk").value = "none"; make(); }
+})();
+</script>
+</body>
+</html>
