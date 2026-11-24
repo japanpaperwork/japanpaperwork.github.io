@@ -127,12 +127,12 @@
     $(box).appendChild(el);
     lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
   }
-  function showExp() { var s = $("st").value; $("expBox").hidden = (s === "pr" || s === "spr"); }
+  function showExp() { var s = $("st").value; $("expBox").hidden = (s === "pr" || s === "spr" || s === "tmp"); }
   $("st").addEventListener("change", showExp);
 
   function make() {
     var st = $("st").value, dv = $("dep").value, rv = $("ret").value, ev = $("exp").value, pend = $("pend").value === "yes", pv = $("pp").value;
-    var needExp = !(st === "pr" || st === "spr");
+    var needExp = (st === "mid" || st === "m3");
     if (!dv || !rv || (needExp && !ev)) { $("err").hidden = false; return false; }
     $("err").hidden = true;
     ["before","air","back"].forEach(function (id) { $(id).innerHTML = ""; });
