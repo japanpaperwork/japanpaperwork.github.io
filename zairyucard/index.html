@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Residence Card Planner: Renew, Replace or Update, and Your Deadline | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn, .mihon #route, .mihon #by { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Residence card planner: renew, replace or update, and your deadline</h1>
+  <p class="lead">Choose what happened to your residence card and enter the date. You see which application it is, the window or the deadline, what to bring to the immigration office, who can go for you, and the warnings for your case. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. What happened</h2>
+    <label class="f" for="sit">Your situation</label>
+    <select id="sit">
+      <option value="pr">My card's validity date is coming (permanent resident / Highly Skilled Professional (ii))</option>
+      <option value="k16">My child's card ends on their 16th birthday (card issued by June 13, 2026)</option>
+      <option value="lost">I lost my card, or it was stolen</option>
+      <option value="fire">My card was lost in a fire or disaster</option>
+      <option value="dmg">My card is badly damaged, or the IC chip does not work</option>
+      <option value="chg">My name, nationality, date of birth or gender changed</option>
+      <option value="stay">My period of stay is ending (work, student, spouse...)</option>
+    </select>
+  </div>
+
+  <div class="card" id="dates">
+    <h2>2. The date</h2>
+    <div id="boxExp">
+      <label class="f" for="exp">Card valid until<span class="hint">The card's own validity date (このカードは…まで有効 / 有効期限), not a period of stay</span></label>
+      <input type="date" id="exp">
+      <label class="f" for="away">Will you be abroad for a long time during the 3 months before that date?</label>
+      <select id="away">
+        <option value="no">No</option>
+        <option value="yes">Yes (work trip, study abroad...)</option>
+      </select>
+    </div>
+    <div id="boxLost">
+      <label class="f" for="knew">Day you noticed the card was gone</label>
+      <input type="date" id="knew">
+      <label class="f" for="abr">Where were you when you noticed?</label>
+      <select id="abr">
+        <option value="jp">In Japan</option>
+        <option value="ab">Abroad</option>
+      </select>
+      <div id="boxEnt">
+        <label class="f" for="ent">Day you came back to Japan<span class="hint">The first entry after you noticed</span></label>
+        <input type="date" id="ent">
+      </div>
+      <label class="f" for="pol" id="polLab">Have you reported it to the police?</label>
+      <select id="pol">
+        <option value="no">Not yet</option>
+        <option value="yes">Yes, I have the report number</option>
+      </select>
+    </div>
+    <div id="boxChg">
+      <label class="f" for="cd">Day the change happened<span class="hint">For example, the day the marriage or the new nationality took effect</span></label>
+      <input type="date" id="cd">
+    </div>
+    <div id="boxDmg">
+      <label class="f" for="ord">Did the immigration office order you to apply for a new card?</label>
+      <select id="ord">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+      <div id="boxOrd">
+        <label class="f" for="od">Day you got the order</label>
+        <input type="date" id="od">
+      </div>
+    </div>
+    <label class="f" for="who">Who will go to the office?</label>
+    <select id="who">
+      <option value="me">Me (16 or older)</option>
+      <option value="fam">A family member (16+) who lives with me</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter the date for your situation.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="ng" id="route" style="background:var(--accent-soft);color:var(--text)"></div>
+    <h3>Your window or deadline</h3>
+    <div class="ng" id="by" style="background:var(--accent-soft);color:var(--text);font-weight:700"></div>
+    <h3>Before you go</h3>
+    <div id="before"></div>
+    <h3>At the immigration office</h3>
+    <div id="office"></div>
+    <h3>After</h3>
+    <div id="after"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of the Immigration Services Agency of Japan (renewal of the residence card's validity, reissue after loss, reissue after damage, notice of changes other than address, return of residence cards, and the residence card guide, checked November 2026). "Within 14 days" is shown one day early, to be safe. This page does not decide your case. Office hours and days can differ by office. Confirm with the regional immigration office or the Immigration Services Information Center (0570-013904).<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function addM(d, k) { var t = new Date(d.getFullYear(), d.getMonth() + k, 1); var last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate(); return new Date(t.getFullYear(), t.getMonth(), Math.min(d.getDate(), last)); }
+  function addD(d, k) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + k); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function show() {
+    var s = $("sit").value;
+    $("boxExp").hidden = !(s === "pr" || s === "k16");
+    $("away").parentNode.querySelector('label[for=away]').hidden = (s !== "pr");
+    $("away").hidden = (s !== "pr");
+    $("boxLost").hidden = !(s === "lost" || s === "fire");
+    $("pol").hidden = $("polLab").hidden = (s !== "lost");
+    $("boxEnt").hidden = $("abr").value !== "ab";
+    $("boxChg").hidden = s !== "chg";
+    $("boxDmg").hidden = s !== "dmg";
+    $("boxOrd").hidden = $("ord").value !== "yes";
+    $("dates").hidden = (s === "stay");
+  }
+  ["sit","abr","ord"].forEach(function (id) { $(id).addEventListener("change", show); });
+
+  function make() {
+    var s = $("sit").value, who = $("who").value;
+    var need = { pr: "exp", k16: "exp", lost: "knew", fire: "knew", chg: "cd" }[s];
+    if (need && !$(need).value) { $("err").hidden = false; return false; }
+    if ((s === "lost" || s === "fire") && $("abr").value === "ab" && !$("ent").value) { $("err").hidden = false; return false; }
+    if (s === "dmg" && $("ord").value === "yes" && !$("od").value) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["before","office","after"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [], route = "", byText = "";
+    var free = "No fee. The standard processing time is the same day (in principle).";
+    var photo = "1 photo that meets the official size rules, attached to the form";
+
+    if (s === "stay") {
+      route = "This is not a residence card application. When your period of stay ends, you apply for an extension of your period of stay (a visa renewal). The new card comes with that permission.";
+      byText = "Renewal can be filed from 3 months before your period of stay ends";
+      put("before", "", "Prepare the visa renewal papers", "The papers depend on your status. There is a separate note on visa renewal.");
+      put("office", "", "Apply at the immigration office for your address", "Weekdays 9:00-12:00 / 13:00-16:00.");
+      put("after", "", "Get the new card with the result", "Your old card is replaced by the new one.");
+      warn.push("- The residence card renewal in this page is only for permanent residents, Highly Skilled Professional (ii), and some children under 16.");
+    } else if (s === "pr" || s === "k16") {
+      var E = parse($("exp").value);
+      var open = s === "pr" ? addM(E, -3) : addM(E, -6);
+      route = "Renewal of the residence card's validity (在留カードの有効期間の更新申請, zairyu kado no yuko kikan no koshin shinsei). You do not renew your status here. You get a new card with a new validity date.";
+      byText = "From " + fmt(open) + " to " + fmt(E);
+      put("before", "From " + fmt(open), "The window opens", s === "pr" ? "3 months before the card's validity date." : "6 months before the 16th birthday (or the day before), for cards issued by June 13, 2026.");
+      put("before", "", "Fill in the application form", "在留カード有効期間更新申請書. The form is on the Immigration Services Agency page (A4).");
+      put("before", "", "Get the photo", photo + ".");
+      put("before", "", "Bring your passport and your current residence card", "Both are shown at the counter. No passport? A written reason is needed.");
+      if (s === "pr" && $("away").value === "yes") put("before", "Before " + fmt(open), "Apply before the window if you will be abroad", "If a long stay abroad (work trip, study abroad...) means you cannot come back in the window, you can apply earlier. Bring papers that show the reason if it is not a trip abroad.");
+      put("office", "Weekdays 9:00-12:00 / 13:00-16:00", "Apply at the immigration office for your address", free);
+      put("after", "", "Get the new card", "If it is not ready the same day, come back with the receipt slip (申請受付票), passport and current card.");
+      put("after", "", "Check the new card before you leave the counter", "If a detail is wrong, ask for a correction (在留カード記載事項訂正願出書).");
+      put("after", "", "Ask about the card with the My Number function", "From June 14, 2026 you can apply for the special type (特定在留カード, tokutei zairyu kado) at the same time. Ask at the counter.");
+      warn.push("- After " + fmt(E) + ", you need a written reason for being late.");
+      warn.push("- A card whose validity has ended is no longer valid and must be returned within 14 days. Renew before that.");
+      if (s === "k16") warn.push("- On the day of the 16th birthday, a family member who lives with the child can apply for them.");
+    } else if (s === "lost" || s === "fire") {
+      var K = $("abr").value === "ab" ? parse($("ent").value) : parse($("knew").value);
+      var by = addD(K, 13);
+      route = "Reissue of the residence card after loss (紛失等による在留カードの再交付申請, funshitsu to ni yoru saikofu shinsei). Apply within 14 days of the day you noticed" + ($("abr").value === "ab" ? " (you noticed abroad, so it counts from the day you came back to Japan)." : ".");
+      byText = "By " + fmt(by) + " (14 days, one day early to be safe)";
+      if (s === "lost") put("before", "Now", $("pol").value === "yes" ? "Keep the police report number" : "Report it to the police first", "Lost or stolen: report it at a police station or police box (koban). The statement form asks for the report number (受理番号, juri bango).");
+      else put("before", "Now", "Get a disaster certificate", "For a fire or disaster: a disaster certificate (り災証明書, risai shomeisho). If you cannot get one, a written reason may be asked for.");
+      put("before", "", "Fill in the application form and the statement", "在留カード再交付申請書 and, for loss or theft, the statement (陳述書, chinjutsusho). Both are on the Immigration Services Agency page.");
+      put("before", "", "Get the photo", photo + ".");
+      put("before", "", "Bring your passport", "Also your permission for activity outside your status (資格外活動許可書), if you have one.");
+      put("office", "By " + fmt(by) + ", weekdays 9:00-12:00 / 13:00-16:00", "Apply at the immigration office for your address", free);
+      put("after", "", "If you find the old card later", "Return the old card to immigration within 14 days of finding it.");
+      warn.push("- After " + fmt(by) + ", you need a written reason for being late.");
+      warn.push("- Until the new card is issued, you have no card to show. Apply soon after the police report.");
+    } else if (s === "dmg") {
+      route = "Reissue of the residence card after damage (汚損等による在留カードの再交付申請, oson to ni yoru saikofu shinsei). For a card that is badly damaged or dirty, or whose IC chip is damaged.";
+      if ($("ord").value === "yes") { var O = parse($("od").value); byText = "By " + fmt(addD(O, 13)) + " (14 days from the order, one day early to be safe)"; }
+      else byText = "No deadline (unless the office orders you to apply)";
+      put("before", "", "Fill in the application form", "在留カード再交付申請書, on the Immigration Services Agency page.");
+      put("before", "", "Get the photo", photo + ".");
+      put("before", "", "Bring your passport and the damaged card", "Ask the office what else to bring for your case.");
+      put("office", "Weekdays 9:00-12:00 / 13:00-16:00", "Apply at the immigration office for your address", free);
+      put("after", "", "Ask about the card with the My Number function", "From June 14, 2026 you can apply for the special type (特定在留カード) at the same time. Ask at the counter.");
+      warn.push("- If the office orders you to apply for a new card, the 14 days start on the day of the order.");
+    } else if (s === "chg") {
+      var C = parse($("cd").value);
+      route = "Notice of a change other than your address (住居地以外の在留カード記載事項の変更届出, kisai jiko henko todokede). For a new name, nationality or region, date of birth or gender. Your address is changed at the city office instead.";
+      byText = "By " + fmt(addD(C, 13)) + " (14 days, one day early to be safe)";
+      put("before", "", "Fill in the notice form", "在留カード記載事項変更届出書, on the Immigration Services Agency page.");
+      put("before", "", "Bring papers that show the change", "For example, your new passport. Ask the office what fits your case.");
+      put("office", "By " + fmt(addD(C, 13)) + ", weekdays 9:00-12:00 / 13:00-16:00", "File it at the immigration office for your address", "No fee. You get a new card.");
+      put("after", "", "Update banks, work and the city office", "Tell them about the new name or details, too.");
+      warn.push("- After the 14 days, you need a written reason for being late.");
+    }
+
+    if (s !== "stay") {
+      if (who === "fam") warn.push("- A family member (16+) living with you can go if you are under 16, ill (bring a doctor's note), or have asked them (bring a letter of attorney, 委任状). Being busy with work or school is not accepted as a reason. They bring papers that show your relationship (such as a juminhyo) and their own photo ID.");
+      else warn.push("- You go in person if you are 16 or older. A family member living with you can go in some cases (illness, a letter of attorney).");
+    }
+    warn.push("- Office hours and days can differ. Check with your office or the Information Center: 0570-013904.");
+
+    $("route").textContent = route;
+    $("by").textContent = byText;
+    lines.unshift("Window / deadline: " + byText);
+    lines.unshift(route);
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Residence card: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  show();
+  if (DEMO) { $("sit").value = "pr"; $("exp").value = "2027-03-15"; $("away").value = "no"; $("who").value = "me"; show(); make(); }
+})();
+</script>
+</body>
+</html>
