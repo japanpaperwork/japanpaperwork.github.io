@@ -155,7 +155,7 @@
       warn.push("- Do not let your current period of stay run out while you prepare another application.");
       finish(route, byText, feeText, warn); return true;
     }
-    if (!$("exp").value) { $("err").hidden = false; return false; }
+    if (!$("exp").value) { $("err").hidden = false; $("result").hidden = true; return false; }
     $("err").hidden = true;
     var E = parse($("exp").value);
     var L = $("last").value ? parse($("last").value) : null;
@@ -166,12 +166,13 @@
     // the line for not doing the current activity
     var line = null, lineWhy = "";
     if (L) {
-      if (cur === "sp" && (why === "end" || why === "job")) { line = addM(L, 6); lineWhy = "6 months"; }
-      else if (cur === "stu" || cur === "work" || cur === "dep" || cur === "sv") { line = addM(L, 3); lineWhy = "3 months"; }
+      if (cur === "sp" && (why === "end" || why === "job")) { line = addM(L, 6); lineWhy = "6-month"; }
+      else if (cur === "stu" || cur === "work" || cur === "dep" || cur === "sv") { line = addM(L, 3); lineWhy = "3-month"; }
     }
     var aim = E, aimWhy = "the end of your period of stay";
-    if (line && addD(line, -1) < aim) { aim = addD(line, -1); aimWhy = "the " + lineWhy + " line (one day early)"; }
+    if (line && addD(line, -1) < aim) { aim = addD(line, -1); aimWhy = "the " + lineWhy + " line, one day early"; }
 
+    if (how === "counter") { var wd = aim.getDay(); if (wd === 6 || wd === 0) { aim = addD(aim, wd === 6 ? -1 : -2); aimWhy += "; moved to the Friday before, as the counter is closed on weekends"; } }
     byText = "Window: from the day the reason for the change arises, to " + fmt(E) + ".\nAim to apply by " + fmt(aim) + " (" + aimWhy + "), and as soon as you can.";
 
     if (cur === "sv") {
@@ -200,11 +201,11 @@
     if (how === "online") feeText = "Online has its own fee list and payment method (convenience store or bank). See the agency's online fee page.\nThe fee depends on the period of stay you are given, which you do not know in advance.";
     else feeText = "It depends on the period of stay you are given:\n3 months or less: 10,000 yen\nover 3 to 6 months: 18,000 yen\nover 6 months, under 1 year: 25,000 yen\n1 year: 33,000 yen\nover 1, under 3 years: 48,000 yen\n3 to under 5 years: 64,000 yen\n5 years or more: 75,000 yen\nA reduced fee (10,000 yen) exists for some people in hardship, with proof.";
 
-    if (line) warn.push("- Your current activity ended on " + fmt(L) + ". Staying " + lineWhy + " or more without doing it (without a valid reason) is one of the grounds for revocation of status. That line is " + fmt(line) + ". Apply well before it.");
+    if (line) warn.push("- Your current activity ended on " + fmt(L) + ". Staying " + (lineWhy === "6-month" ? "6 months" : "3 months") + " or more without doing it (without a valid reason) is one of the grounds for revocation of status. That line is " + fmt(line) + ". Apply well before it.");
     if (!L && why === "end") warn.push("- Enter the last day of your current activity to see your 3-month (or 6-month) line.");
     if (cur === "lt") warn.push("- The 3-month and 6-month rules on the revocation page are written for other statuses. Ask the office about your case.");
     if (cur === "sp" && why === "end") warn.push("- After a divorce or the death of a spouse, there is also a 14-day notice to immigration. There is a separate note on it.");
-    if (why === "marry" && cur !== "sp") warn.push("- Marriage itself also has city office procedures. Your current status stays until the change is permitted.");
+    if (why === "marry" && cur !== "sp") warn.push("- Marriage itself also has city office procedures.");
     warn.push("- You must be 18 or older to apply yourself (unless an approved intermediary files for you). Even with an intermediary, you must be in Japan. Being busy with work is not accepted as a reason to send a family member.");
     warn.push("- Missing papers can delay the decision a lot. Unpaid taxes or insurance, and missed notices to immigration, are things the guideline says are considered.");
     warn.push("- This page does not decide whether you qualify for the new status.");
