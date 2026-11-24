@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dependents Abroad in Japan: Papers Checker - Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .hint, .mihon .lead { display: none; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Dependents abroad in Japan: papers checker</h1>
+  <p class="lead">For employees in Japan who want a dependent deduction (or spouse deduction) for a family member living outside Japan. Enter one family member at a time. You get whether they can count, the family papers for the start of the year, the money transfer papers for year-end, and what to watch out for. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The year and the person</h2>
+    <label class="f" for="yr">Tax year<span class="hint">The year (January to December) you want the deduction for</span></label>
+    <select id="yr">
+      <option value="2025">2025</option>
+      <option value="2026" selected>2026</option>
+      <option value="2027">2027</option>
+    </select>
+    <label class="f" for="rel">Who is this person to you?</label>
+    <select id="rel">
+      <option value="child">My child</option>
+      <option value="parent" selected>My parent</option>
+      <option value="gparent">My grandparent</option>
+      <option value="sib">My brother or sister</option>
+      <option value="spouse">My spouse (husband or wife)</option>
+      <option value="sparent">My spouse's parent</option>
+      <option value="sgparent">My spouse's grandparent</option>
+      <option value="ssib">My spouse's brother or sister</option>
+      <option value="other">Another relative</option>
+    </select>
+    <label class="f" for="by">Their birth year<span class="hint">Age is judged on December 31 of the tax year. Example: 1962</span></label>
+    <input type="number" id="by" inputmode="numeric" min="1900" max="2030" placeholder="year">
+  </div>
+
+  <div class="card" id="reasonCard">
+    <h2>2. Reason (only for ages 30 to 69)</h2>
+    <label class="f" for="rs">Which is true for this person?<span class="hint">Leave as is if the person is under 30 or 70 or older</span></label>
+    <select id="rs">
+      <option value="money" selected>I send them 380,000 yen or more this year for living or school costs</option>
+      <option value="study">They left Japan to study abroad (student visa there)</option>
+      <option value="dis">They have a disability recognized under Japan's rules</option>
+      <option value="none">None of these</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>3. How you send money</h2>
+    <label class="f" for="how">Main way you send money to this person</label>
+    <select id="how">
+      <option value="bank" selected>Bank transfer to their own account</option>
+      <option value="mts">Money transfer service, paid to them</option>
+      <option value="card">A family credit card they use (I pay the bill)</option>
+      <option value="rep">To another family member who shares it</option>
+      <option value="joint">To a joint account</option>
+      <option value="cash">Cash, carried by me or a friend</option>
+    </select>
+    <label class="f" for="cnt">Number of transfers to this person this year<span class="hint">Count each transfer or each card use you will show. Example: 12</span></label>
+    <input type="number" id="cnt" inputmode="numeric" min="0" step="1" placeholder="times">
+    <label class="f" for="amt">Total sent to this person this year<span class="hint">In yen. Fees may be included only if the record shows them. Example: 480000</span></label>
+    <input type="number" id="amt" inputmode="numeric" min="0" step="10000" placeholder="yen">
+  </div>
+  <button id="make" type="button">Check my papers</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Start of the year (or when they become your dependent)</h3>
+    <div id="start"></div>
+    <h3>At year-end adjustment</h3>
+    <div id="end"></div>
+    <h3>If you miss it</h3>
+    <div id="late"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the National Tax Agency's page on deductions for relatives living abroad and its Q&amp;A for withholding tax (last revised August 2026; checked November 2026). Not tax advice. Your employer and the tax office decide; ask them if unsure.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  function yen(n) { return Math.round(n).toLocaleString("en-US") + " yen"; }
+  function num(id) { var v = parseInt($(id).value, 10); return isNaN(v) || v < 0 ? 0 : v; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  var FAM = {
+    child: ["The child's birth certificate"],
+    parent: ["Your own birth certificate (shows your parents)"],
+    gparent: ["Your own birth certificate", "Your parent's birth certificate"],
+    sib: ["Your own birth certificate", "Your brother's or sister's birth certificate"],
+    spouse: ["Your marriage certificate"],
+    sparent: ["Your marriage certificate", "Your spouse's birth certificate"],
+    sgparent: ["Your marriage certificate", "Your spouse's birth certificate", "Your spouse's parent's birth certificate"],
+    ssib: ["Your marriage certificate", "Your spouse's birth certificate", "The brother's or sister's birth certificate"],
+    other: ["Papers that link you to this person step by step (birth and marriage certificates)"]
+  };
+  function make() {
+    ["start","end","late"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var y = +$("yr").value, rel = $("rel").value, rs = $("rs").value, how = $("how").value;
+    var cnt = num("cnt"), amt = num("amt");
+    var lim = y >= 2026 ? 620000 : 580000;
+    if (!$("by").value) {
+      $("vt").textContent = "Please enter their birth year.";
+      $("vs").textContent = "Whether they can count depends on their age on December 31, " + y + ".";
+      $("warn").textContent = "- Enter one family member at a time.";
+      $("result").hidden = false; return true;
+    }
+    var age = y - num("by");
+    var spouse = rel === "spouse";
+    var ok = true, vt, vs, need380 = false, study = false;
+    if (spouse) {
+      vt = "Your spouse is not counted by age. Spouse deduction rules apply.";
+      vs = "Age " + age + " on December 31, " + y + ". For a spouse living abroad you show the family papers and, at year-end, the money transfer records. The spouse deduction also depends on your spouse's income and yours; your employer checks it.";
+    } else if (age < 16) {
+      ok = false;
+      vt = "Not a dependent for income tax (under 16).";
+      vs = "Age " + age + " on December 31, " + y + ". Income tax has no dependent deduction under 16. For residence tax, your city may ask for the same kind of papers. Ask your city office.";
+    } else if (age < 30 || age >= 70) {
+      vt = "Can count as a dependent (age " + age + ").";
+      vs = "Ages 16 to 29 and 70 or older can count, if their income for " + y + " is " + yen(lim) + " or less and you support them.";
+    } else if (rs === "none") {
+      ok = false;
+      vt = "Cannot count as a dependent (age " + age + ").";
+      vs = "Since 2023, family abroad aged 30 to 69 count only if they study abroad, have a disability recognized under Japan's rules, or receive 380,000 yen or more from you in the year.";
+    } else {
+      if (rs === "money") need380 = true;
+      if (rs === "study") study = true;
+      vt = "Can count as a dependent (age " + age + "), with the right papers.";
+      vs = (rs === "money" ? "Reason: you send them 380,000 yen or more in " + y + "." : rs === "study" ? "Reason: they left Japan to study abroad." : "Reason: a disability recognized under Japan's rules.") + " Their income for " + y + " must be " + yen(lim) + " or less, and you support them.";
+      if (need380 && $("amt").value && amt < 380000) {
+        ok = false;
+        vt = "Not yet: " + yen(amt) + " is under 380,000 yen.";
+        vs = "Age " + age + ". The 380,000 yen is judged on the money actually sent to this person in " + y + " (by the day you sent it). Below that at year-end, the deduction is not applied for this reason.";
+      }
+    }
+    if (ok && how === "cash" && (spouse || age >= 16)) {
+      vt = "Not with cash only: you need transfer records.";
+      vs = "Age " + age + " on December 31, " + y + ". The deduction for family abroad needs records from a bank, a money transfer service, a family credit card or a registered e-payment service, for each person. Ask your employer or the tax office before year-end.";
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    if (!ok && age < 16 && !spouse) {
+      put("start", "Income tax", "No papers needed for a dependent deduction", "Papers are needed only if you claim a disability deduction for this child.");
+      put("end", "Residence tax", "Ask your city office", "For a child abroad under 16, the city may ask for family and money transfer papers.");
+      put("late", "", "Nothing to file for income tax", "");
+      warn.push("- Ask your city office (市区町村役場) about residence tax for children abroad under 16.");
+      $("warn").textContent = warn.join("\n");
+      $("result").hidden = false; return true;
+    }
+    if (!ok && rs === "none") {
+      put("start", "", "No dependent deduction for this person", "Check again if one of the three reasons applies later in the year.");
+      put("end", "", "Nothing to show at year-end for this person", "");
+      put("late", "", "Nothing to file", "");
+      warn.push("- A disability card issued abroad does not count by itself. The disability must fit Japan's categories.");
+      warn.push("- A short study abroad (normally under 1 year) does not make them a relative living abroad.");
+      $("warn").textContent = warn.join("\n");
+      $("result").hidden = false; return true;
+    }
+
+    // Start of year
+    var fam = FAM[rel];
+    put("start", "Form", "扶養控除等(異動)申告書", "The dependents form your employer gives you, with this person's name, address abroad, birth date and expected income.");
+    put("start", "Family papers (option A)", fam.join(" + "), "Issued by a government office abroad. Must show the person's name, birth date and address. Originals. Several papers can be combined.");
+    put("start", "Family papers (option B)", "A Japanese public paper + passport copy", "For example a copy of 戸籍の附票 together with a copy of the person's passport (the page with name and birth date). One without the other does not count.");
+    if (study) put("start", "Also", "Student visa papers (留学ビザ等書類)", "A copy of their student visa or the foreign residence card. It should still be valid.");
+    put("start", "Translation", "Japanese translation", "Any paper in another language needs a Japanese translation with it.");
+    put("start", "Timing", "Deduction starts after you show them", "If you show the papers late, the deduction starts from the next salary after that.");
+
+    // Year end
+    var pap = need380 ? "380,000-yen records (38万円送金書類)" : "Money transfer records (送金関係書類)";
+    if (cnt >= 3) {
+      put("end", "Year-end (Nov-Dec)", "送金関係書類の明細書 + first and last records", cnt + " transfers: fill in the transfer statement and show the records of the first and last transfer of " + y + ". Keep the others yourself.");
+      if (need380) put("end", "380,000-yen reason", "Extra records if needed", "If the first and last transfers together are under 380,000 yen, show more records until the total reaches 380,000 yen.");
+    } else {
+      put("end", "Year-end (Nov-Dec)", pap, "Show the record of every transfer to this person in " + y + ". Copies are accepted.");
+    }
+    put("end", "Form", "The total sent, written on the dependents form", "At year-end you write the total sent in " + y + " (生計を一にする事実 box), even if nothing else changed.");
+    if (how === "card") put("end", "Card records", "Family card statement", "The statement must show the card holder (this person), the date and what was bought, and that you pay. The use date counts, not the payment date.");
+    else put("end", "Records must show", "Sender, receiver, date, amount", "Your name, this person's name, the date and the amount, for living or school costs.");
+
+    // Late
+    put("late", "Before the withholding slip", "Your employer can redo the calculation", "If you bring the records after the year-end adjustment but before your gensen choshuhyo is made.");
+    put("late", "After the withholding slip", "Tax return", "File for " + y + " yourself, with the same papers attached or shown. Employees who only want a refund can file from January 1, " + (y + 1) + ".");
+
+    // Warnings
+    if (how === "rep") warn.push("- Money sent to one family member for everyone counts only for that one person. Send to each person separately.");
+    if (how === "joint") warn.push("- A joint account usually does not show which person received the money. It may not count.");
+    if (how === "cash") warn.push("- Cash carried by you or a friend has no transfer record. A written statement does not count either. The deduction cannot be applied.");
+    if (how === "card") warn.push("- Only a family card in this person's name, billed to you, counts.");
+    if (need380) warn.push("- The 380,000 yen is for this one person. A transfer sent in December counts for the year you sent it, even if it arrives in January.");
+    if (rs === "dis" && !spouse && age >= 30 && age < 70) warn.push("- A disability card issued abroad does not count by itself. The disability must fit Japan's categories. Ask the tax office.");
+    warn.push("- In principle you show the family papers every year. If nothing changed, your employer may accept the ones shown before.");
+    warn.push("- A driver's license or ID card alone does not prove the family link.");
+    warn.push("- If a paper uses a former name, add a paper that links the old and new names.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My dependent abroad papers check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("yr").value = "2026"; $("rel").value = "parent"; $("by").value = "1962"; $("rs").value = "money";
+    $("how").value = "bank"; $("cnt").value = "12"; $("amt").value = "480000";
+    make();
+  }
+})();
+</script>
+</body>
+</html>
