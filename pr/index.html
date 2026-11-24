@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Permanent Residency Paperwork Planner: Your Years, Look-Back Windows and Papers | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn, .mihon #route, .mihon #years, .mihon #look, .mihon #fee { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Permanent residency paperwork planner: your years, the look-back windows and the papers</h1>
+  <p class="lead">Enter your status, your dates and how your tax and insurance were paid. You see where you stand against the guideline's years, the 5-year and 2-year windows your papers must cover, the date to start collecting certificates, the papers for your case, and the warnings. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your status</h2>
+    <label class="f" for="cur">Your current status (on your residence card)</label>
+    <select id="cur">
+      <option value="work">A work status (Engineer / Humanities / International Services, Skilled Labor, etc.)</option>
+      <option value="dep">Dependent (家族滞在)</option>
+      <option value="other">Spouse / Child of a Japanese or PR, Long-Term Resident, Highly Skilled Professional</option>
+    </select>
+    <label class="f" for="per">Period of stay on your card now</label>
+    <select id="per">
+      <option value="5">5 years</option>
+      <option value="3">3 years</option>
+      <option value="1">1 year or less</option>
+    </select>
+    <label class="f" for="exp">Period of stay ends<span class="hint">The date on the front of your card</span></label>
+    <input type="date" id="exp">
+  </div>
+
+  <div class="card" id="dates">
+    <h2>2. Your years in Japan</h2>
+    <label class="f" for="arr">You have lived in Japan continuously since<span class="hint">The start of your current, unbroken stay</span></label>
+    <input type="date" id="arr">
+    <label class="f" for="ws">You have had a work status since<span class="hint">For example, the day you changed from Student to a work status. Leave empty if you are on Dependent.</span></label>
+    <input type="date" id="ws">
+    <label class="f" for="tit">Were any of those work years on Technical Intern Training or Specified Skilled Worker (i)?</label>
+    <select id="tit">
+      <option value="no">No</option>
+      <option value="yes">Yes, some of them</option>
+    </select>
+    <label class="f" for="app">Day you plan to apply</label>
+    <input type="date" id="app">
+  </div>
+
+  <div class="card" id="money">
+    <h2>3. How your tax and insurance were paid</h2>
+    <label class="f" for="tax">Resident tax (住民税) in the last 5 years</label>
+    <select id="tax">
+      <option value="all">Always taken from my salary (special collection)</option>
+      <option value="some">Some years or months I paid by bills myself</option>
+    </select>
+    <label class="f" for="ins">Pension and health insurance in the last 2 years</label>
+    <select id="ins">
+      <option value="emp">Only company insurance and employee pension</option>
+      <option value="nhi">Some months on National Health Insurance or National Pension</option>
+    </select>
+    <label class="f" for="rec">Pension record proof you can get</label>
+    <select id="rec">
+      <option value="net">Nenkin Net (I can register or already have an ID)</option>
+      <option value="office">From the pension office</option>
+      <option value="teiki">The full-period Nenkin Teikibin (letter version)</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter the date your period of stay ends, the start of your stay, and the day you plan to apply.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="ng" id="route" style="background:var(--accent-soft);color:var(--text)"></div>
+    <h3>Your years against the guideline</h3>
+    <div class="ng" id="years" style="background:var(--accent-soft);color:var(--text);font-weight:700"></div>
+    <h3>The windows your papers must cover</h3>
+    <div class="ng" id="look" style="background:var(--accent-soft);color:var(--text)"></div>
+    <h3>Collect: tax</h3>
+    <div id="taxbox"></div>
+    <h3>Collect: pension and health insurance</h3>
+    <div id="insbox"></div>
+    <h3>Collect: everything else</h3>
+    <div id="other"></div>
+    <h3>Applying and waiting</h3>
+    <div id="after"></div>
+    <h3>Fee (paid when you get the permission)</h3>
+    <div class="ng" id="fee" style="background:var(--accent-soft);color:var(--text)"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of the Immigration Services Agency of Japan (application for permanent residence, permanent residence application 3 for work statuses and Dependent, and the guidelines for permanent residence revised February 24, 2026) and the National Tax Agency's tax certificate page, checked November 2026. This page does not decide whether you qualify or will be permitted; that is the Minister's decision at the immigration office. Confirm with the regional immigration office or the Immigration Services Information Center (0570-013904).<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function addM(d, k) { var t = new Date(d.getFullYear(), d.getMonth() + k, 1); var last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate(); return new Date(t.getFullYear(), t.getMonth(), Math.min(d.getDate(), last)); }
+  function addD(d, k) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + k); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  function show() { var o = $("cur").value === "other"; $("dates").hidden = o; $("money").hidden = o; }
+  $("cur").addEventListener("change", show);
+
+  function make() {
+    var cur = $("cur").value, per = $("per").value;
+    ["taxbox","insbox","other","after"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+
+    if (cur === "other") {
+      $("err").hidden = true;
+      finish("Spouse, child, Long-Term Resident and Highly Skilled Professional applicants use other paper lists (permanent residence applications 1, 2, 4 and 5 on the agency site) and shorter year rules. This page covers work statuses and Dependent only.",
+        "Not covered by this page", "Not covered by this page", "200,000 yen when permitted (revenue stamps). A reduced fee of 20,000 yen exists for some people.",
+        ["- Keep your current period of stay valid while you prepare. If it ends while a permanent residence application is pending, a separate renewal is needed by that date."]);
+      return true;
+    }
+    if (!$("exp").value || !$("arr").value || !$("app").value) { $("err").hidden = false; $("result").hidden = true; return false; }
+    $("err").hidden = true;
+    var E = parse($("exp").value), A = parse($("arr").value), P = parse($("app").value);
+    var WS = $("ws").value ? parse($("ws").value) : null;
+
+    var route = "Application for permanent residence (永住許可申請, eiju kyoka shinsei), paper list 3 (work statuses and Dependent). You apply at the regional immigration office for your address, on or before the end of your period of stay.";
+
+    // years
+    var ten = addM(A, 120), five = WS ? addM(WS, 60) : null;
+    var y = "10 years in Japan: reached on " + fmt(ten) + (ten <= P ? " (before your planned day)" : " (AFTER your planned day)") + ".";
+    if (cur === "work" && five) y += "\n5 years on a work status: reached on " + fmt(five) + (five <= P ? " (before your planned day)" : " (AFTER your planned day)") + ".";
+    else if (cur === "work") y += "\n5 years on a work status: enter the date you got your work status.";
+    else y += "\nThe 5 years must be on a work or residence status. Dependent is neither, so ask the office how the years count for you.";
+    var earliest = (five && five > ten) ? five : ten;
+    if (cur === "work" && five) y += "\nBoth lines are met from " + fmt(earliest) + ".";
+    // windows
+    var t5 = addM(P, -60), t2 = addM(P, -24), c3 = addM(P, -3);
+    var look = "Tax: about 5 years, " + fmt(t5) + " to " + fmt(P) + ".\nPension and health insurance: 2 years, " + fmt(t2) + " to " + fmt(P) + ".\nJapanese certificates must be issued within 3 months: get them from " + fmt(c3) + ".";
+
+    // tax
+    put("taxbox", "From " + fmt(c3), "Resident tax certificates for the last 5 years", "住民税の課税（又は非課税）証明書 and 納税証明書, from your city office. One certificate that shows both the year's income and the payment status is enough. If the city cannot issue 5 years, bring the longest it issues; if you moved and it cannot issue at all, ask the immigration office.");
+    if ($("tax").value === "some") put("taxbox", "Find them now", "Proof you paid resident tax ON TIME", "For the periods it was not taken from salary: bankbook copies or receipts that show the payment dates. A printed web passbook screen is fine (not an Excel file). This is to show there were no late payments.");
+    put("taxbox", "From " + fmt(c3), "National tax certificate (その3, sono 3) for 5 tax items", "From the tax office for your address (or online via e-Tax): withholding income tax, self-assessed income tax, consumption tax, inheritance tax and gift tax, each with the special reconstruction tax where it applies. It proves no unpaid tax on the day, so no period is needed. Fee: 400 yen per sheet on paper, 370 yen online.");
+
+    // insurance
+    var rec = $("rec").value;
+    if (rec === "net") put("insbox", "Register now if needed", "Nenkin Net: print 各月の年金記録", "The ID postcard comes by mail about 5 business days after you register. Nenkin Net is in Japanese only." + ($("ins").value === "nhi" ? " Also print the National Pension monthly payment screen (国民年金の年金記録（各月の納付状況）)." : ""));
+    else if (rec === "office") put("insbox", "Ask the pension office", "Pension record sheets", "被保険者記録照会回答票, 被保険者記録照会（納付Ⅰ）and（納付Ⅱ）. Ask at your nearest pension office, by visit or phone.");
+    else put("insbox", "Order by " + fmt(addM(P, -3)), "The full-period Nenkin Teikibin (letter)", "Ask the Japan Pension Service for the full-period version (全期間分（封書）). It takes about 2 months to arrive. The yearly postcard version cannot be used.");
+    if ($("ins").value === "nhi") {
+      put("insbox", "Find them now", "National Pension receipts for those months", "国民年金保険料領収証書 (copies), all of them for the 2 years. If you cannot, a reason letter.");
+      put("insbox", "From " + fmt(c3), "NHI payment certificate", "国民健康保険料（税）納付証明書 for the months you were on NHI, from the city office.");
+      put("insbox", "Find them now", "NHI receipts for those months", "国民健康保険料（税）領収証書 (copies), all of them. They show there were no late payments.");
+    }
+    put("insbox", "", "Health insurance proof for the whole household", "If you have a My Number health insurance card: a copy of the My Number portal screen that shows the date you joined (within 3 months). If not: a copy of the 資格確認書. Older insurance cards that are still valid can be copied.");
+    put("insbox", "Before you copy", "Black out the numbers", "Black out the basic pension number, the insurer number and the insured person's symbol and number on every copy, so they cannot be read.");
+
+    // other
+    put("other", "", "Application form and 1 photo (4 cm x 3 cm)", "永住許可申請書, A4, one side per sheet. A photo is needed from age 1 (cards issued from June 14, 2026).");
+    put("other", "", "A letter of reasons (理由書)", "Why you need permanent residence. Free format. Not in Japanese? Add a Japanese translation.");
+    put("other", "From " + fmt(c3), "Household residence record (住民票)", "For everyone in the household. My Number left off, nothing else left off.");
+    put("other", "From " + fmt(c3), "Employment certificate (在職証明書)", "From your employer. Self-employed: a copy of your tax return and any business license.");
+    put("other", "", "Proof of assets", "A bankbook copy (a printed web passbook screen is fine), or a property registration certificate.");
+    put("other", "", "Guarantor letter (身元保証書) and the guarantor's ID copy", "The guarantor is usually a Japanese national, a permanent resident or a special permanent resident living in Japan.");
+    put("other", "", "Written understanding (了解書) and the self-check sheet", "The 了解書 is required (since October 2021). The agency asks you to submit the self-check sheet with the papers too.");
+    if (cur === "dep") put("other", "", "Proof of the family relationship", "A birth or marriage certificate, a family register, or similar (needed for Dependent). Add a Japanese translation.");
+    put("other", "On the day", "Show your passport and residence card", "If you have a permission for activity outside your status, show it too.");
+
+    // after
+    put("after", "On " + fmt(P) + ", weekdays 9:00-12:00 / 13:00-16:00", "Apply at the regional immigration office for your address", "You apply yourself if you are 18 or older, unless an approved intermediary files for you. Even then, you must be in Japan.");
+    put("after", "Standard: 4 to 6 months", "Wait for the result", "Missing papers mean extra requests, and complete files are reviewed first. The office may ask for papers not on the list.");
+    var need = addM(P, 6);
+    if (E < need) put("after", "By " + fmt(E), "File a renewal for your current status too", "Your period of stay ends before " + fmt(need) + ". If it ends while the permanent residence application is pending, the agency says you need a separate renewal application by that date.");
+    else put("after", "", "Keep an eye on your card's date", "If your period of stay will end while you wait, a separate renewal is needed by that date.");
+
+    // warnings
+    if (cur === "work" && five && five > P) warn.push("- On your planned day you will not yet have 5 years on a work status (" + fmt(five) + "). The guideline's general rule asks for 5 years within the 10.");
+    if (ten > P) warn.push("- On your planned day you will not yet have 10 years in Japan (" + fmt(ten) + "). The general rule asks for 10 years in principle; shorter routes exist for some people (for example spouses, Long-Term Residents, highly skilled professionals) with their own rules.");
+    if ($("tit").value === "yes") warn.push("- Time on Technical Intern Training and Specified Skilled Worker (i) does not count toward the 5 years on a work status.");
+    if (per === "1") warn.push("- The guideline asks that you hold the LONGEST period of stay for your status. 1 year or less does not meet that.");
+    if (per === "3") {
+      if (P <= new Date(2027, 2, 31)) warn.push("- Until March 31, 2027, a 3-year period of stay is treated as the longest. Your planned day is inside that.");
+      else warn.push("- Until March 31, 2027, a 3-year period of stay is treated as the longest. After that, it is treated so only for people who held 3 years on March 31, 2027, and only for the first decision within that period of stay. Check your case.");
+    }
+    warn.push("- Paying late counts against you even if it is paid now. The guideline says tax, pension and health insurance not paid within the original deadline are, in principle, evaluated negatively. The 5-year and 2-year windows are what your papers show.");
+    warn.push("- Notices to immigration (address, employer changes) are part of the public duties the guideline lists.");
+    warn.push("- If one answer on the agency's self-check sheet is \"No\", the agency says a refusal is likely. All \"Yes\" is not a promise of permission.");
+    warn.push("- There is no appeal procedure for this application. This page does not decide whether you qualify.");
+
+    var fee = "200,000 yen, paid with revenue stamps (収入印紙) when permitted.\nA reduced fee of 20,000 yen exists for people who meet certain conditions.\nIf a special residence card is issued at the same time, its fee may be added.";
+    finish(route, y, look, fee, warn);
+    return true;
+  }
+  function finish(route, y, look, fee, warn) {
+    $("route").textContent = route;
+    $("years").textContent = y;
+    $("look").textContent = look;
+    $("fee").textContent = fee;
+    lines.unshift(look); lines.unshift(y); lines.unshift(route);
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Permanent residency: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  show();
+  if (DEMO) { $("cur").value = "work"; $("per").value = "3"; $("exp").value = "2027-09-30"; $("arr").value = "2017-04-01"; $("ws").value = "2021-04-01"; $("tit").value = "no"; $("app").value = "2027-05-10"; $("tax").value = "some"; $("ins").value = "nhi"; $("rec").value = "net"; show(); make(); }
+})();
+</script>
+</body>
+</html>
