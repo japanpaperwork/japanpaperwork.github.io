@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Just Married in Japan: Notices &amp; Deadline Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Just married in Japan: notices &amp; deadline planner</h1>
+  <p class="lead">For foreign residents who just married in Japan (or married abroad and live here). Enter the marriage date and what changes for you: name, address, health insurance. You get each deadline in date order (residence card, moving or household notice, dependent insurance, leaving kokuho, the Japanese spouse's family name), what to bring, and what to tell later. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The marriage</h2>
+    <label class="f" for="md">Marriage date<span class="hint">The day the city office accepted the marriage registration (or the date on the foreign marriage certificate)</span></label>
+    <input type="date" id="md">
+    <label class="f" for="who">The two of you</label>
+    <select id="who">
+      <option value="fj">I am a foreign national, my spouse is Japanese</option>
+      <option value="ff">We are both foreign nationals</option>
+    </select>
+    <label class="f" for="where">Where the marriage was registered</label>
+    <select id="where">
+      <option value="city">A city office in Japan (kon'in todoke)</option>
+      <option value="emb">My country's embassy in Japan</option>
+      <option value="abroad">Abroad, under that country's law</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your name</h2>
+    <label class="c"><input type="checkbox" id="nm"><span>My name changed because of the marriage<small>Under your home country's law, shown in a new or corrected passport</small></span></label>
+    <div id="nmbox">
+      <label class="f" for="nd">Date your name changed<span class="hint">For example the date of the new passport. Ask immigration if you are not sure which date counts</span></label>
+      <input type="date" id="nd">
+    </div>
+    <label class="c" id="jnrow"><input type="checkbox" id="jn"><span>My Japanese spouse wants to take my family name<small>A Japanese person's family name does not change automatically</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>3. Where you live</h2>
+    <label class="f" for="live">Living arrangement</label>
+    <select id="live">
+      <option value="other">One of us moves to a new address in another city</option>
+      <option value="same">One of us moves within the same city</option>
+      <option value="hh">Same address already, but separate households (setai)</option>
+      <option value="none">Nothing changes for now</option>
+    </select>
+    <div id="mvbox">
+      <label class="f" for="mv">Moving date<span class="hint">The day you start living at the new address</span></label>
+      <input type="date" id="mv">
+    </div>
+  </div>
+
+  <div class="card" id="more">
+    <h2>4. Health insurance and pension</h2>
+    <label class="c"><input type="checkbox" id="dep"><span>I will join my spouse's work health insurance as a dependent<small>Your spouse works for a company (shakai hoken) and your income will be low</small></span></label>
+    <label class="c"><input type="checkbox" id="nhi"><span>I am now on National Health Insurance (kokuho)<small>Paid to the city, not through a company</small></span></label>
+    <label class="c"><input type="checkbox" id="visa"><span>I may change to a spouse visa<small>A separate application at immigration</small></span></label>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Deadlines in order</h3>
+    <div id="dates"></div>
+    <h3>What to bring</h3>
+    <div id="bring"></div>
+    <h3>Tell later (no fixed deadline here)</h3>
+    <div id="later"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on pages of the Immigration Services Agency (residence card changes, Immigration Control Act Art. 19-10), the Ministry of Justice (international marriage Q&amp;A), the Japan Pension Service and city offices (checked November 2026). Each office decides. Not legal advice; this page does not judge your visa. Always confirm with the office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function parse(v) { if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function add(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addM(d, n) { var x = new Date(d.getFullYear(), d.getMonth() + n, d.getDate()); if (x.getDate() !== d.getDate()) x = new Date(d.getFullYear(), d.getMonth() + n + 1, 0); return x; }
+  if (Q.indexOf("mihon") >= 0) { $("more").hidden = true; document.querySelector(".lead").hidden = true; }
+
+  function sync() {
+    $("nmbox").hidden = !$("nm").checked;
+    $("jnrow").hidden = $("who").value !== "fj";
+    $("mvbox").hidden = !($("live").value === "other" || $("live").value === "same");
+  }
+  ["nm","who","live"].forEach(function (id) { $(id).addEventListener("change", sync); });
+
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+
+  function make() {
+    ["dates","bring","later"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var md = parse($("md").value), who = $("who").value, where = $("where").value;
+    var nm = $("nm").checked, nd = parse($("nd").value), jn = who === "fj" && $("jn").checked;
+    var live = $("live").value, mv = parse($("mv").value);
+    var dep = $("dep").checked, nhi = $("nhi").checked, visa = $("visa").checked;
+    var warn = [];
+    if (!md) { $("vt").textContent = "Please enter the marriage date."; $("vs").textContent = ""; $("warn").textContent = "- Several deadlines are counted from this date."; $("result").hidden = false; return true; }
+    if (nm && !nd) nd = md;
+    if ((live === "other" || live === "same") && !mv) mv = md;
+
+    var ev = [];
+    if (where === "abroad" && who === "fj") ev.push([addM(md, 3), "Japanese spouse: report the marriage within 3 months", "Married abroad under that country's law: the Japanese spouse submits the marriage certificate (with a Japanese translation) to a Japanese embassy or consulate, or to the city office of their honseki. Bring the original certificate."]);
+    if (nm) ev.push([add(nd, 14), "Residence card: name change notice (14 days)", "At the regional immigration office for your address. Free; the new card is in principle issued the same day. Get your passport changed first, or it may not be issued the same day."]);
+    if (live === "other") {
+      ev.push([mv, "Old city: moving-out notice (tenshutsu todoke)", "Usually before you move (many cities also accept it shortly after). You get a moving-out certificate for the new city."]);
+      ev.push([add(mv, 14), "New city: moving-in notice (14 days)", "Bring the moving-out certificate, your residence card (and the residence cards of family members who move), and My Number cards. The new address is written on the back of your residence card; this counts as your notice to immigration."]);
+    } else if (live === "same") {
+      ev.push([add(mv, 14), "Same city: change-of-address notice (14 days)", "Tenkyo todoke at the city office. Bring your residence card; the city writes the new address on it."]);
+    } else if (live === "hh") {
+      ev.push([add(md, 14), "Household change notice (14 days), if you become one household", "Setai henko todoke at the city office, for example when the head of household changes or two households at one address merge. Ask the counter whether you need it."]);
+    }
+    if (dep) ev.push([add(md, 5), "Spouse's employer: dependent form (5 days)", "Your spouse gives the dependent form (hifuyosha ido todoke) to their employer. The employer files it within 5 days of the marriage. If you are 20 to 59, the same form registers you for the pension (category 3)."]);
+    if (dep && nhi) ev.push([null, "Leave kokuho within 14 days of joining your spouse's insurance", "At the city office (not done by the employer). Bring proof of the new insurance and your kokuho card or certificate. Late: the city may not refund premiums you paid twice."]);
+    if (jn) ev.push([add(addM(md, 6), -1), "Japanese spouse: take your family name within 6 months", "A notice at the city office (gaikokujin tono kon'in ni yoru uji no henko todoke). Within 6 months of the marriage: no court permission needed. After that: family court permission first."]);
+
+    ev.sort(function (a, b) { return (a[0] ? a[0] : new Date(9e15)) - (b[0] ? b[0] : new Date(9e15)); });
+    var first = null;
+    ev.forEach(function (e) {
+      var d = e[0] ? fmt(e[0]) : "After your new insurance starts";
+      if (!first && e[0]) first = e;
+      put("dates", d, e[1], e[2]);
+    });
+    if (!ev.length) put("dates", "", "No deadline found from your answers", "Check the list below for things to tell later.");
+
+    var vt, vs;
+    if (first) { vt = "First deadline: " + fmt(first[0]) + "."; vs = first[1] + ". " + ev.length + " deadline" + (ev.length === 1 ? "" : "s") + " in total, listed in order below."; }
+    else { vt = "No fixed deadline from your answers."; vs = "Tell the offices below when you can."; }
+
+    // bring
+    if (where === "city") put("bring", "", "Certificate of acceptance of the marriage (juri shomeisho)", "Ask for it at the city office that accepted the marriage. Immigration, banks and employers often ask for proof of the marriage." + (who === "ff" ? " For a foreign couple there is no koseki; this certificate is the Japanese proof." : ""));
+    if (who === "fj") put("bring", "", "Your spouse's koseki tohon (family register)", "After the marriage, it shows you as the spouse. Immigration lists it as proof for a name change.");
+    if (nm) put("bring", "", "For the residence card change", "The notice form, 1 photo, your new passport, proof of the marriage (marriage certificate, or the koseki tohon if your spouse is Japanese), and your current residence card.");
+    if (live !== "none") put("bring", "", "For the city office", "Residence cards and My Number cards of everyone who moves, and a moving-out certificate if you come from another city.");
+    if (dep) put("bring", "", "For the dependent form", "Your spouse's employer asks. Often: your My Number, proof of the marriage, and proof of your income.");
+
+    // later
+    put("later", "", "Your employer", "New name or address, and dependents for tax (year-end adjustment).");
+    put("later", "", "Bank, phone, cards", "Name and address changes. A bank may need your new residence card first.");
+    put("later", "", "Pension and My Number", "If your My Number is linked to your pension number, a separate pension notice for the name or address is in principle not needed. Ask the city about updating your My Number card.");
+    if (who === "ff") put("later", "", "City record of your relationship", "If you married at your embassy, ask the city whether to show the marriage certificate so your residence record (juminhyo) shows you as spouses.");
+
+    if (visa) warn.push("- Spouse visa: a change of status is a separate application to immigration, judged case by case. This page does not judge it. Your current visa stays valid until its date.");
+    if (nm) warn.push("- Residence card: after 14 days, immigration asks for a written reason for the delay.");
+    if (where === "emb") warn.push("- Married at your embassy: the marriage is under your country's law. Ask the embassy what proof you get, and ask the city whether to show it.");
+    if (dep) warn.push("- Dependent: if your income is expected at 1.3 million yen a year or more, you may not qualify. The insurer decides.");
+    warn.push("- Day counts: if the last day is a weekend or holiday, ask the office. Go early when you can.");
+    $("vt").textContent = vt; $("vs").textContent = vs; lines.unshift(vt);
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My after-marriage plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  sync();
+  if (DEMO) {
+    $("md").value = "2026-11-24"; $("nm").checked = true; $("nd").value = "2026-12-10";
+    $("jn").checked = true; $("live").value = "other"; $("mv").value = "2026-12-20";
+    $("dep").checked = true; $("nhi").checked = true;
+    sync(); make();
+  }
+})();
+</script>
+</body>
+</html>
