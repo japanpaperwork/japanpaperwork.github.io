@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Voluntary Continuation Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item.bad { background: var(--warn-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Keep your company health insurance? Voluntary continuation checker</h1>
+  <p class="lead">For people leaving a company job in Japan who are choosing between voluntary continuation (nin'i keizoku) of the company health insurance and National Health Insurance. Enter your dates and numbers. You get the deadline to apply, the payment dates, the 2-year end, a rough monthly premium, and how to compare. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your last job</h2>
+    <label class="f" for="last">Last working day<span class="hint">The day your employment ends (taishokubi)</span></label>
+    <input type="date" id="last">
+    <label class="f" for="mo">Company health insurance before that, in a row<span class="hint">Plans of earlier companies count if there was no gap of even 1 day</span></label>
+    <select id="mo">
+      <option value="yes">2 months or more</option>
+      <option value="no">Less than 2 months</option>
+    </select>
+    <label class="f" for="ins">Your insurer<span class="hint">The name on your insurance card or "shikaku joho no oshirase"</span></label>
+    <select id="ins">
+      <option value="kk">Kyokai Kenpo (全国健康保険協会)</option>
+      <option value="ku">A health insurance union (健康保険組合)</option>
+      <option value="x">Not sure</option>
+    </select>
+    <label class="f" for="age">Your age now</label>
+    <select id="age">
+      <option value="u40">Under 40</option>
+      <option value="40">40 to 64</option>
+      <option value="65">65 to 74</option>
+    </select>
+    <label class="f" for="why">Why you are leaving</label>
+    <select id="why">
+      <option value="own">Own reasons</option>
+      <option value="co">Company reasons (dismissal, bankruptcy, contract not renewed)</option>
+      <option value="x">Not sure yet</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Numbers for the premium (optional)</h2>
+    <label class="f" for="ded">Health insurance on your last full pay slip, in yen<span class="hint">健康保険料. If you are 40 to 64, add 介護保険料 (care insurance)</span></label>
+    <input type="number" id="ded" min="0" step="1" inputmode="numeric" placeholder="e.g. 15000">
+    <label class="f" for="smr">Your standard monthly remuneration, in yen (if you know it)<span class="hint">標準報酬月額 (hyojun hoshu getsugaku). On some pay slips, or ask HR</span></label>
+    <input type="number" id="smr" min="0" step="1000" inputmode="numeric" placeholder="e.g. 300000">
+    <label class="f" for="fam">Family you would cover as dependents<span class="hint">Spouse, children, parents who meet the income rule</span></label>
+    <select id="fam">
+      <option value="0">None</option>
+      <option value="1">1 person</option>
+      <option value="2">2 people</option>
+      <option value="3">3 or more</option>
+    </select>
+    <label class="f" for="nhi">National Health Insurance estimate for a year, in yen (if you have it)<span class="hint">Ask your city office. It depends on last year's income and your household</span></label>
+    <input type="number" id="nhi" min="0" step="1" inputmode="numeric" placeholder="e.g. 200000">
+  </div>
+  <button id="make" type="button">Check my case</button>
+  <p class="err" id="err" hidden>Please enter your last working day.</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Deadlines</h3>
+    <div id="dead"></div>
+    <h3>Premium</h3>
+    <div id="prem"></div>
+    <h3>Compare with National Health Insurance</h3>
+    <div id="cmp"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy result as text</button>
+  </div>
+
+  <p class="note">A guide based on pages of the Japan Health Insurance Association (Kyokai Kenpo) on voluntary continuation and city pages on National Health Insurance (checked November 2026). Weekends and national holidays (2026 to 2028) move the deadlines; the year-end closure is not counted, so confirm dates near New Year. Health insurance unions have their own forms and premium rules. The premium is a rough estimate; the payment slip from your insurer decides. Please confirm with your insurer and your city office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  // Japanese national holidays 2026-2028 (incl. substitute holidays)
+  var HOL = ["2026-01-01","2026-01-12","2026-02-11","2026-02-23","2026-03-20","2026-04-29","2026-05-03","2026-05-04","2026-05-05","2026-05-06","2026-07-20","2026-08-11","2026-09-21","2026-09-22","2026-09-23","2026-10-12","2026-11-03","2026-11-23",
+    "2027-01-01","2027-01-11","2027-02-11","2027-02-23","2027-03-21","2027-03-22","2027-04-29","2027-05-03","2027-05-04","2027-05-05","2027-07-19","2027-08-11","2027-09-20","2027-09-23","2027-10-11","2027-11-03","2027-11-23",
+    "2028-01-01","2028-01-10","2028-02-11","2028-02-23","2028-03-20","2028-04-29","2028-05-03","2028-05-04","2028-05-05","2028-07-17","2028-08-11","2028-09-18","2028-09-22","2028-10-09","2028-11-03","2028-11-23"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function key(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addMonths(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function closed(d) { return d.getDay() === 0 || d.getDay() === 6 || HOL.indexOf(key(d)) >= 0; }
+  function biz(d) { var x = d; while (closed(x)) x = add(x, 1); return x; }
+  function newYear(d) { return (d.getMonth() === 11 && d.getDate() >= 29) || (d.getMonth() === 0 && d.getDate() <= 3); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function yen(n) { return Math.round(n).toLocaleString("en-US") + " yen"; }
+  var CAP = 320000; // Kyokai Kenpo: cap on the standard monthly remuneration for voluntary continuation (300,000 until March 2025)
+
+  var lines = [];
+  function put(box, date, title, sub, bad) {
+    var el = document.createElement("div"); el.className = "item" + (bad ? " bad" : "");
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + title + (date ? " (" + date + ")" : ""));
+  }
+  function make() {
+    var v = $("last").value;
+    if (!v) { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["dead","prem","cmp"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var L = parse(v), loss = add(L, 1);
+    var mo = $("mo").value, ins = $("ins").value, age = $("age").value, why = $("why").value;
+    var ded = Math.floor(+$("ded").value || 0), smr = Math.floor(+$("smr").value || 0), fam = +$("fam").value, nhi = Math.floor(+$("nhi").value || 0);
+
+    var d20 = add(loss, 19), dl = biz(d20);   // 20 days counting the day after the last day
+    var n14 = add(loss, 13);
+    var end2 = addMonths(loss, 24);           // 2 years from the loss date
+    var lastCov = add(end2, -1);
+    var nm = new Date(loss.getFullYear(), loss.getMonth() + 1, 10), pay2 = biz(nm);
+
+    var vt, vs, ok = (mo === "yes");
+    if (!ok) {
+      vt = "Voluntary continuation is not possible.";
+      vs = "It needs 2 months or more of company health insurance in a row before you leave. Join National Health Insurance (or a family member's plan as a dependent).";
+    } else {
+      vt = "You can choose it if the form arrives by " + fmt(dl) + ".";
+      vs = "After that day you cannot join it. If you are still comparing, ask your city office for the National Health Insurance estimate now." + (ins !== "kk" ? "\nYour insurer is a union (or not sure): ask your insurer for its form, its premium and where to send it." : "");
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("dead", "From " + fmt(loss), "Your company insurance ends (loss date)", "The day after your last day." + (ok ? " If you choose voluntary continuation, it starts on this same day, so there is no gap." : " From this day you need another insurance."));
+    if (ok) {
+      put("dead", "Must arrive by " + fmt(dl), "Voluntary continuation: the form must reach the insurer", "Within 20 days from the day after your last day (day 20 is " + fmt(d20) + ")" + (dl.getTime() !== d20.getTime() ? "; that is a weekend or holiday, so the next business day" : "") + ". By mail, it must ARRIVE by then. Kyokai Kenpo: send it to the branch for your home prefecture, or apply online." + (newYear(dl) ? " This is near New Year: confirm the date with the branch." : ""));
+    }
+    put("dead", "By " + fmt(n14), "Or: join National Health Insurance at the city office", "Cities ask you to join within 14 days from the loss date. Coverage and premiums go back to the loss date even if you go late.");
+    if (ok) {
+      put("dead", "On the first payment slip", "First premium: pay by its deadline", "The first slip may cover 2 months (the month you joined and the next). If you do not pay the FIRST premium by its deadline without a valid reason, the continuation is cancelled.");
+      put("dead", "Every month by the 10th (e.g. " + fmt(pay2) + ")", "Monthly premium by payment slip", "Slips come at the start of each month. Pay by the 10th (next business day if it is a weekend or holiday). Miss it, and you lose the insurance from the next day. Bank transfer (taken on the 1st) and prepaying 6 or 12 months at a discount are also possible.");
+      put("dead", "Covered until " + fmt(lastCov), "End of the 2 years", "Then you need National Health Insurance or a family member's plan. The insurer sends a notice of loss you can use for that.");
+      put("dead", "Any time", "New job with company insurance? Tell the insurer", "Hand in the form to end voluntary continuation (shikaku soshitsu moshidesho) with the insurance documents you were given. Premiums prepaid for later months come back.");
+    }
+
+    // premium
+    var mPrem = 0;
+    if (!ok) {
+      put("prem", "", "No voluntary continuation premium", "You cannot join it, so National Health Insurance (or a family member's plan) is your choice.");
+      put("cmp", "", "Ask the city for your National Health Insurance premium", "It depends on last year's income and the people in your household. The city sends the payment notice after you join.");
+      if (why === "co" || why === "x") put("cmp", "", "Lost your job for company reasons? Ask about the reduction", "If you are under 65 and your Hello Work eligibility card shows certain codes, National Health Insurance counts last year's salary as 30%.");
+    } else if (ded > 0) {
+      mPrem = ded * 2;
+      var capNote = "";
+      if (ins === "kk" && smr > CAP) { mPrem = ded * 2 * CAP / smr; capNote = " Your standard monthly remuneration is above 320,000 yen, so the cap is used (rough: deduction x 2 x 320,000 / " + smr.toLocaleString("en-US") + ")."; }
+      else if (ins === "kk" && smr === 0) { capNote = " If your standard monthly remuneration is above 320,000 yen, the cap makes it lower than this."; }
+      put("prem", "", "Rough monthly premium: " + yen(mPrem), "You now pay the employer's half too, so about 2 times your pay slip deduction." + capNote + (ins !== "kk" ? " Unions have their own rules: ask yours." : "") + " A rate change or a move to another prefecture can change it.");
+      put("prem", "", "Rough yearly total: " + yen(mPrem * 12), "Monthly premium x 12. In principle it stays the same for 2 years.");
+    } else {
+      put("prem", "", "Premium: enter your pay slip deduction", "About 2 times the health insurance (and care insurance) deducted from your pay. Kyokai Kenpo: standard monthly remuneration (cap 320,000 yen) x the rate of your home prefecture.");
+    }
+    if (ok) {
+    if (age === "u40") put("prem", "", "If you turn 40 during the 2 years", "Care insurance is added from then, so the premium goes up.");
+    if (age === "40") put("prem", "", "Care insurance is included", "Ages 40 to 64 pay care insurance as part of this premium. It stops when you turn 65.");
+    put("prem", "", "Dependents: no extra premium", fam > 0 ? "Your dependent(s) are covered without paying more, if the insurer accepts them (income rule; papers may be needed)." : "Dependents can be added with no extra premium if they meet the income rule.");
+    put("prem", "", "Premiums are deductible", "The full premium you pay counts as a social insurance deduction for income tax. Keep the receipts (smartphone-app payments give no receipt).");
+
+    // compare
+    if (nhi > 0 && mPrem > 0) {
+      var y = mPrem * 12, dif = Math.abs(y - nhi);
+      put("cmp", "", (y < nhi ? "Voluntary continuation looks cheaper" : "National Health Insurance looks cheaper") + " by about " + yen(dif) + " a year", "Voluntary: about " + yen(y) + ". National Health Insurance estimate: " + yen(nhi) + ". This compares the first year only; National Health Insurance is recalculated every year from last year's income.");
+    } else {
+      put("cmp", "", "To compare, you need both numbers", "Rough voluntary premium x 12, and the National Health Insurance estimate from your city office for your household.");
+    }
+    if (fam > 0) put("cmp", "", "Family counts in National Health Insurance", "The National Health Insurance premium depends on the number of people in the household. Ask the city to include your family in the estimate.");
+    if (why === "co" || why === "x") put("cmp", "", "Lost your job for company reasons? Ask about the reduction", "If you are under 65 and your Hello Work eligibility card shows certain codes, National Health Insurance counts last year's salary as 30%. Get the estimate WITH the reduction before you decide.");
+    put("cmp", "", "Benefits while you are in it", "Voluntary continuation: the same clinic share as when you were employed. But no sick leave pay (shobyo teate) or maternity pay for illness or leave that starts after you leave the job; only payments that started while employed can continue.");
+    put("cmp", "", "You can leave it later", "You can ask the insurer to end voluntary continuation, and then join National Health Insurance. You cannot join voluntary continuation after the 20 days.");
+    }
+
+    var warn = [];
+    warn.push("- If you use insurance you are no longer in (for example after missing a payment), you pay back the insurer's part of the bill.");
+    warn.push("- Kyokai Kenpo waits for the company's loss notice. Writing your last day in the company part of the form, or adding a copy of proof (rishokuhyo, certificate of leaving), can make it faster.");
+    warn.push("- Health insurance and pension are separate. Leaving a company job usually means joining National Pension at the city office.");
+    warn.push("- Moving to another prefecture: send the address change to the branch for your new address; the premium can change.");
+    $("warn").textContent = warn.join("\n");
+    lines.push("Watch out:"); warn.forEach(function (w) { lines.push(w); });
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Voluntary continuation: my check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  window.__check = make;
+  if (DEMO) { $("last").value = "2027-03-31"; $("mo").value = "yes"; $("ins").value = "kk"; $("age").value = "u40"; $("why").value = "own"; $("ded").value = "14000"; $("smr").value = "280000"; $("fam").value = "1"; $("nhi").value = "230000"; make(); }
+})();
+</script>
+</body>
+</html>
