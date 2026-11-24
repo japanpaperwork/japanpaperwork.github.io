@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Residence Tax When You Change Jobs: Salary or Bills Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  .err { color: var(--warn); font-size: .9rem; margin-top: 8px; }
+  [hidden] { display: none !important; }
+  .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn, .mihon #route { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Residence tax when you change jobs: salary or bills planner</h1>
+  <p class="lead">Enter your last day at the old job and your first day at the new one. You see which way the rest of this year's residence tax is paid (from salary at the new job, in one go from your final pay, or by bills), which form each company files and by when, and which bills you can still move to salary. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The old job</h2>
+    <label class="f" for="last">Last working day<span class="hint">Leave it empty if you were not working and already pay by bills</span></label>
+    <input type="date" id="last">
+    <label class="f" for="paid">How did you pay residence tax at the old job?<span class="hint">A line like 住民税 on your payslip means "from salary"</span></label>
+    <select id="paid">
+      <option value="sal">Taken from my monthly salary</option>
+      <option value="bill">I pay it myself with bills from the city</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. The new job</h2>
+    <label class="f" for="start">First working day at the new job<span class="hint">Leave it empty if it is not decided yet</span></label>
+    <input type="date" id="start">
+    <label class="f" for="want">What would you like for the rest of this year's tax?<span class="hint">From June 1 to December 31 you can choose. From January 1 to April 30 the rule is stricter.</span></label>
+    <select id="want">
+      <option value="cont">Keep it coming out of salary (at the new job)</option>
+      <option value="lump">Have it all taken from my final pay</option>
+      <option value="bill">Pay it myself with bills</option>
+    </select>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+  <p class="err" id="err" hidden>Please enter your last working day, or choose "I pay it myself with bills".</p>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your plan</h2>
+    <div class="ng" id="route" style="background:var(--accent-soft);color:var(--text)"></div>
+    <h3>Old job</h3>
+    <div id="old"></div>
+    <h3>New job</h3>
+    <div id="neu"></div>
+    <h3>Bills (if any)</h3>
+    <div id="bills"></div>
+    <h3>Next June</h3>
+    <div id="june"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy plan as text</button>
+  </div>
+
+  <p class="note">This is a guide based on pages of Yokohama, Nagoya, Sendai, Saitama and Kagoshima cities. Each city decides its own forms, deadlines, due dates and when deduction starts. The bill months used here (end of June, August, October and January) are common, but your tax notice shows your own dates. This page does not calculate any tax amount. Confirm with HR and the tax section of your city or ward office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function ym(y, m) { return M[m - 1] + " " + y; }
+  function addM(y, m, k) { var t = y * 12 + (m - 1) + k; return [Math.floor(t / 12), t % 12 + 1]; }
+  function tenth(y, m) { var a = addM(y, m, 1); return new Date(a[0], a[1] - 1, 10); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("[ ] " + title + (date ? " (" + date + ")" : ""));
+  }
+  // bill installments of the tax year that starts in June fy: end of Jun, Aug, Oct (fy), Jan (fy+1)
+  function slips(fy) {
+    return [[fy, 6, "1st"], [fy, 8, "2nd"], [fy, 10, "3rd"], [fy + 1, 1, "4th"]].map(function (a) {
+      return { y: a[0], m: a[1], n: a[2], due: new Date(a[0], a[1], 0) };
+    });
+  }
+  function make() {
+    var lv = $("last").value, sv = $("start").value, paid = $("paid").value, want = $("want").value;
+    if (!lv && paid === "sal") { $("err").hidden = false; return false; }
+    $("err").hidden = true;
+    ["old","neu","bills","june"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [], route = "";
+    var L = lv ? parse(lv) : null, S = sv ? parse(sv) : null;
+    var ref = L || S || new Date();
+    var ry = ref.getFullYear(), rm = ref.getMonth() + 1;
+    var fy = rm >= 6 ? ry : ry - 1;           // tax year June fy .. May fy+1
+    var fyText = "June " + fy + " to May " + (fy + 1);
+    var billMode = false;                       // rest of the year becomes bills
+    var gap = false;
+    if (L && S) {
+      var lm = L.getFullYear() * 12 + L.getMonth(), sm = S.getFullYear() * 12 + S.getMonth();
+      gap = sm - lm >= 2;                      // a full calendar month with no salary from either job
+      if (S <= L) warn.push("- The new job starts on or before your last day. Check the dates.");
+    }
+
+    if (paid === "sal") {
+      var y = L.getFullYear(), m = L.getMonth() + 1;
+      put("old", "After " + ym(y, m), "The old company stops taking it", "Your residence tax for " + fyText + " came out of your salary every month. After the month you leave, the old company can no longer take it.");
+      if (m === 5) {
+        route = "Your last day is in May, the last month of the " + fyText + " tax year. Usually nothing of this year is left after your final pay. The next tax year starts in June.";
+        put("old", "Final pay (May " + y + ")", "The last monthly deduction of this tax year", "Check your final payslip. Next, see \"Next June\" below.");
+        put("old", "Before " + fmt(L), "Ask the old HR about the June tax", "The tax year from June " + y + " may already be set up for deduction at the old company. Ask whether they will send the change form (給与所得者異動届出書) to your new company so it can continue there, or whether it becomes bills.");
+      } else if (m <= 4) {
+        if (want === "cont" && S && !gap) {
+          route = "Last day between January 1 and April 30: the rest is normally taken in one go from your final pay. If your new job starts right away, ask both HR offices before your last day whether it can continue at the new job instead.";
+        } else {
+          route = "Last day between January 1 and April 30: the old company takes the rest of the " + fyText + " tax (up to May " + (fy + 1) + ") in one go from your final salary or retirement allowance, even if you do not ask.";
+        }
+        put("old", "Final pay (" + ym(y, m) + ")", "The rest of this tax year is taken in one go", "The old company pays it to the city by the 10th of the next month. Your final payslip can be much smaller than usual.");
+        put("old", "By " + fmt(tenth(y, m)), "The old company tells the city you left", "Form: 給与所得者異動届出書 (kyuyo shotokusha ido todokede sho). You do nothing for this.");
+      } else {
+        if (want === "cont" && S && !gap) {
+          route = "Continue at the new job. The old company fills in the change form and sends it to the new company. The new company adds its part and sends it to the city. The monthly amounts the old company could not take come out of your new salary.";
+          put("old", "Before " + fmt(L), "Tell the old HR: \"Please continue it at my new company\"", "Give them the new company's name and address. The old company fills in its part of the change form (給与所得者異動届出書) and sends it to the new company quickly.");
+          var evy = L.getFullYear(), evm = L.getMonth() + 1;
+          var dl2 = (evm === 4) ? new Date(evy, 3, 30) : tenth(evy, evm);
+          put("neu", "On your first days (" + fmt(S) + ")", "Tell the new HR the form is coming", "Ask them to fill in their part and send it to the city.");
+          put("neu", "By " + fmt(dl2) + " (Yokohama rule)", "The new company sends the form to the city", "In Yokohama, the new company must send it by the 10th of the month after the change (April 30 if the change is in April). Rules differ by city. If it is too late, it can turn into bills.");
+          put("neu", "After the city processes it", "Deduction starts on a new payslip", "The city sends the new company a notice of the monthly amounts. Check your payslips for the 住民税 line.");
+          put("bills", "Only if it fails", "If a notice with bills comes, switch it", "If the form was late or missing, the city mails bills. Give them to the new HR and ask to switch the slips that are not yet due (see below).");
+        } else if (want === "lump") {
+          route = "One go from your final pay. Ask the old company before your last day. The rest of the " + fyText + " tax (up to May " + (fy + 1) + ") is taken from your final salary or retirement allowance.";
+          put("old", "Before " + fmt(L), "Ask the old HR for a one-time deduction (一括徴収)", "From June 1 to December 31, the company takes it in one go only if you ask. If the final pay is too small, ask HR what happens.");
+          put("old", "By " + fmt(tenth(y, m)), "The old company pays it and tells the city", "Form: 給与所得者異動届出書. You do nothing for this.");
+        } else {
+          billMode = true;
+          if (want === "cont" && !S) route = "No new job date yet, so it cannot be continued now. The rest of the " + fyText + " tax becomes bills you pay yourself. When you start a new job, you can ask to move the slips that are not yet due to salary.";
+          else if (want === "cont" && gap) route = "There is at least one full month between the jobs. A direct continuation may not be possible. Ask both HR offices. If it cannot continue, it becomes bills, and at the new job you can move the slips that are not yet due to salary.";
+          else route = "Bills. The old company tells the city you left. The city mails a tax notice with payment slips for the rest of the " + fyText + " tax.";
+          put("old", "By " + fmt(tenth(y, m)), "The old company tells the city you left", "Form: 給与所得者異動届出書. You do nothing for this. Then the city mails you the notice and slips. When it comes depends on the city.");
+        }
+      }
+    } else {
+      billMode = true;
+      route = "You already pay by bills. At the new job, you can ask HR to move the rest to salary (特別徴収への切替, tokubetsu choshu e no kirikae). Only slips that are not yet due can move.";
+    }
+
+    // bills and switching
+    if (billMode) {
+      var list = slips(fy);
+      var from = L ? new Date(L.getFullYear(), L.getMonth() + 1, 1) : null;  // notice comes after leaving
+      var left = list.filter(function (s) { return !from || s.due >= from; });
+      if (!S) {
+        left.forEach(function (s) { put("bills", "Usually end of " + ym(s.y, s.m), "Slip due " + ym(s.y, s.m) + ": pay it yourself", "Use the date printed on your slip. A notice sent in the middle of the year shows only the slips that are left."); });
+        if (!left.length) put("bills", "", "No slips of this tax year are left", "The next tax year starts in June.");
+      } else {
+        var sy = S.getFullYear(), smo = S.getMonth() + 1;
+        var st = addM(sy, smo, 2);   // Nagoya: in principle the month after next from the request
+        var reqEnd = new Date(sy, smo, 0);
+        put("neu", "Soon after " + fmt(S), "Give HR your tax notice and slips", "Ask: \"Please switch my residence tax to salary deduction.\" HR sends the request (特別徴収切替届出書 / 切替依頼書) to the city with the slips and copies of receipts for slips you already paid.");
+        put("neu", "Around " + ym(st[0], st[1]) + " (often)", "Deduction starts at the new job", "Nagoya says in principle the month after next from the request. Sendai: arrival by the 15th means next month. Ask HR for your city.");
+        left.forEach(function (s) {
+          if (s.due < S) put("bills", "Usually end of " + ym(s.y, s.m), "Slip due " + ym(s.y, s.m) + ": pay it yourself", "Due before the new job starts. Slips already past due cannot move to salary.");
+          else if (s.due <= reqEnd) put("bills", "Usually end of " + ym(s.y, s.m), "Slip due " + ym(s.y, s.m) + ": likely you pay it", "Due around the time HR sends the request. If HR can send it well before the due date, ask whether it can still move.");
+          else put("bills", "Usually end of " + ym(s.y, s.m), "Slip due " + ym(s.y, s.m) + ": can move to salary", "Not yet due when HR sends the request. Do not pay this slip after HR sends the request, to avoid paying twice. Ask HR.");
+        });
+        if (!left.length) put("bills", "", "No slips of this tax year are left", "Nothing to switch. The next tax year starts in June.");
+        warn.push("- Slips paid by automatic bank transfer: some cities need the switch earlier (Sendai: by 20 days before the due date).");
+      }
+    }
+
+    if (!$("old").children.length) put("old", "", "Nothing to do at the old job", "You were already paying by bills.");
+    if (!$("neu").children.length) put("neu", S ? fmt(S) : "", "Nothing to file for this tax year", S ? "This year's tax is already settled. See \"Next June\" below." : "No start date yet. When you know it, come back and enter it.");
+    if (!$("bills").children.length) put("bills", "", "No bills for this tax year", "Unless something goes wrong, you get no slips for this year.");
+    // next June
+    var ny = rm >= 6 ? ry + 1 : ry;
+    if (S && S <= new Date(ny, 3, 1)) {
+      put("june", "June " + ny + " to May " + (ny + 1), "Usually from salary at the new job", "Yokohama says people who were paid salary last year and are paid salary on April 1 are covered by salary deduction. If a bill comes anyway, give it to HR and ask to switch.");
+    } else {
+      put("june", "Around June " + ny, "A notice may come as bills", "If you have no job paying salary on April 1, the next tax year often comes as bills. You can switch later at a new job.");
+    }
+    put("june", "Address on January 1", "The city where you live on January 1 handles it", "If you moved, tell that city your new address so the notice reaches you.");
+
+    warn.push("- Residence tax is for last year's income. Changing jobs does not stop it.");
+    warn.push("- Paying a slip after HR asked for the switch can mean paying twice. Ask HR which slips to pay.");
+    warn.push("- Leaving Japan for good: ask the city how to pay the rest before you go.");
+    $("route").textContent = route;
+    lines.unshift(route);
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "Residence tax when I change jobs: my plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) { $("last").value = "2027-07-31"; $("paid").value = "sal"; $("start").value = "2027-09-01"; $("want").value = "cont"; make(); }
+})();
+</script>
+</body>
+</html>
