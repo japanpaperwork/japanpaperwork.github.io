@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Going Freelance in Japan: First-Year Planner - Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .hint, .mihon .lead, .mihon label.c small { display: none; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Going freelance in Japan: first-year planner</h1>
+  <p class="lead">For people starting work for themselves in Japan as an individual (sole proprietor, 個人事業). Enter the day you start and your situation. You get your dates in order: the opening notice (kaigyo todoke), the blue return application, the payroll notice, the 14-day steps if you leave a company, and your first tax return. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your business</h2>
+    <label class="f" for="start">The day your business starts<span class="hint">For example, the first day you work for clients as a business</span></label>
+    <input type="date" id="start">
+    <label class="c"><input type="checkbox" id="blue"><span>I want to file a blue return (青色申告)<small>Needs approval first. Gives deductions if you keep books</small></span></label>
+    <label class="c"><input type="checkbox" id="staff"><span>I will pay salary to staff<small>Even one part-timer or a family member</small></span></label>
+    <label class="f" for="pay" id="payl">The day you start paying staff (open your payroll)<span class="hint">Leave empty if not decided yet</span></label>
+    <input type="date" id="pay">
+  </div>
+
+  <div class="card">
+    <h2>2. Leaving a company?</h2>
+    <label class="c"><input type="checkbox" id="quit"><span>I am leaving (or left) a company job to do this<small>You leave the company's health insurance and pension</small></span></label>
+    <label class="f" for="last" id="lastl">Your last day at the company</label>
+    <input type="date" id="last">
+    <label class="c"><input type="checkbox" id="work"><span>My status of residence is a work status<small>For example: Engineer / Specialist in Humanities / International Services, Skilled Labor</small></span></label>
+  </div>
+  <button id="make" type="button">Make my timeline</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Your dates, in order</h3>
+    <div id="when"></div>
+    <h3>Forms</h3>
+    <div id="frm"></div>
+    <h3>Papers</h3>
+    <div id="pap"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the National Tax Agency's Tax Answer pages No.2090 and No.2070 (laws as of April 1, 2026), the Japan Pension Service, city pages and the Immigration Services Agency (checked November 2026). Weekend deadlines are moved to Monday; national holidays are not checked. It does not calculate tax. Not tax or visa advice. The tax office, your city and immigration decide; ask them if unsure.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function fmt(d) { return M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function parse(v) { if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function nextWorkday(d) { d = new Date(d); while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1); return d; }
+  function addMonths(d, n) {
+    var y = d.getFullYear(), m = d.getMonth() + n, day = d.getDate();
+    var last = new Date(y, m + 1, 0).getDate();
+    return new Date(y, m, Math.min(day, last));
+  }
+  function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function showSub() {
+    var s = $("staff").checked; $("pay").hidden = !s; $("payl").hidden = !s;
+    var q = $("quit").checked; $("last").hidden = !q; $("lastl").hidden = !q;
+  }
+  $("staff").addEventListener("change", showSub); $("quit").addEventListener("change", showSub); showSub();
+  function make() {
+    ["when","frm","pap"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var start = parse($("start").value);
+    if (!start) { $("vt").textContent = "Enter the day your business starts."; $("vs").textContent = ""; $("warn").textContent = ""; $("result").hidden = false; return true; }
+    var blue = $("blue").checked, staff = $("staff").checked, quit = $("quit").checked, work = $("work").checked;
+    var pay = staff ? parse($("pay").value) : null;
+    var last = quit ? parse($("last").value) : null;
+    var y = start.getFullYear();
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var taxEnd = nextWorkday(new Date(y + 1, 2, 15));
+    var early = start.getMonth() === 0 && start.getDate() <= 15;
+    var blueDl = early ? nextWorkday(new Date(y, 2, 15)) : nextWorkday(addMonths(start, 2));
+    var items = [];
+    if (quit && last) {
+      var d14 = nextWorkday(addDays(last, 14));
+      items.push([d14, "National Health Insurance (or continue the company plan)", "Join at your city office within 14 days of leaving company insurance. Continuing the company plan (nin'i keizoku) is due within 20 days."]);
+      items.push([d14, "National Pension: switch to Category 1", "At the city office or pension office, within 14 days from the day after your last day."]);
+      if (work) items.push([d14, "Immigration: notice that your contract ended", "Within 14 days (online, counter or post). Ask immigration whether freelance work fits your status before you rely on it."]);
+    }
+    if (blue) items.push([blueDl, "Blue return application (青色申告承認申請書)", early ? "You start between January 1 and 15, so the deadline is March 15 of " + y + "." : "You start on or after January 16, so it is due within 2 months of the start date."]);
+    if (staff && pay) items.push([nextWorkday(addMonths(pay, 1)), "Payroll office notice (給与支払事務所等の開設届出書)", "Within 1 month of opening your payroll."]);
+    items.push([taxEnd, "Opening notice (kaigyo todoke) at the latest", "Due by the tax return deadline of the year you start. Handing it in early, with the blue return form, is simpler."]);
+    items.push([taxEnd, "First tax return for " + y, "February 16 to " + fmt(taxEnd) + ", tax office for your address. Pay any tax by the same day."]);
+    items.sort(function (a, b) { return a[0] - b[0]; });
+    items.forEach(function (it) { put("when", fmt(it[0]), it[1], it[2]); });
+
+    var first = items[0];
+    $("vt").textContent = "Your first deadline: " + first[1].replace(/ \(.*\)$/, "") + ", by " + fmt(first[0]) + ".";
+    $("vs").textContent = (blue ? "Blue return application: " + fmt(blueDl) + ". " : "") + "Kaigyo todoke: by " + fmt(taxEnd) + " at the latest. First tax return: February 16 to " + fmt(taxEnd) + ".";
+    lines.unshift($("vt").textContent);
+
+    put("frm", "Tax office", "個人事業の開業・廃業等届出書", "The opening notice (kaigyo todoke). Your address, My Number, type of work, start date.");
+    if (blue) put("frm", "Tax office", "所得税の青色申告承認申請書", "Blue return application. Hand it in with the opening notice if you can.");
+    if (staff) {
+      put("frm", "Tax office", "給与支払事務所等の開設届出書", "Payroll office notice, if you pay salary.");
+      put("frm", "Optional", "源泉所得税の納期の特例の承認に関する申請書", "With fewer than 10 staff: pay withheld tax twice a year.");
+      if (blue) put("frm", "If family staff", "青色事業専従者給与に関する届出書", "To count pay to a family member as an expense. Same timing as the blue return form.");
+    }
+    put("frm", "Prefecture", "Business start notice (個人事業税)", "Set by your prefecture. Check the prefectural tax office's page.");
+
+    put("pap", "ID", "My Number and ID", "My Number card, or your My Number paper plus your residence card.");
+    put("pap", "From day one", "Receipts and invoices", "Keep every one. You need them for your tax return" + (blue ? " and your books." : "."));
+    if (quit) {
+      put("pap", "For the city office", "Proof you left company insurance", "From your old company or its insurer.");
+      put("pap", "For the tax return", "Gensen choshuhyo from the old job", "Your salary that year goes into the same return.");
+    }
+
+    if (blue && blueDl < today) warn.push("- The blue return deadline (" + fmt(blueDl) + ") has passed. For " + y + " you file a white return (白色申告). To use the blue return from " + (y + 1) + ", apply by " + fmt(nextWorkday(new Date(y + 1, 2, 15))) + ".");
+    if (quit && !last) warn.push("- Enter your last day at the company to see the 14-day dates.");
+    if (quit && last && nextWorkday(addDays(last, 14)) < today) warn.push("- The 14-day dates have passed. Go to the city office (and immigration, if it applies) as soon as you can.");
+    if (staff && !pay) warn.push("- Payroll notice: due within 1 month of opening your payroll. Enter the date to see it.");
+    warn.push("- Many guides say the kaigyo todoke is due within one month. The National Tax Agency's page for laws as of April 1, 2026 gives the tax return deadline of the start year.");
+    warn.push("- The kaigyo todoke is not a tax return. You still file one between February 16 and March 15.");
+    if (blue) warn.push("- The 650,000-yen blue deduction needs double-entry books and e-Tax (or qualifying electronic books), filed by March 15. Simple books give up to 100,000 yen.");
+    if (work) warn.push("- Visa: whether freelance work fits your status of residence is decided by immigration. Ask before you leave the company.");
+    warn.push("- Invoice registration (consumption tax) is a separate choice. Ask the tax office before deciding.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My freelance first-year timeline\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("start").value = "2026-05-10"; $("blue").checked = true;
+    $("quit").checked = true; $("last").value = "2026-04-30"; $("work").checked = true; showSub();
+    make();
+  }
+})();
+</script>
+</body>
+</html>
