@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contract Not Renewed in Japan: Checker | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Contract not renewed in Japan: checker</h1>
+  <p class="lead">For people on a fixed-term contract in Japan who were told it will not be renewed (雇止め, <i>yatoidome</i>). Enter your dates and renewals. You see whether the 30-day notice rule covers you, the last day for that notice, your total years, whether the 5-year rule may apply, the date to act by, the likely Hello Work group and the next steps. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. Your contracts</h2>
+    <label class="f" for="start">Day your first contract with this employer started<span class="hint">The first fixed-term contract with the same employer</span></label>
+    <input type="date" id="start">
+    <label class="f" for="end">Day your current contract ends<span class="hint">The end date written on your latest contract</span></label>
+    <input type="date" id="end">
+    <label class="f" for="ren">How many times it has been renewed<span class="hint">0 if this is your first contract</span></label>
+    <input type="number" id="ren" min="0" max="60" step="1" inputmode="numeric">
+    <label class="c"><input type="checkbox" id="long"><span>One of my contracts was longer than 1 year</span></label>
+    <label class="c"><input type="checkbox" id="gap"><span>There was a gap of a month or more between contracts</span></label>
+  </div>
+
+  <div class="card">
+    <h2>2. The notice</h2>
+    <label class="f" for="told">Day you were told it will not be renewed (optional)<span class="hint">In writing or in words</span></label>
+    <input type="date" id="told">
+    <label class="c"><input type="checkbox" id="stated"><span>My contract already said this one will not be renewed<small>For example 更新しない written at the last renewal, or a renewal limit (更新上限) that ends with this contract</small></span></label>
+    <label class="c"><input type="checkbox" id="promised"><span>The contract said it would be renewed (更新する)<small>"Will renew", not "may renew"</small></span></label>
+  </div>
+
+  <div class="card">
+    <h2>3. Your situation</h2>
+    <label class="c"><input type="checkbox" id="want"><span>I want to keep working there</span></label>
+    <label class="c"><input type="checkbox" id="limit"><span>A renewal limit was added or shortened after my first contract</span></label>
+    <label class="c"><input type="checkbox" id="visa"><span>My visa is a work visa tied to this job<small>For example Engineer/Specialist in Humanities/International Services</small></span></label>
+  </div>
+  <button id="make" type="button">Check my situation</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Your dates</h3>
+    <div id="dates"></div>
+    <h3>What to do, in order</h3>
+    <div id="steps"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the Ministry of Health, Labour and Welfare's standard on fixed-term contracts and non-renewal (amended April 2024), its page on leaving, dismissal and non-renewal, the Labor Contract Act (Art. 17, 18 and 19), Hello Work's page on company-reason and special-reason leavers, and Immigration Services Agency pages (checked November 2026). Total years are counted from the first start day to the current end day; gaps between contracts can change the 5-year count. It does not judge whether a non-renewal is valid or which Hello Work group you are in. Not legal advice. Always confirm with the Labour Standards Inspection Office or a General Labour Consultation Corner.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function addY(d, y) { var x = new Date(d.getFullYear() + y, d.getMonth(), d.getDate()); if (x.getMonth() !== d.getMonth()) x = new Date(d.getFullYear() + y, d.getMonth() + 1, 1); return x; }
+  function parse(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function diff(a, b) { return Math.round((b - a) / 86400000); }
+  function dd(n) { return n + (n === 1 ? " day" : " days"); }
+  function span(s, e) {
+    var x = add(e, 1), y = x.getFullYear() - s.getFullYear(), m = x.getMonth() - s.getMonth(), d = x.getDate() - s.getDate();
+    if (d < 0) m -= 1;
+    if (m < 0) { y -= 1; m += 12; }
+    var out = [];
+    if (y > 0) out.push(y + (y === 1 ? " year" : " years"));
+    if (m > 0 || y === 0) out.push(m + (m === 1 ? " month" : " months"));
+    return out.join(" ");
+  }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  function stop(msg) {
+    ["dates","steps"].forEach(function (id) { $(id).innerHTML = ""; });
+    $("vt").textContent = msg; $("vs").textContent = ""; $("warn").textContent = "";
+    $("result").hidden = false; return true;
+  }
+  function make() {
+    ["dates","steps"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    var sv = $("start").value, ev = $("end").value, rv = $("ren").value;
+    if (!sv || !ev || rv === "") return stop("Please enter your first start day, your current end day and the number of renewals.");
+    var S = parse(sv), E = parse(ev), R = Math.max(0, Math.floor(+rv));
+    if (E <= S) return stop("Your end day is on or before your start day. Please check the dates.");
+    var over1 = addY(S, 1) <= E, over3 = addY(S, 3) <= add(E, 1), over5 = addY(S, 5) <= E;
+    var covered = R >= 3 || (R >= 1 && over1) || $("long").checked;
+    var stated = $("stated").checked, tv = $("told").value, T = tv ? parse(tv) : null;
+    if (T && T > E) return stop("The day you were told is after your end day. Please check the dates.");
+    var N = add(E, -30), late = T ? diff(N, T) : null;
+    var vt, vs;
+    if (covered && !stated) {
+      if (T && late > 0) { vt = "The 30-day notice rule covers you, and the notice came " + dd(late) + " late."; vs = "The company should have told you by " + fmt(N) + ". Write the dates down and ask the Labour Standards Inspection Office."; }
+      else if (T) { vt = "The 30-day notice rule covers you, and the notice came in time."; vs = "You were told " + dd(diff(T, E)) + " before the end day. The deadline was " + fmt(N) + "."; }
+      else { vt = "The 30-day notice rule covers you."; vs = "The company should tell you by " + fmt(N) + " (30 days before your end day)."; }
+    } else if (covered && stated) {
+      vt = "The 30-day notice may not be needed: it was stated beforehand that this contract will not be renewed.";
+      vs = "Check when and how it was written. If a renewal limit was added or shortened later, the company had to explain why beforehand.";
+    } else {
+      vt = "The 30-day notice rule may not cover you yet.";
+      vs = "It covers 3 or more renewals, over 1 year in total after a renewal, or a contract longer than 1 year. You can still ask for the reason in writing.";
+    }
+    if (over5) vs += "\nYour contracts add up to over 5 years: you may be able to apply for an indefinite contract before your end day.";
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("dates", fmt(S), "First contract started", "Total to the end day: about " + span(S, E) + ", renewed " + R + (R === 1 ? " time." : " times."));
+    if (covered && !stated) put("dates", fmt(N), "Last day for the 30-day notice", "30 days before your end day.");
+    if (T) put("dates", fmt(T), "You were told", dd(diff(T, E)) + " before the end day.");
+    put("dates", fmt(addY(S, 5)), "5 years from your first start", over5 ? "Passed by your end day. The right to apply for an indefinite contract can arise." : "Not passed by your end day.");
+    put("dates", fmt(E), "Contract ends: act before this day", "Ask for renewal before the end (or without delay after it), and apply for conversion if you are over 5 years.");
+    if ($("visa").checked) put("dates", fmt(add(E, 14)), "About 14 days after the end: immigration notice", "Notification on the contracting organization, to the Immigration Services Agency (online, by post or at the counter).");
+
+    var n = 1;
+    put("steps", "Step " + n++, "Gather all your contracts", "From the first one. Note each start and end, any gaps, and the words 更新する / 更新しない / 更新上限.");
+    put("steps", "Step " + n++, "Ask for the reason in writing", "A certificate of the reason for non-renewal (雇止め理由証明書). The company must give it without delay, also after the end. The reason must be other than \"the term ended\".");
+    if ($("want").checked) put("steps", "Step " + n++, "Say in writing that you want renewal, before " + fmt(E), "Keep a copy. If renewals made it like a regular job, or you had reason to expect renewal, a refusal needs an objectively reasonable reason (Art. 19).");
+    if (over5) put("steps", "Step " + n++, "Apply for an indefinite contract, before " + fmt(E), "Over 5 years in total with the same employer. The company cannot refuse the application (Art. 18). Keep a copy.");
+    var g;
+    if (R >= 1 && over3) g = "Renewed to 3 years or more in a row, then not renewed: Hello Work lists this as a company-reason leave.";
+    else if ($("promised").checked) g = "Renewal was stated at signing, then not renewed: Hello Work lists this as a company-reason leave.";
+    else if ($("want").checked) g = "You wanted renewal and there was no agreement: Hello Work lists this as a special-reason leave.";
+    else g = "Hello Work decides the group from the separation notice (離職票). If you wanted renewal, make that clear.";
+    put("steps", "Next", "Hello Work: unemployment benefit", g + " Hello Work makes the final decision.");
+    put("steps", "If you disagree", "Ask the office (free)", "Labour Standards Inspection Office (労働基準監督署) for the notice and papers. General Labour Consultation Corner (総合労働相談コーナー) for whether the non-renewal is fair. English line: 0570-001-701 (Mon-Fri 10:00-15:00, not 12:00-13:00, call fee).");
+
+    if ($("gap").checked) warn.push("- Gaps between contracts can reset the 5-year count (a gap of about 6 months or more can mean earlier years do not count). Ask the office with your contract dates.");
+    if (!over5 && addY(S, 5) <= addY(E, 1)) warn.push("- If renewed once more, your total may pass 5 years. Ending contracts just before the right starts, to avoid the rule, is \"not desirable\" in the Ministry's words.");
+    if ($("limit").checked) warn.push("- Since April 2024, a company that adds or shortens a renewal limit after the first contract must explain why beforehand. Bring the contracts when you ask the office.");
+    warn.push("- Ending the contract before the end date is a dismissal, not a non-renewal. It needs an unavoidable reason (Labor Contract Act Art. 17).");
+    warn.push("- Check the reason written on the separation notice (離職票) before you go to Hello Work.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My non-renewal check\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("start").value = "2022-10-01"; $("end").value = "2026-12-31"; $("ren").value = "4";
+    $("told").value = "2026-12-10"; $("want").checked = true; $("visa").checked = true;
+    make();
+  }
+})();
+</script>
+</body>
+</html>
