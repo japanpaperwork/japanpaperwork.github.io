@@ -175,7 +175,7 @@
     var vt, vs;
     if (exempt) {
       vt = "The 30-day notice rule may not apply to you: " + exWhy + ".";
-      vs = "The law lists this as an exception (Art. 21)." + (hv ? "" : " Enter your start day to check the time limit.") + " Ask the office if you are not sure.";
+      vs = "The law lists this as an exception (Art. 21)." + (!hv && (ct === "daily" || ct === "trial") ? " Enter your start day to check the time limit." : "") + " Ask the office if you are not sure.";
     } else if (short === 0) {
       vt = "You got " + dd(given) + " of notice. That meets the 30-day rule, so no notice pay is due.";
       vs = "Notice pay is for days of notice short of 30. Your last month's wages are still paid as usual.";
@@ -204,7 +204,7 @@
     if ($("fault").checked) warn.push("- \"Your fault\" is not enough on its own. Without the office's approval, the 30 days' notice or notice pay still applies.");
     if (short > 0 && !exempt) warn.push("- Notice can be shortened by paying 1 day of average wage for each day short (Art. 20). Check that the days and yen match.");
     if (ct === "fix2" || ct === "season" || ct === "daily" || ct === "trial") warn.push("- Exceptions end once you keep working past the limit (over 1 month for day-by-day, past the term for short contracts, over 14 days in a trial period).");
-    warn.push("- A dismissal for your own serious fault (重責解雇) can mean a 3-month restriction on unemployment benefit. Read the reason on the separation notice before you sign it.");
+    warn.push("- A dismissal for your own serious fault (重責解雇) can mean a 3-month restriction on unemployment benefit. Check the reason written on the separation notice (離職票).");
     $("warn").textContent = warn.join("\n");
     $("result").hidden = false;
     return true;
