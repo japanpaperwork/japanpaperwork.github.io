@@ -157,7 +157,7 @@
     var vt = "Leaving the job does not change your right to rosai benefits.", vs;
     if (first === "none") vs = "Treatment: keep claiming it from rosai, not health insurance.\nIf you miss work later, the first leave claim needs the employer's certificate.";
     else vs = "Next leave claim (" + fL + "): employer's certificate " + (needCert ? "NEEDED." : "not needed.") + "\nThe doctor's part is needed every time.";
-    if (N) vs += "\n2-year limit for the first unclaimed day: " + fmt(addY(add(N, 1), 2)) + ".";
+    if (N) vs += "\n2-year limit for the first unclaimed day: about " + fmt(addY(N, 2)) + ".";
     $("vt").textContent = vt; $("vs").textContent = vs;
     lines.push(vt);
 
@@ -169,7 +169,7 @@
     put("claim", "Treatment", "Keep using rosai for this injury", "At a designated hospital treatment stays free in principle (" + (work ? "form 5" : "form 16-3") + "). If you paid, claim it with " + (work ? "form 7" : "form 16-5") + ". Do not switch to health insurance.");
 
     put("dates", fmt(L), "Last day of the job", "Your employment ends. Your rosai rights do not.");
-    if (N) put("dates", "By " + fmt(addY(add(N, 1), 2)), "2-year limit for " + fmt(N), "Each day has its own limit: 2 years from the next day. The oldest days expire first. Claim in parts so nothing expires.");
+    if (N) put("dates", "By about " + fmt(addY(N, 2)), "2-year limit for " + fmt(N), "Each day has its own limit: 2 years from the next day. The oldest days expire first. Claim in parts so nothing expires.");
     if (ui) {
       var E1 = addY(L, 1);
       var st = S0 ? (S0 > L ? S0 : add(L, 1)) : null;
@@ -184,7 +184,7 @@
 
     if (needCert && refuse) put("steps", "Now", "Go to the Labour Standards Inspection Office", "Your claim needs the employer's part but the company will not help. Explain this at the office. The MHLW leaflet says you can claim rosai even if the company does not agree.");
     else if (refuse) put("steps", "If asked", "You may not need the company now", "For days after leaving (second claim onward), the employer's certificate is not needed. If the office asks for something from the company, explain that it will not answer.");
-    if (first === "yes") put("steps", "With the first claim after leaving", "Add a paper showing you left", "A Labour Bureau page asks for any paper that shows you left the job with the first claim that leaves out the employer's part. Any kind of paper is fine.");
+    if (first === "yes" && !needCert) put("steps", "With the first claim after leaving", "Add a paper showing you left", "A Labour Bureau page asks for any paper that shows you left the job with the first claim that leaves out the employer's part. Any kind of paper is fine.");
     if (ui && still) put("steps", "When you can work again", "Go back to Hello Work", "Tell them you can work now and apply for the basic allowance. The extension ends when a doctor says you can work.");
     if (ui && !still) put("steps", "Now", "Go to Hello Work", "If you can work and look for a job, apply for the basic allowance. Bring your separation notice (離職票).");
     if (abroad) put("steps", "Before you leave", "Ask the office about claims from abroad", "Some claims can be made from outside Japan; some support is only inside Japan. Leave an address and a bank account they can use.");
