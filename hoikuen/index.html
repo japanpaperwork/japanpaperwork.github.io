@@ -184,11 +184,14 @@
       } else {
         put("dates", "Autumn of " + (y - 1), "April round: applications open", "Yokohama took April 2027 applications from October 1 to 28, 2026. Your city's dates are in its guide (利用案内 or 入園のしおり).");
       }
-      put("dates", "Ask by " + fmt(new Date(y - 1, 8, 1)), "Get your city's guide for April " + y, "Then there is time to get the employment certificate from your employer.");
-    } else {
+      var g = new Date(y - 1, 8, 1);
+      put("dates", (T > g ? "Passed: " : "Ask by ") + fmt(g), "Get your city's guide for April " + y, T > g ? "Get it now, and ask your employer for the certificate today." : "Then there is time to get the employment certificate from your employer.");
+    } else if (S.getMonth() >= 4) {
       var prev = new Date(S.getFullYear(), S.getMonth() - 1, 7);
       put("dates", "Example: by " + fmt(prev), "Mid-year application deadline", "Ota City (Tokyo): the 7th of the month before the start month, for May to December starts (next open day if the 7th is a holiday). Your city's day may be different.");
-      if (S.getMonth() === 1 || S.getMonth() === 2) warn.push("- Some cities do not decide places for February or March starts (Ota City does not). Ask, and look at the April round.");
+    } else {
+      put("dates", "Check the city's guide", M[S.getMonth()] + " start: a special period", "Ota City sets the January period in its guide, and does not decide places for February or March starts. Ask your city.");
+      if (S.getMonth() !== 0) warn.push("- Some cities do not decide places for February or March starts (Ota City does not). Look at the April round too.");
     }
     if (rs === "leave") put("dates", "By the end of " + mfmt(S), "Go back to work", "Ota City: parents on childcare leave must go back to the same company within the start month. If not, the place is cancelled.");
     if (rs === "search") put("dates", "Within 3 months of the start", "Find a job", "Ota City certifies job seeking for 3 months. When you find work, send the employment certificate.");
@@ -208,7 +211,7 @@
     if (jan) put("papers", "Tax", "Residence tax certificate (課税証明書) from the old city", "Ota City: if you were not registered there on January 1. Moved from abroad: a city form for last year's salary (Ota: 年間給与証明書).");
     put("papers", "Some cities", "Child's health form, consent form", "Ota City asks for both.");
 
-    if (!tax) warn.push("- Ota City: if residence tax was not filed, the city cannot see your income, and this counts against you. File it at the city office.");
+    if (!tax) warn.push("- Ota City: if residence tax was not filed, the city cannot see your income, and this counts against you. Ask the city tax office.");
     warn.push("- You apply to the city, not to the nursery. The city decides who gets a place.");
     warn.push("- Use the city's own forms. Ota City does not accept other formats for the employment certificate.");
     if (rs === "work" || rs === "offer") warn.push("- Your working hours must reach your city's line. Ota City: 48 hours a month. Some cities use 64 hours.");
