@@ -155,7 +155,7 @@
     put("dates", "By " + fmt(d14), "Birth registration (出生届) at the city office", "14 days, counting the day of birth as day 1. File in the city where you live or where the baby was born. The father or mother files.");
     if (needVisa) {
       put("dates", "Around " + fmt(d30) + " (aim earlier)", "Apply for the baby's status of residence", "Within 30 days of birth, at the regional immigration office for your address. A parent can apply as the legal representative. Go well before this date.");
-      put("dates", "About " + fmt(d60), "End of the 60 days without a status", STATUS[par][1]);
+      put("dates", "About " + fmt(d60), "End of the 60 days without a status", "If you applied in time and no answer has come yet, ask immigration about the stay while it is decided.");
     } else if (par !== "jp") {
       put("dates", "Before about " + fmt(d60), "Leave Japan within 60 days", "Then no status application is needed (Immigration Q&A Q28). If plans change, apply within 30 days of birth.");
     }
@@ -165,7 +165,7 @@
     if (moved) put("steps", "Days 1 to 14", "Choose the city", "You can file in the city where you live or in the city of birth. Ask each city what they need.");
     if (par !== "jp") put("steps", "After filing", "Get the baby's juminhyo (住民票)", "The baby is registered as a resident. A juminhyo for immigration is recommended (leave out the My Number, keep the rest).");
     if (par !== "jp") put("steps", "Soon", "Embassy or consulate of your country", pp ? "The passport is ready. Bring it to immigration." : "Ask about the baby's birth report and passport. Immigration asks to see a passport. If it will not be ready, ask immigration before day 30.");
-    if (needVisa) put("steps", "By day 30", "Apply at the regional immigration office", "Application for permission to acquire status of residence (在留資格取得許可申請). No photo for a baby under 1. After approval, the baby gets a residence card.");
+    if (needVisa) put("steps", "By day 30", "Apply at the regional immigration office", "Application for permission to acquire status of residence (在留資格取得許可申請). No photo for a baby under 1. After approval, the baby gets a residence card. " + STATUS[par][0] + ": " + STATUS[par][1]);
     if (needVisa) put("steps", "After approval", "Address on the residence card", "With a juminhyo in the application, the card shows the address and no extra notice is needed. Without it, notify your city within 14 days.");
     put("steps", "Same weeks", "Health insurance and child allowance", "Add the baby to your health insurance (company or National Health Insurance), and apply for the child allowance at your city.");
 
@@ -184,7 +184,7 @@
     if (needVisa) warn.push("- The 30 days include weekends and holidays. Immigration counters are closed then.");
     if (leave && back && par !== "jp") warn.push("- Coming back on a re-entry permit: apply for the status first. The no-application rule does not apply.");
     if (par === "jp") warn.push("- Dual nationality can mean a choice later. Ask the city or the Legal Affairs Bureau.");
-    warn.push("- Immigration decides the status and may ask for more papers.");
+    if (par !== "jp") warn.push("- Immigration decides the status and may ask for more papers.");
     $("warn").textContent = warn.join("\n");
     $("result").hidden = false;
     return true;
