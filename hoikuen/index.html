@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nursery School (Hoikuen) in Japan: Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Nursery school (hoikuen) in Japan: planner</h1>
+  <p class="lead">For foreign parents in Japan who want a place at a licensed nursery school (認可保育園). You apply to your city, not to the nursery, and the city needs a reason why you cannot care for the child in the daytime. Enter your child's birth date, the month you want to start and your situation. You get the class age, the dates to watch, the order of the steps and the papers. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The child and the start month</h2>
+    <label class="f" for="bd">Child's date of birth<span class="hint">If the baby is not born yet, enter the due date</span></label>
+    <input type="date" id="bd">
+    <label class="f" for="sm">Month you want to start</label>
+    <select id="sm"></select>
+    <label class="f" for="rs">Your reason<span class="hint">If there are two parents, each needs a reason. Choose the one for the parent with fewer working hours</span></label>
+    <select id="rs">
+      <option value="work">Working now</option>
+      <option value="leave">On childcare leave, going back to the same job</option>
+      <option value="offer">Starting a new job (job offer)</option>
+      <option value="search">Looking for a job</option>
+      <option value="preg">Pregnant or just gave birth</option>
+      <option value="study">Studying (school, university)</option>
+      <option value="sick">Illness, disability or caring for family</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your situation</h2>
+    <label class="c"><input type="checkbox" id="jan"><span>We were not registered in this city on January 1 this year<small>For example, we moved from another city or from abroad this year</small></span></label>
+    <label class="c"><input type="checkbox" id="mnc"><span>We have a My Number Card<small>Some cities, like Yokohama, now take applications online through Mynaportal</small></span></label>
+    <label class="c"><input type="checkbox" id="tax"><span>Our residence tax was filed last year<small>For salary in Japan, the employer usually reports it</small></span></label>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Dates to watch</h3>
+    <div id="dates"></div>
+    <h3>Next steps</h3>
+    <div id="steps"></div>
+    <h3>Papers to bring</h3>
+    <div id="papers"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the pages of Yokohama City (applications for April 2027), Ota City in Tokyo, and the Children and Families Agency (free early childhood education and care), checked November 2026. Each city sets its own dates, working-hour line, forms and points. Not legal advice. Always confirm with your city office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function mfmt(d) { return M[d.getMonth()] + " " + d.getFullYear(); }
+  function pd(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function today() { var t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  // school year of a birth date: April 2 to April 1
+  function sy(d) { var y = d.getFullYear(); return (d.getMonth() > 3 || (d.getMonth() === 3 && d.getDate() >= 2)) ? y : y - 1; }
+  // fiscal year (April to March) of the start month
+  function fy(d) { return d.getMonth() >= 3 ? d.getFullYear() : d.getFullYear() - 1; }
+
+  function fill(base) {
+    var s = $("sm"); s.innerHTML = "";
+    for (var i = 1; i <= 18; i++) {
+      var d = new Date(base.getFullYear(), base.getMonth() + i, 1);
+      var o = document.createElement("option");
+      o.value = d.getFullYear() + "-" + (d.getMonth() + 1);
+      o.textContent = mfmt(d) + (d.getMonth() === 3 ? " (April: the big round)" : "");
+      s.appendChild(o);
+    }
+  }
+  fill(DEMO ? new Date(2026, 10, 28) : today());
+
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  var PROOF = {
+    work: ["Employment certificate (就労証明書)", "Filled in by your employer, on the city's own form. Ota City: valid only if issued within 3 months."],
+    leave: ["Employment certificate (就労証明書)", "Your employer writes the leave period and the return date. Some cities also ask for a childcare leave certificate."],
+    offer: ["Employment certificate for the new job", "Ota City uses the same 就労証明書 form for a job offer."],
+    search: ["Job search statement (求職活動状況申立書)", "On the city's form. You write it yourself."],
+    preg: ["Mother and child handbook (母子健康手帳) copy", "The cover and the page with the due date."],
+    study: ["Certificate of enrollment + timetable", "Hobby or culture classes do not count."],
+    sick: ["Medical certificate or care papers", "A doctor's certificate that says why you cannot care for the child, or papers that show the family care."]
+  };
+  function make(now) {
+    ["dates","steps","papers"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    if (!$("bd").value) { $("vt").textContent = "Please enter your child's date of birth (or due date)."; $("vs").textContent = ""; $("warn").textContent = "- You apply to the city, not to the nursery."; $("result").hidden = false; return true; }
+    var B = pd($("bd").value), T = now || today();
+    var p = $("sm").value.split("-"), S = new Date(+p[0], +p[1] - 1, 1);
+    var rs = $("rs").value, jan = $("jan").checked, mnc = $("mnc").checked, tax = $("tax").checked;
+    var cls = fy(S) - sy(B) - 1;
+    var april = S.getMonth() === 3;
+    var vt, vs;
+    if (B >= S) {
+      vt = "The child would not be born yet in " + mfmt(S) + ".";
+      vs = "Choose a later month. Each nursery sets the youngest age it takes; check the city's list of nurseries.";
+    } else if (cls > 5) {
+      vt = "In " + mfmt(S) + " your child is elementary school age.";
+      vs = "Nursery school is for children before elementary school. Ask the city about after-school care (学童保育).";
+    } else {
+      vt = mfmt(S) + ": your child would be in the " + cls + "-year-old class.";
+      vs = "The class is set by the age on April 1 of that school year and does not change at the birthday. " +
+        (cls >= 3 ? "Ages 3 to 5: nursery fees are free under the national program. Other costs, such as meals, may still be charged; ask the city." : "Ages 0 to 2: the fee depends on your household's residence tax. It is free for residence-tax-exempt households, and some cities add their own help.");
+      if (cls === 0) vs += "\nThe 0-year class is for babies born on or after April 2 of the year before. Each nursery sets the youngest age it takes.";
+    }
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    if (april) {
+      var y = S.getFullYear();
+      if (y === 2027) {
+        put("dates", T > new Date(2026, 9, 28) ? "Closed: October 1 to 28, 2026" : "October 1 to 28, 2026", "Yokohama example: first round for April 2027", "Most April places are decided in the first round.");
+        put("dates", "December 23, 2026 to February 2, 2027", "Yokohama example: second round for April 2027", "Online until 23:59. Adding a nursery or sending only missing papers: until February 3.");
+      } else {
+        put("dates", "Autumn of " + (y - 1), "April round: applications open", "Yokohama took April 2027 applications from October 1 to 28, 2026. Your city's dates are in its guide (利用案内 or 入園のしおり).");
+      }
+      put("dates", "Ask by " + fmt(new Date(y - 1, 8, 1)), "Get your city's guide for April " + y, "Then there is time to get the employment certificate from your employer.");
+    } else {
+      var prev = new Date(S.getFullYear(), S.getMonth() - 1, 7);
+      put("dates", "Example: by " + fmt(prev), "Mid-year application deadline", "Ota City (Tokyo): the 7th of the month before the start month, for May to December starts (next open day if the 7th is a holiday). Your city's day may be different.");
+      if (S.getMonth() === 1 || S.getMonth() === 2) warn.push("- Some cities do not decide places for February or March starts (Ota City does not). Ask, and look at the April round.");
+    }
+    if (rs === "leave") put("dates", "By the end of " + mfmt(S), "Go back to work", "Ota City: parents on childcare leave must go back to the same company within the start month. If not, the place is cancelled.");
+    if (rs === "search") put("dates", "Within 3 months of the start", "Find a job", "Ota City certifies job seeking for 3 months. When you find work, send the employment certificate.");
+    if (rs === "preg") put("dates", "About 5 months", "The pregnancy reason has an end", "Ota City: the birth month and 2 months before and after it. To stay longer, you need another reason (for example, going back to work).");
+
+    put("steps", "First", "Get your city's nursery guide", "Search your city's name + 保育園 申込 or 利用案内. The guide has the dates, the forms and the list of nurseries.");
+    put("steps", "Next", "Visit and choose nurseries", "Licensed nurseries (認可保育園), small nurseries (小規模保育) and others. List them in the order you want. Choose places you can reach every day.");
+    put("steps", "Next", "Ask your employer for the employment certificate", rs === "work" || rs === "leave" || rs === "offer" ? "On the city's own form. HR can take a few weeks." : "Not needed for your own reason, but each parent who works needs one.");
+    put("steps", "Apply", mnc ? "Apply online or at the city office" : "Apply at the city office or by post", mnc ? "Yokohama: online through Mynaportal with a My Number Card; the form takes 40 to 60 minutes." : "Without a My Number Card, Yokohama takes the paper form by post or at the ward office.");
+    put("steps", "After", "Certification and the result", "The city certifies your need for care (保育の必要性の認定), then decides places. Ota City: the certificate takes about a month. The certificate is not a place.");
+    put("steps", "If there is no place", "Ask what comes next", "Ask about the next round and other nurseries. If you need it to extend the childcare leave benefit, keep a copy of your application (Yokohama).");
+
+    put("papers", "Apply", "Application form (with the need-for-care application)", "Ota City: one form for all children applying at the same time.");
+    put("papers", "Apply", "ID and My Number", "Residence card, passport or My Number Card.");
+    put("papers", "Reason", PROOF[rs][0], PROOF[rs][1]);
+    put("papers", "Reason", "The other parent's proof", "If there are two parents, each needs a reason and papers.");
+    if (jan) put("papers", "Tax", "Residence tax certificate (課税証明書) from the old city", "Ota City: if you were not registered there on January 1. Moved from abroad: a city form for last year's salary (Ota: 年間給与証明書).");
+    put("papers", "Some cities", "Child's health form, consent form", "Ota City asks for both.");
+
+    if (!tax) warn.push("- Ota City: if residence tax was not filed, the city cannot see your income, and this counts against you. File it at the city office.");
+    warn.push("- You apply to the city, not to the nursery. The city decides who gets a place.");
+    warn.push("- Use the city's own forms. Ota City does not accept other formats for the employment certificate.");
+    if (rs === "work" || rs === "offer") warn.push("- Your working hours must reach your city's line. Ota City: 48 hours a month. Some cities use 64 hours.");
+    warn.push("- If your form and the employment certificate do not match, the city may ask you to send it again (Yokohama).");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My nursery school plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("bd").value = "2025-09-10"; $("sm").value = "2027-4"; $("rs").value = "leave"; $("jan").checked = true; $("mnc").checked = true; $("tax").checked = false;
+    make(new Date(2026, 10, 28));
+  }
+})();
+</script>
+</body>
+</html>
