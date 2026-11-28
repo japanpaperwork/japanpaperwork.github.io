@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Baby Born in Japan: Birth Registration and Visa Planner | Japan Paperwork</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #22262b; --sub: #646b74;
+    --line: #dfe3e8; --accent: #2a5d8f; --accent-soft: #e7eff7; --input: #fffbe8;
+    --warn: #a4412f; --warn-soft: #f8e9e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1d20; --card: #25282c; --text: #eceef0; --sub: #a3a9b0;
+      --line: #3a3e44; --accent: #8cb8e3; --accent-soft: #23303d; --input: #2e2c22;
+      --warn: #f0a08f; --warn-soft: #3d2622;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; font-size: 16px; }
+  main { max-width: 560px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.3rem; margin: 0 0 4px; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  h3 { font-size: .98rem; margin: 18px 0 6px; }
+  .lead { color: var(--sub); font-size: .9rem; margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  label.f { display: block; font-weight: 600; margin: 14px 0 6px; }
+  .card > label.f:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--sub); font-size: .85rem; display: block; }
+  input[type=date], input[type=month], input[type=number], select { width: 100%; font-size: 1rem; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--input); color: var(--text); font-family: inherit; }
+  label.c { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); font-size: .95rem; }
+  label.c:first-of-type { border-top: 0; }
+  label.c input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+  label.c small { display: block; color: var(--sub); font-size: .82rem; }
+  button { width: 100%; font-size: 1rem; font-weight: 700; padding: 12px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; margin-top: 18px; cursor: pointer; font-family: inherit; }
+  @media (prefers-color-scheme: dark) { button { color: #0f1d2b; } }
+  .copy { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 9px; font-size: .92rem; margin-top: 10px; }
+  .verdict { border-radius: 10px; padding: 12px; background: var(--accent-soft); }
+  .verdict .t { font-weight: 700; font-size: 1.05rem; }
+  .verdict .s { font-size: .9rem; white-space: pre-wrap; }
+  .item { border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; background: var(--accent-soft); }
+  .item .d { font-size: .85rem; color: var(--sub); }
+  .item .t { font-weight: 700; }
+  .item .s { font-size: .88rem; }
+  .ng { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 12px; font-size: .9rem; white-space: pre-wrap; }
+  .note { font-size: .8rem; color: var(--sub); }
+  [hidden] { display: none !important; }
+  .mihon .verdict .t, .mihon .verdict .s, .mihon .item .d, .mihon .item .t, .mihon .item .s, .mihon #warn, .mihon #vs { filter: blur(6px); user-select: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Baby born in Japan: birth registration and visa planner</h1>
+  <p class="lead">For foreign parents whose baby was born (or will be born) in Japan. Enter the birth date and your situation. You get the deadline for the birth registration at the city office, the 30-day line for the baby's status of residence, the papers to collect, and the order to do it in. Nothing you enter is sent anywhere; it stays in this page.</p>
+
+  <div class="card">
+    <h2>1. The baby</h2>
+    <label class="f" for="bd">Baby's date of birth<span class="hint">Not born yet? Enter the due date to see the plan</span></label>
+    <input type="date" id="bd">
+    <label class="f" for="par">Parents<span class="hint">The status of the parent the baby will live with</span></label>
+    <select id="par">
+      <option value="work">Work or study visa (e.g. Engineer/Specialist, Student)</option>
+      <option value="pr">Permanent resident (永住者)</option>
+      <option value="ltr">Long-term resident (定住者)</option>
+      <option value="jp">One parent is a Japanese citizen</option>
+      <option value="other">Other / not sure</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <h2>2. Your plans</h2>
+    <label class="c"><input type="checkbox" id="leave"><span>We plan to take the baby out of Japan within 60 days of birth<small>For example to show the family at home</small></span></label>
+    <label class="c"><input type="checkbox" id="back"><span>…and come back to live in Japan with the baby<small>Only matters if you ticked the box above</small></span></label>
+    <label class="c"><input type="checkbox" id="pp"><span>The baby's passport is already issued<small>From your country's embassy or consulate</small></span></label>
+    <label class="c"><input type="checkbox" id="moved"><span>We live in a different city from the hospital</span></label>
+  </div>
+  <button id="make" type="button">Show my plan</button>
+
+  <div class="card" id="result" hidden style="margin-top:16px">
+    <h2>Your result</h2>
+    <div class="verdict"><div class="t" id="vt"></div><div class="s" id="vs"></div></div>
+    <h3>Dates to watch</h3>
+    <div id="dates"></div>
+    <h3>Next steps</h3>
+    <div id="steps"></div>
+    <h3>Papers to collect</h3>
+    <div id="papers"></div>
+    <h3>Watch out</h3>
+    <div class="ng" id="warn"></div>
+    <button type="button" class="copy" id="copy">Copy as text</button>
+  </div>
+
+  <p class="note">A first guide based on the Family Register Act (Art. 25, 49, 51, 52), the Immigration Control Act (Art. 22-2), the Nationality Act (Art. 2), pages of the Immigration Services Agency (Q&amp;A Q28, "Dependent", "Permanent residency") and Yokohama City, checked November 2026. Immigration decides the baby's status. Each city decides its own counter and papers. Not legal advice. Always confirm with your city office and your regional immigration office.<br>
+  Last updated: November 2026 · Japan Paperwork</p>
+</main>
+
+<script>
+(function () {
+  var Q = location.search;
+  var DEMO = Q.indexOf("demo") >= 0;
+  if (Q.indexOf("mihon") >= 0) document.body.className = "mihon";
+  function $(id) { return document.getElementById(id); }
+  var M = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var W = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmt(d) { return W[d.getDay()] + ", " + M[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear(); }
+  function add(d, n) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; }
+  function pd(v) { var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function today() { var t = new Date(); return new Date(t.getFullYear(), t.getMonth(), t.getDate()); }
+  var lines = [];
+  function put(box, date, title, sub) {
+    var el = document.createElement("div"); el.className = "item";
+    el.innerHTML = '<div class="d"></div><div class="t"></div><div class="s"></div>';
+    el.querySelector(".d").textContent = date;
+    el.querySelector(".t").textContent = title;
+    el.querySelector(".s").textContent = sub || "";
+    $(box).appendChild(el);
+    lines.push("- " + (date ? date + ": " : "") + title);
+  }
+  var STATUS = {
+    work: ["Likely status: Dependent (家族滞在)", "The status for a child supported by a parent with a work or study visa. Immigration decides."],
+    pr: ["Likely status: Spouse or Child of Permanent Resident (永住者の配偶者等), or Permanent Resident", "A child of a permanent resident born in Japan may apply for either. The Permanent Residency page lists the 30-day line for a birth too. Ask immigration which one fits."],
+    ltr: ["Likely status: Long-term Resident (定住者)", "For a minor, unmarried child supported by a long-term resident. Immigration decides."],
+    other: ["Status: ask immigration", "The baby's status depends on the parents' status. Ask your regional immigration office early, well before day 30."]
+  };
+  function make(now) {
+    ["dates","steps","papers"].forEach(function (id) { $(id).innerHTML = ""; });
+    lines = [];
+    var warn = [];
+    if (!$("bd").value) { $("vt").textContent = "Please enter the baby's date of birth."; $("vs").textContent = ""; $("warn").textContent = "- All dates are counted from the day of birth."; $("result").hidden = false; return true; }
+    var B = pd($("bd").value), T = now || today();
+    var par = $("par").value, leave = $("leave").checked, back = $("back").checked, pp = $("pp").checked, moved = $("moved").checked;
+    var d14 = add(B, 13), d30 = add(B, 30), d60 = add(B, 60);
+    var age = Math.round((T - B) / 86400000);
+    var needVisa = par !== "jp" && !(leave && !back);
+    var vt, vs;
+    if (par === "jp") {
+      vt = "First: the birth registration. The baby is usually a Japanese citizen.";
+      vs = "Under the Nationality Act, a child whose father or mother is Japanese at birth is Japanese. The baby then needs no status of residence. Your city office will guide you on the family register.";
+    } else if (!needVisa) {
+      vt = "Birth registration first. No status application if the baby leaves within 60 days and does not come back on a re-entry permit.";
+      vs = "Immigration Q&A Q28: if the baby leaves Japan within 60 days of birth, the application is not needed, except when leaving with a re-entry permit (including the special re-entry permit).";
+    } else {
+      vt = "Two deadlines: birth registration (14 days), then the baby's status of residence (30 days).";
+      vs = "A foreign baby born in Japan may stay up to 60 days without a status. To stay longer, apply within 30 days of birth at the regional immigration office for your address.\n" + STATUS[par][0] + ".";
+    }
+    if (age >= 0 && age <= 400) vs += "\nToday is day " + (age + 1) + " (the birth day is day 1).";
+    $("vt").textContent = vt; $("vs").textContent = vs;
+    lines.push(vt);
+
+    put("dates", "By " + fmt(d14), "Birth registration (出生届) at the city office", "14 days, counting the day of birth as day 1. File in the city where you live or where the baby was born. The father or mother files.");
+    if (needVisa) {
+      put("dates", "Around " + fmt(d30) + " (aim earlier)", "Apply for the baby's status of residence", "Within 30 days of birth, at the regional immigration office for your address. A parent can apply as the legal representative. Go well before this date.");
+      put("dates", "About " + fmt(d60), "End of the 60 days without a status", STATUS[par][1]);
+    } else if (par !== "jp") {
+      put("dates", "Before about " + fmt(d60), "Leave Japan within 60 days", "Then no status application is needed (Immigration Q&A Q28). If plans change, apply within 30 days of birth.");
+    }
+
+    put("steps", "Before birth", "Ask the hospital for the birth registration form", "The form comes with the birth certificate (出生証明書) the doctor or midwife fills in.");
+    put("steps", "Days 1 to 14", "File the birth registration", "Bring the form with the birth certificate and the boshi techo. Ask for a certificate of acceptance (出生届受理証明書)" + (needVisa ? " for immigration." : "."));
+    if (moved) put("steps", "Days 1 to 14", "Choose the city", "You can file in the city where you live or in the city of birth. Ask each city what they need.");
+    if (par !== "jp") put("steps", "After filing", "Get the baby's juminhyo (住民票)", "The baby is registered as a resident. A juminhyo for immigration is recommended (leave out the My Number, keep the rest).");
+    if (par !== "jp") put("steps", "Soon", "Embassy or consulate of your country", pp ? "The passport is ready. Bring it to immigration." : "Ask about the baby's birth report and passport. Immigration asks to see a passport. If it will not be ready, ask immigration before day 30.");
+    if (needVisa) put("steps", "By day 30", "Apply at the regional immigration office", "Application for permission to acquire status of residence (在留資格取得許可申請). No photo for a baby under 1. After approval, the baby gets a residence card.");
+    if (needVisa) put("steps", "After approval", "Address on the residence card", "With a juminhyo in the application, the card shows the address and no extra notice is needed. Without it, notify your city within 14 days.");
+    put("steps", "Same weeks", "Health insurance and child allowance", "Add the baby to your health insurance (company or National Health Insurance), and apply for the child allowance at your city.");
+
+    put("papers", "City office", "Birth registration form + birth certificate", "From the hospital.");
+    put("papers", "City office", "Boshi techo", "Bring it with the form.");
+    if (needVisa) {
+      put("papers", "Immigration", "Application form + proof of birth", "For example the certificate of acceptance of the birth registration. Japanese certificates: issued within 3 months.");
+      put("papers", "Immigration", "Baby's passport (to show)", pp ? "Ready." : "Not ready yet: ask immigration.");
+      if (par === "work") put("papers", "Immigration", "Supporting parent's papers", "Copy of the residence card or passport, proof of the job (e.g. employment certificate), resident tax certificates, proof of the family relationship, and a question sheet (質問書).");
+      else put("papers", "Immigration", "Parent's papers", "Your status decides the list. Check the immigration page for the baby's status, or ask the office.");
+      put("papers", "Immigration", "Baby's juminhyo (recommended)", "Then the residence card shows the address.");
+    }
+
+    if (age > 13 && age < 400) warn.push("- Day 14 has passed. File the birth registration as soon as possible and explain at the counter.");
+    if (needVisa && age > 30 && age < 400) warn.push("- Day 30 has passed. Contact your regional immigration office now.");
+    if (needVisa) warn.push("- The 30 days include weekends and holidays. Immigration counters are closed then.");
+    if (leave && back && par !== "jp") warn.push("- Coming back on a re-entry permit: apply for the status first. The no-application rule does not apply.");
+    if (par === "jp") warn.push("- Dual nationality can mean a choice later. Ask the city or the Legal Affairs Bureau.");
+    warn.push("- Immigration decides the status and may ask for more papers.");
+    $("warn").textContent = warn.join("\n");
+    $("result").hidden = false;
+    return true;
+  }
+  $("copy").addEventListener("click", function () {
+    var b = this, txt = "My baby paperwork plan\n" + lines.join("\n"), label = b.textContent;
+    var ok = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = label; }, 1500); };
+    function fallback() {
+      var t = document.createElement("textarea"); t.value = txt; document.body.appendChild(t);
+      t.select(); try { document.execCommand("copy"); ok(); } catch (err) {} document.body.removeChild(t);
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fallback); else fallback();
+  });
+  $("make").addEventListener("click", function () { if (make() && !DEMO) $("result").scrollIntoView({ behavior: "smooth" }); });
+  if (DEMO) {
+    $("bd").value = "2026-11-20"; $("moved").checked = true;
+    make(new Date(2026, 10, 28));
+  }
+})();
+</script>
+</body>
+</html>
